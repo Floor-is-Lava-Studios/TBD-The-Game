@@ -1,0 +1,49 @@
+Welcome to the very basic GitHub tutorial
+
+1st Step: Create a GitHub Account if for some reason you dont have one
+2: download GitHub to your Computer
+3:Sign into github on computer
+
+now this is where i am a little fuzzy on instructions 
+
+4. if you don't see TBD-The-Game Repository go to github(the site) look at are team page
+   find TBD-The-Game Repository and click Clone in Desktop(the button is on the right side
+   the page)
+5.Congrats it should now appear on your github on you computer if not ask me when we meet and
+ ill get it working
+
+side note:
+on gitHub(Site) in the TBD-The-Game there should be a button that says watch or unwatch 
+if it says watch click it. This will give you notifications when the repository is changed
+
+Now How To GitHub:
+now that you have TBD-The-Game Repository in your github you should be ablle to see the history
+of changes made to the repository. as you can see i have made changes to it so if you click on
+the change aka the commit called "Added How to Github" you will see that in the GitHub_Tutorial.txt
+file i add this text and the entire Github tutorial file to TBD-The-Game Repository.
+Heres a key for changes:
+Green- means "this stuff was added"
+Red- means "this stuff was removed"
+No Color- means there was no changed to this stuff
+
+To commit or to uncommit
+Ok show basically here is what uncommit and commit mean. if you make a changes in the TBD-The-Game Repository
+folder or to a file in that folder, and then go back to your github. click on TBD-The-Game Repository and you
+will see uncommited changes above history click show and it will show you what you change in the project.
+
+MOST IMPORTANT PART EEEEEEEEVVVVVVVVVVVVEEEEEEEEEEEEEEERRRRRRRRRRRR!!!!!!!!!!!!!!!!!!!!! 
+IF YOU DO NOT COMMIT YOUR CHANGES NONE OF US WILL SEE THE UPDATED VERSION ON GITHUB AND
+THE GITHUB SQUID CAT WILL KILL YOU!!!!!
+
+to commit he changes simply press the button commit to master after you add a summary title of 
+what you changed and a detailish description of what you changed
+
+SECOND MOST IMPORTANT PART EEEEEEEEEEEEEVVVVVVVVVVVVVVVVEEEEEEEEEEEEEEERRRRRRRRRRRR!!!!!!!!
+IF YOU DONT SAY WHY YOU CHANGED SOMETHING THEN WE HAVE TO FIGURE WHAT THE CHANGES ARE FOR
+AND I/ GITHUB SQUIDCAT WILL BE VERY ANNOYED/MAD
+
+Thats pretty much all i got at the moments if there are more question or stuff i will update
+this Files see ya 
+
+MR. TOURGUE OUT!!!!!!!!!!!!!!!!!!!!!!!
+EXPLOSIONS!!!!!!!!!!!!!!!!!!!!!!!!!!!
