@@ -11,5 +11,19 @@ namespace FloorIsLava
      */ 
     class GameState
     {
+        #region Attributes
+        //Attributes
+
+        #endregion Attributes
+
+        #region Constructors
+        //Constructors
+
+        #endregion Constructors
+
+        #region Methods
+        //Methods
+
+        #endregion Methods
     }
 }
