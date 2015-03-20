@@ -8,10 +8,32 @@ C:\Users\Josh\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsG
 C:\Users\Josh\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\obj\x86\Debug\FloorIsLava.csprojResolveAssemblyReference.cache
 C:\Users\Josh\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\obj\x86\Debug\FloorIsLava.exe
 C:\Users\Josh\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\obj\x86\Debug\FloorIsLava.pdb
-<<<<<<< HEAD
 D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\obj\x86\Debug\FloorIsLava.exe
 D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\obj\x86\Debug\FloorIsLava.pdb
-=======
 D:\Users\avk9238\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\obj\x86\Debug\FloorIsLava.exe
 D:\Users\avk9238\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\obj\x86\Debug\FloorIsLava.pdb
+<<<<<<< HEAD
+=======
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\obj\x86\Debug\FloorIsLava.exe
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\obj\x86\Debug\FloorIsLava.pdb
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\SDL.dll
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\FloorIsLava.exe
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\FloorIsLava.pdb
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Lidgren.Network.dll
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\MonoGame.Framework.dll
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\OpenTK.dll
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Tao.Sdl.dll
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\obj\x86\Debug\FloorIsLava.csprojResolveAssemblyReference.cache
+>>>>>>> origin/master
+D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\SDL.dll
+D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Lidgren.Network.dll
+D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\MonoGame.Framework.dll
+D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\OpenTK.dll
+D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Tao.Sdl.dll
+D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\obj\x86\Debug\FloorIsLava.csprojResolveAssemblyReference.cache
+<<<<<<< HEAD
+D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\FloorIsLava.exe
+D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\FloorIsLava.pdb
+=======
+
 >>>>>>> origin/master
