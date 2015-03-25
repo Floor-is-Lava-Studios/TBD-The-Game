@@ -50,7 +50,7 @@ namespace FloorIsLava
             }
             if (keyState.IsKeyDown(Keys.L) && lastState.IsKeyDown(Keys.L))
             {
-                gameState.CurrentScreen = Screen.LevelScreen;
+                gameState.SwitchLevel(game);
             }
             if (keyState.IsKeyDown(Keys.C) && lastState.IsKeyDown(Keys.C))
             {
