@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Bullet.cs" />
+    <Compile Include="CreditScreen.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="GameScreen.cs" />
     <Compile Include="Game1.cs" />
@@ -43,8 +44,11 @@
     <Compile Include="GameState.cs" />
     <Compile Include="Goal.cs" />
     <Compile Include="Gold.cs" />
+    <Compile Include="InstructionScreen.cs" />
+    <Compile Include="LevelScreen.cs" />
     <Compile Include="MoveableGameObject.cs" />
     <Compile Include="MoveablePlatform.cs" />
+    <Compile Include="OptionScreen.cs" />
     <Compile Include="Platform.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />

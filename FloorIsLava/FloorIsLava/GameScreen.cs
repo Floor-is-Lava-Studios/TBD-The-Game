@@ -38,9 +38,25 @@ namespace FloorIsLava
         public void Update(GameTime gametime)
         {
             KeyboardState keyBoardState = Keyboard.GetState();
-            if(keyBoardState.IsKeyDown(Keys.S) && lastState.IsKeyDown(Keys.S))
+            if (keyBoardState.IsKeyDown(Keys.S) && lastState.IsKeyDown(Keys.S))
             {
                 gameState.CurrentScreen = Screen.StartScreen;
+            }
+            if (keyBoardState.IsKeyDown(Keys.I) && lastState.IsKeyDown(Keys.I))
+            {
+                gameState.SwitchInstruct(game);
+            }
+            if (keyBoardState.IsKeyDown(Keys.O) && lastState.IsKeyDown(Keys.O))
+            {
+                gameState.SwitchOption(game);
+            }
+            if (keyBoardState.IsKeyDown(Keys.L) && lastState.IsKeyDown(Keys.L))
+            {
+                gameState.CurrentScreen = Screen.LevelScreen;
+            }
+            if (keyBoardState.IsKeyDown(Keys.C) && lastState.IsKeyDown(Keys.C))
+            {
+                gameState.SwitchCredit(game);
             }
             lastState = keyBoardState;
         }

@@ -89,6 +89,34 @@ namespace FloorIsLava
                         gameState.GameScreen.Update(gameTime);
                     }
                     break;
+
+                case Screen.InstructionScreen:
+                    if (gameState.InstructionScreen != null)
+                    {
+                        gameState.InstructionScreen.Update(gameTime);
+                    }
+                    break;
+
+                case Screen.OptionScreen:
+                    if (gameState.OptionScreen != null)
+                    {
+                        gameState.OptionScreen.Update(gameTime);
+                    }
+                    break;
+
+                case Screen.CreditScreen:
+                    if (gameState.CreditScreen != null)
+                    {
+                        gameState.CreditScreen.Update(gameTime);
+                    }
+                    break;
+
+                case Screen.LevelScreen:
+                    if (gameState.LevelScreen != null)
+                    {
+                        gameState.LevelScreen.Update(gameTime);
+                    }
+                    break;
             }
             base.Update(gameTime);
         }
@@ -118,6 +146,38 @@ namespace FloorIsLava
                     {
                         GraphicsDevice.Clear(Color.SteelBlue);
                         gameState.GameScreen.Draw(spriteBatch);
+                    }
+                    break;
+
+                case Screen.InstructionScreen:
+                    if(gameState.InstructionScreen != null)
+                    {
+                        GraphicsDevice.Clear(Color.Red);
+                        gameState.InstructionScreen.Draw(spriteBatch);
+                    }
+                    break;
+
+                case Screen.OptionScreen:
+                    if(gameState.OptionScreen != null)
+                    {
+                        GraphicsDevice.Clear(Color.Gold);
+                        gameState.OptionScreen.Draw(spriteBatch);
+                    }
+                    break;
+
+                case Screen.CreditScreen:
+                    if (gameState.CreditScreen != null)
+                    {
+                        GraphicsDevice.Clear(Color.Black);
+                        gameState.CreditScreen.Draw(spriteBatch);
+                    }
+                    break;
+
+                case Screen.LevelScreen:
+                    if (gameState.LevelScreen != null)
+                    {
+                        GraphicsDevice.Clear(Color.Gray);
+                        gameState.LevelScreen.Draw(spriteBatch);
                     }
                     break;
             }

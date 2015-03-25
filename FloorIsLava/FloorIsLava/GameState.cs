@@ -20,7 +20,10 @@ namespace FloorIsLava
     {
         StartScreen,
         GameScreen,
-        CreditScreen
+        CreditScreen,
+        OptionScreen,
+        LevelScreen,
+        InstructionScreen
     }
     #endregion GameStates
 
@@ -31,6 +34,10 @@ namespace FloorIsLava
         private Game1 game;
         private static StartScreen startScreen;
         private static GameScreen gameScreen;
+        private static LevelScreen levelScreen;
+        private static CreditScreen creditScreen;
+        private static InstructionScreen instructionScreen;
+        private static OptionScreen optionScreen;
         private static Screen currentScreen;
         private int num;
         #endregion Attributes
@@ -78,6 +85,41 @@ namespace FloorIsLava
             }
         }
 
+        public InstructionScreen InstructionScreen
+        {
+            get { return instructionScreen; }
+            set
+            {
+                instructionScreen = value;
+            }
+        }
+
+        public OptionScreen OptionScreen
+        {
+            get { return optionScreen; }
+            set
+            {
+                optionScreen = value;
+            }
+        }
+
+        public CreditScreen CreditScreen
+        {
+            get { return creditScreen; }
+            set
+            {
+                creditScreen = value;
+            }
+        }
+
+        public LevelScreen LevelScreen
+        {
+            get { return levelScreen; }
+            set
+            {
+                levelScreen = value;
+            }
+        }
         #endregion Properties
 
         #region Methods
@@ -89,6 +131,29 @@ namespace FloorIsLava
             num++;
         }
 
+        public void SwitchInstruct(Game1 game)
+        {
+            instructionScreen = new InstructionScreen(game);
+            currentScreen = Screen.InstructionScreen;
+        }
+
+        public void SwitchOption(Game1 game)
+        {
+            optionScreen = new OptionScreen(game);
+            currentScreen = Screen.OptionScreen;
+        }
+
+        public void SwitchCredit(Game1 game)
+        {
+            creditScreen = new CreditScreen(game);
+            currentScreen = Screen.CreditScreen;
+        }
+
+        public void SwitchLevel(Game1 game)
+        {
+            levelScreen = new LevelScreen(game);
+            currentScreen = Screen.LevelScreen;
+        }
         #endregion Methods
     }
 }

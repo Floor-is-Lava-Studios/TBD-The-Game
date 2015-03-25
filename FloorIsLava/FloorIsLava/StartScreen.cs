@@ -38,9 +38,25 @@ namespace FloorIsLava
         public void Update()
         {
             KeyboardState keyboardState = Keyboard.GetState();
-            if(keyboardState.IsKeyDown(Keys.G) && lastState.IsKeyDown(Keys.G))
+            if (keyboardState.IsKeyDown(Keys.I) && lastState.IsKeyDown(Keys.I))
+            {
+                gameState.SwitchInstruct(game);
+            }
+            if (keyboardState.IsKeyDown(Keys.G) && lastState.IsKeyDown(Keys.G))
             {
                 gameState.StartGame();
+            }
+            if (keyboardState.IsKeyDown(Keys.O) && lastState.IsKeyDown(Keys.O))
+            {
+                gameState.SwitchOption(game);
+            }
+            if (keyboardState.IsKeyDown(Keys.L) && lastState.IsKeyDown(Keys.L))
+            {
+                gameState.SwitchLevel(game);
+            }
+            if (keyboardState.IsKeyDown(Keys.C) && lastState.IsKeyDown(Keys.C))
+            {
+                gameState.SwitchCredit(game);
             }
             font1 = game.Content.Load<SpriteFont>("Font1");
             lastState = keyboardState;
