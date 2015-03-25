@@ -19,6 +19,8 @@ namespace FloorIsLava
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        private GameState gameState;
+
         public Game1()
             : base()
         {
@@ -35,7 +37,6 @@ namespace FloorIsLava
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
@@ -49,6 +50,8 @@ namespace FloorIsLava
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            gameState = new GameState(this);
+            gameState.StartScreen = new StartScreen(this);
         }
 
         /// <summary>
@@ -71,7 +74,22 @@ namespace FloorIsLava
                 Exit();
 
             // TODO: Add your update logic here
+            switch (gameState.CurrentScreen)
+            {
+                case Screen.StartScreen:
+                    if (gameState.StartScreen != null)
+                    {
+                        gameState.StartScreen.Update();
+                    }
+                    break;
 
+                case Screen.GameScreen:
+                    if (gameState.GameScreen != null)
+                    {
+                        gameState.GameScreen.Update(gameTime);
+                    }
+                    break;
+            }
             base.Update(gameTime);
         }
 
@@ -84,8 +102,28 @@ namespace FloorIsLava
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            switch(gameState.CurrentScreen)
+            {
+                case Screen.StartScreen:
+                    if (gameState.StartScreen != null)
+                    {
+                        GraphicsDevice.Clear(Color.Green);
+                        gameState.StartScreen.Draw(spriteBatch);
+                    }
+                    break;
 
+                case Screen.GameScreen:
+                    if (gameState.GameScreen != null)
+                    {
+                        GraphicsDevice.Clear(Color.SteelBlue);
+                        gameState.GameScreen.Draw(spriteBatch);
+                    }
+                    break;
+            }
+            spriteBatch.End();
             base.Draw(gameTime);
         }
+
     }
 }
