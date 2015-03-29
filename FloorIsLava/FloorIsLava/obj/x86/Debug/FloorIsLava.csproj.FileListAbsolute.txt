@@ -30,3 +30,15 @@ D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\obj\x86\D
 D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\FloorIsLava.exe
 D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\FloorIsLava.pdb
 C:\Users\Josh\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\Font1.xnb
+C:\Users\Alexander\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\obj\x86\Debug\FloorIsLava.exe
+C:\Users\Alexander\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\obj\x86\Debug\FloorIsLava.pdb
+C:\Users\Alexander\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\obj\x86\Debug\FloorIsLava.csprojResolveAssemblyReference.cache
+C:\Users\Alexander\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\Player.xnb
+C:\Users\Alexander\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\wallSprite.xnb
+C:\Users\Alexander\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\Font1.xnb
+C:\Users\Alexander\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\FloorIsLava.exe
+C:\Users\Alexander\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\FloorIsLava.pdb
+C:\Users\Alexander\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Lidgren.Network.dll
+C:\Users\Alexander\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\MonoGame.Framework.dll
+C:\Users\Alexander\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\OpenTK.dll
+C:\Users\Alexander\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Tao.Sdl.dll

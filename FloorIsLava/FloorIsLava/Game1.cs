@@ -18,6 +18,12 @@ namespace FloorIsLava
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        public Texture2D playerSprite;
+        public Texture2D wallSprite;
+        public int screenWidth;
+        public int screenHeight;
+        
+        
 
         private GameState gameState;
 
@@ -37,6 +43,16 @@ namespace FloorIsLava
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+
+            // Makes the game fullscreen
+            graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+            graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
+
+            screenWidth = GraphicsDevice.DisplayMode.Width;
+            screenHeight = GraphicsDevice.DisplayMode.Height;
+
             base.Initialize();
         }
 
@@ -52,6 +68,12 @@ namespace FloorIsLava
             // TODO: use this.Content to load your game content here
             gameState = new GameState(this);
             gameState.StartScreen = new StartScreen(this);
+
+            playerSprite = Content.Load<Texture2D>("Player");
+            wallSprite = Content.Load<Texture2D>("wallSprite");
+            
+
+
         }
 
         /// <summary>
