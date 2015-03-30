@@ -122,11 +122,14 @@
 
 use the arrow keys to move your cursor
 
-press w to add a wall
+press a to add a wall
 press c to add the player
 press f to add the goal
 press g to add a gold piece
 press n to remove a piece
-press e to add an enemy</value>
+press u to add an enemy moving up
+press r to add an enemy moving right
+press s to add an enemy that is stationary
+press o to add an obstacle</value>
   </data>
 </root>

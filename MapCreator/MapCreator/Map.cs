@@ -26,12 +26,11 @@ namespace MapCreator
         public Map(int xIn, int yIn, string fileNameIn, Info infoFormIn)
         {
             InitializeComponent();
-            x = xIn;
-            y = yIn;
+            x = xIn + 2;
+            y = yIn + 2;
             values = new char[x,y];
             images = new PictureBox[x, y];
             infoForm = infoFormIn;
-
             fileName = fileNameIn;
 
             cursor = new PictureBox();
@@ -52,6 +51,24 @@ namespace MapCreator
                     images[i, j].Image = new Bitmap(MapImages.EmptyImage);
                     images[i, j].Location = new Point(-101, -101);
                     Controls.Add(images[i, j]);
+                }
+            }
+
+            for (int i = 0; i < x; i++)
+            {
+                for (int j = 0; j < y; j++)
+                {
+                    if(j == 0 || j == y - 1)
+                    {
+                        values[i, j] = 'w';
+                        images[i, j].Image = new Bitmap(MapImages.WallImage);
+                    }
+
+                    if (i == 0 || i == x - 1)
+                    {
+                        values[i, j] = 'w';
+                        images[i, j].Image = new Bitmap(MapImages.WallImage);
+                    }
                 }
             }
 
@@ -80,7 +97,7 @@ namespace MapCreator
                 {
                     if(i >= 0 && i < x && j >= 0 && j < y)
                     {
-                        images[i, j].Location = new Point(xTrack * 100, yTrack * 100);
+                        images[i, j].Location = new Point(xTrack * MapImages.ImageWidth, yTrack * MapImages.ImageHeight);
                     }
                     yTrack += 1;
                 }
@@ -105,16 +122,38 @@ namespace MapCreator
                         values[posX, posY] = 'g';
                         break;
                     case 'f':
-                        images[posX, posY].Image = new Bitmap(MapImages.GoalImage);
-                        values[posX, posY] = 'f';
+                        if(!CheckGoal())
+                        {
+                            images[posX, posY].Image = new Bitmap(MapImages.GoalImage);
+                            values[posX, posY] = 'f';
+                        }
+                        else
+                        {
+                            MessageBox.Show("There is already a goal");
+                        }
                         break;
                     case 'c':
-                        images[posX, posY].Image = new Bitmap(MapImages.PlayerImage);
-                        values[posX, posY] = 'c';
+                        if(!CheckPlayer())
+                        {
+                            images[posX, posY].Image = new Bitmap(MapImages.PlayerImage);
+                            values[posX, posY] = 'c';
+                        }
+                        else
+                        {
+                            MessageBox.Show("There is already a player");
+                        }
                         break;
-                    case 'e':
+                    case 'u':
+                        images[posX, posY].Image = new Bitmap(MapImages.EnemyUpImage);
+                        values[posX, posY] = 'u';
+                        break;
+                    case 'r':
+                        images[posX, posY].Image = new Bitmap(MapImages.EnemyRightImage);
+                        values[posX, posY] = 'd';
+                        break;
+                    case 's':
                         images[posX, posY].Image = new Bitmap(MapImages.EnemyImage);
-                        values[posX, posY] = 'e';
+                        values[posX, posY] = 's';
                         break;
                     case 'n':
                         images[posX, posY].Image = new Bitmap(MapImages.EmptyImage);
@@ -124,12 +163,46 @@ namespace MapCreator
                         images[posX, posY].Image = new Bitmap(MapImages.WallImage);
                         values[posX, posY] = 'w';
                         break;
+                    case 'o':
+                        images[posX, posY].Image = new Bitmap(MapImages.ObstacleImage);
+                        values[posX, posY] = 'o';
+                        break;
                 }
             }
-            
 
             Draw();
-            
+        }
+
+        public bool CheckPlayer()
+        {
+            bool created = false;
+            for (int i = 0; i < x; i++)
+            {
+                for (int j = 0; j < y; j++)
+                {
+                    if(values[i,j] == 'c')
+                    {
+                        created = true;
+                    }
+                }
+            }
+            return created;
+        }
+
+        public bool CheckGoal()
+        {
+            bool created = false;
+            for (int i = 0; i < x; i++)
+            {
+                for (int j = 0; j < y; j++)
+                {
+                    if (values[i, j] == 'f')
+                    {
+                        created = true;
+                    }
+                }
+            }
+            return created;
         }
 
         private void Map_KeyDown(object sender, KeyEventArgs e)
@@ -155,16 +228,36 @@ namespace MapCreator
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StreamWriter output = new StreamWriter(fileName + ".txt");
-            for (int i = 0; i < x; i++)
+            if(CheckPlayer() && CheckGoal())
             {
-                for (int j = 0; j < y; j++)
+                StreamWriter output = new StreamWriter(fileName + ".txt");
+
+                output.WriteLine(fileName);
+                output.WriteLine('0');
+                output.WriteLine('0');
+
+                output.WriteLine(x);
+                output.WriteLine(y);
+
+                for (int i = 0; i < y; i++)
                 {
-                    output.Write(values[j,i]);
+                    for (int j = 0; j < x; j++)
+                    {
+                        output.Write(values[j, i]);
+                        output.Write(' ');
+                    }
+                    output.WriteLine();
                 }
-                output.WriteLine();
+                output.Close();
             }
-            output.Close();
+            else if(!CheckPlayer())
+            {
+                MessageBox.Show("There is no player");
+            }
+            else if (!CheckGoal())
+            {
+                MessageBox.Show("There is no goal");
+            }
         }
 
         private void Map_FormClosed(object sender, FormClosedEventArgs e)
