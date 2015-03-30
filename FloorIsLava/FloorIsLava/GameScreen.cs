@@ -56,10 +56,10 @@ namespace FloorIsLava
             GameTime gameTime = gt;
             player.Update(gameTime);
             KeyboardState keyBoardState = Keyboard.GetState();
-            //if (keyBoardState.IsKeyDown(Keys.S) && lastState.IsKeyDown(Keys.S))
-            //{
-            //    gameState.CurrentScreen = Screen.StartScreen;
-            //}
+            if (keyBoardState.IsKeyDown(Keys.M) && lastState.IsKeyDown(Keys.M))
+            {
+                gameState.CurrentScreen = Screen.StartScreen;
+            }
             if (keyBoardState.IsKeyDown(Keys.I) && lastState.IsKeyDown(Keys.I))
             {
                 gameState.SwitchInstruct(game);
