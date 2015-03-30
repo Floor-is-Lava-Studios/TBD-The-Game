@@ -122,10 +122,11 @@
 
 use the arrow keys to move your cursor
 
-press a to add a wall
+press w to add a wall
 press c to add the player
 press f to add the goal
 press g to add a gold piece
-press n to remove a piece</value>
+press n to remove a piece
+press e to add an enemy</value>
   </data>
 </root>
