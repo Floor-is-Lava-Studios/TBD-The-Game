@@ -29,6 +29,8 @@ D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\Windo
 D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\obj\x86\Debug\FloorIsLava.csprojResolveAssemblyReference.cache
 D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\FloorIsLava.exe
 D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\FloorIsLava.pdb
+<<<<<<< HEAD
+=======
 C:\Users\Josh\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\Font1.xnb
 C:\Users\Alexander\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\obj\x86\Debug\FloorIsLava.exe
 C:\Users\Alexander\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\obj\x86\Debug\FloorIsLava.pdb
@@ -50,3 +52,4 @@ C:\Users\Jacob\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\Windows
 C:\Users\Jacob\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\FloorIsLava.exe
 C:\Users\Jacob\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\FloorIsLava.pdb
 C:\Users\Jacob\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\obj\x86\Debug\FloorIsLava.csprojResolveAssemblyReference.cache
+>>>>>>> origin/master
