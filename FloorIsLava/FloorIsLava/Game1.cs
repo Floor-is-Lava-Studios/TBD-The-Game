@@ -18,6 +18,14 @@ namespace FloorIsLava
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        public Texture2D playerSprite;
+        public Texture2D wallSprite;
+        public int screenWidth;
+        public int screenHeight;
+        
+        
+
+        private GameState gameState;
 
         public Game1()
             : base()
@@ -36,6 +44,15 @@ namespace FloorIsLava
         {
             // TODO: Add your initialization logic here
 
+            // Makes the game fullscreen
+            graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+            graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
+
+            screenWidth = GraphicsDevice.DisplayMode.Width;
+            screenHeight = GraphicsDevice.DisplayMode.Height;
+
             base.Initialize();
         }
 
@@ -49,6 +66,14 @@ namespace FloorIsLava
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            gameState = new GameState(this);
+            gameState.StartScreen = new StartScreen(this);
+
+            playerSprite = Content.Load<Texture2D>("Player");
+            wallSprite = Content.Load<Texture2D>("wallSprite");
+            
+
+
         }
 
         /// <summary>
@@ -71,7 +96,50 @@ namespace FloorIsLava
                 Exit();
 
             // TODO: Add your update logic here
+            switch (gameState.CurrentScreen)
+            {
+                case Screen.StartScreen:
+                    if (gameState.StartScreen != null)
+                    {
+                        gameState.StartScreen.Update();
+                    }
+                    break;
 
+                case Screen.GameScreen:
+                    if (gameState.GameScreen != null)
+                    {
+                        gameState.GameScreen.Update(gameTime);
+                    }
+                    break;
+
+                case Screen.InstructionScreen:
+                    if (gameState.InstructionScreen != null)
+                    {
+                        gameState.InstructionScreen.Update(gameTime);
+                    }
+                    break;
+
+                case Screen.OptionScreen:
+                    if (gameState.OptionScreen != null)
+                    {
+                        gameState.OptionScreen.Update(gameTime);
+                    }
+                    break;
+
+                case Screen.CreditScreen:
+                    if (gameState.CreditScreen != null)
+                    {
+                        gameState.CreditScreen.Update(gameTime);
+                    }
+                    break;
+
+                case Screen.LevelScreen:
+                    if (gameState.LevelScreen != null)
+                    {
+                        gameState.LevelScreen.Update(gameTime);
+                    }
+                    break;
+            }
             base.Update(gameTime);
         }
 
@@ -84,8 +152,60 @@ namespace FloorIsLava
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            switch(gameState.CurrentScreen)
+            {
+                case Screen.StartScreen:
+                    if (gameState.StartScreen != null)
+                    {
+                        GraphicsDevice.Clear(Color.Green);
+                        gameState.StartScreen.Draw(spriteBatch);
+                    }
+                    break;
 
+                case Screen.GameScreen:
+                    if (gameState.GameScreen != null)
+                    {
+                        GraphicsDevice.Clear(Color.SteelBlue);
+                        gameState.GameScreen.Draw(spriteBatch);
+                    }
+                    break;
+
+                case Screen.InstructionScreen:
+                    if(gameState.InstructionScreen != null)
+                    {
+                        GraphicsDevice.Clear(Color.Red);
+                        gameState.InstructionScreen.Draw(spriteBatch);
+                    }
+                    break;
+
+                case Screen.OptionScreen:
+                    if(gameState.OptionScreen != null)
+                    {
+                        GraphicsDevice.Clear(Color.Gold);
+                        gameState.OptionScreen.Draw(spriteBatch);
+                    }
+                    break;
+
+                case Screen.CreditScreen:
+                    if (gameState.CreditScreen != null)
+                    {
+                        GraphicsDevice.Clear(Color.Black);
+                        gameState.CreditScreen.Draw(spriteBatch);
+                    }
+                    break;
+
+                case Screen.LevelScreen:
+                    if (gameState.LevelScreen != null)
+                    {
+                        GraphicsDevice.Clear(Color.Gray);
+                        gameState.LevelScreen.Draw(spriteBatch);
+                    }
+                    break;
+            }
+            spriteBatch.End();
             base.Draw(gameTime);
         }
+
     }
 }
