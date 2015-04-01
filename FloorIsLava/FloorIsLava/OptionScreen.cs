@@ -46,7 +46,7 @@ namespace FloorIsLava
             }
             if (keyState.IsKeyDown(Keys.I) && lastState.IsKeyDown(Keys.I))
             {
-                gameState.CurrentScreen = Screen.InstructionScreen;
+                gameState.SwitchInstruct(game);
             }
             if (keyState.IsKeyDown(Keys.L) && lastState.IsKeyDown(Keys.L))
             {
