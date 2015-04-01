@@ -89,7 +89,7 @@ namespace FloorIsLava
                 {
                     if (velocity.X > 0)
                         position.X = r.Left - width;
-                    else
+                    else if (velocity.X < 0)
                         position.X = r.Right;
                     velocity.X = 0;
                 }
@@ -101,7 +101,7 @@ namespace FloorIsLava
                 {
                     if (velocity.Y < 0)
                         position.Y = r.Bottom;
-                    else
+                    else if (velocity.Y > 0)
                     {
                         position.Y = r.Top - height;
                         hasJumped = false;
