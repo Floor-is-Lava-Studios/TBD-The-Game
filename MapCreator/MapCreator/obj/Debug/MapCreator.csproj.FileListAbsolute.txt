@@ -31,3 +31,14 @@ J:\Game Dev & Algo Prob Solve II Homework\MapCreator\MapCreator\obj\Debug\MapCre
 J:\Game Dev & Algo Prob Solve II Homework\MapCreator\MapCreator\obj\Debug\MapCreator.Map.resources
 J:\Game Dev & Algo Prob Solve II Homework\MapCreator\MapCreator\obj\Debug\MapCreator.Properties.Resources.resources
 J:\Game Dev & Algo Prob Solve II Homework\MapCreator\MapCreator\obj\Debug\MapCreator.csproj.GenerateResource.Cache
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\MapCreator\MapCreator\bin\Debug\MapCreator.exe.config
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\MapCreator\MapCreator\obj\Debug\MapCreator.exe
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\MapCreator\MapCreator\obj\Debug\MapCreator.pdb
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\MapCreator\MapCreator\bin\Debug\MapCreator.exe
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\MapCreator\MapCreator\bin\Debug\MapCreator.pdb
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\MapCreator\MapCreator\obj\Debug\MapCreator.csprojResolveAssemblyReference.cache
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\MapCreator\MapCreator\obj\Debug\MapCreator.Controls.resources
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\MapCreator\MapCreator\obj\Debug\MapCreator.Info.resources
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\MapCreator\MapCreator\obj\Debug\MapCreator.Map.resources
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\MapCreator\MapCreator\obj\Debug\MapCreator.Properties.Resources.resources
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\MapCreator\MapCreator\obj\Debug\MapCreator.csproj.GenerateResource.Cache

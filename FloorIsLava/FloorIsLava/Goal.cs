@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Storage;
+using Microsoft.Xna.Framework.GamerServices;
 
 namespace FloorIsLava
 {
@@ -9,7 +15,18 @@ namespace FloorIsLava
      * The Goal class will inherit from the GameObject class and will proceed the player to 
      * the next level if it is collided with.
      */
-    class Goal
+    class Goal : GameObject
     {
+        Texture2D goalTexture;
+        public Goal(Texture2D texture, int x, int y, int width, int height)
+        {
+            rect = new Rectangle(x, y, width, height);
+            goalTexture = texture;
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(goalTexture, rect, Color.Gold);
+        }
     }
 }

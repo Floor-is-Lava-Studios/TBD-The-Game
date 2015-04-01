@@ -20,10 +20,13 @@ namespace FloorIsLava
         SpriteBatch spriteBatch;
         public Texture2D playerSprite;
         public Texture2D wallSprite;
+        public Texture2D goalSprite;
         public int screenWidth;
         public int screenHeight;
         
-        
+        // Anna's Stuff
+        public int picHeight;
+        public int picWidth;
 
         private GameState gameState;
 
@@ -71,6 +74,11 @@ namespace FloorIsLava
 
             playerSprite = Content.Load<Texture2D>("Player");
             wallSprite = Content.Load<Texture2D>("wallSprite");
+            goalSprite = Content.Load<Texture2D>("wallSprite"); // will change this
+
+            // Anna Stuff
+            picHeight = 0;
+            picWidth = 0;
             
 
 

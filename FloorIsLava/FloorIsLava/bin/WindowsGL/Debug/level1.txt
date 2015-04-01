@@ -1,0 +1,15 @@
+level1
+0
+0
+12
+10
+w w w w w w w w w w w w 
+w 0 0 0 0 0 0 0 0 0 0 w 
+w 0 0 0 0 0 0 0 0 0 0 w 
+w 0 0 0 0 0 0 0 0 0 0 w 
+w 0 0 0 0 0 0 0 0 0 0 w 
+w 0 0 0 0 0 0 0 0 0 0 w 
+w 0 0 0 0 0 0 0 0 0 f w 
+w 0 0 0 0 0 0 0 0 w w w 
+w c 0 0 0 0 0 0 w w w w 
+w w w w w w w w w w w w 
