@@ -54,3 +54,13 @@ C:\Users\Josh\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsG
 C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\Player.xnb
 C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\wallSprite.xnb
 C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\Font1.xnb
+D:\Users\avk9238\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\Player.xnb
+D:\Users\avk9238\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\wallSprite.xnb
+D:\Users\avk9238\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\Font1.xnb
+D:\Users\avk9238\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\FloorIsLava.exe
+D:\Users\avk9238\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\FloorIsLava.pdb
+D:\Users\avk9238\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Lidgren.Network.dll
+D:\Users\avk9238\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\MonoGame.Framework.dll
+D:\Users\avk9238\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\OpenTK.dll
+D:\Users\avk9238\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Tao.Sdl.dll
+D:\Users\avk9238\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\obj\x86\Debug\FloorIsLava.csprojResolveAssemblyReference.cache
