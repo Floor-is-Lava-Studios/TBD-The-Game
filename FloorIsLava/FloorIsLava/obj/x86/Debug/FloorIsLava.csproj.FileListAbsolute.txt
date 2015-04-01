@@ -53,7 +53,6 @@ C:\Users\Josh\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsG
 C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\Player.xnb
 C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\wallSprite.xnb
 C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\Font1.xnb
-<<<<<<< HEAD
 D:\Users\avk9238\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\Player.xnb
 D:\Users\avk9238\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\wallSprite.xnb
 D:\Users\avk9238\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\Font1.xnb
@@ -68,4 +67,3 @@ D:\Users\avk9238\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\obj\x86\D
 D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\Player.xnb
 D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\wallSprite.xnb
 D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\Font1.xnb
->>>>>>> origin/master

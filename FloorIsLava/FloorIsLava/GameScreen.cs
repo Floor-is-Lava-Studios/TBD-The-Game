@@ -60,7 +60,7 @@ namespace FloorIsLava
             // reading in the file
             StreamReader input = null;
 
-                input = new StreamReader("test.txt"); // this will load in whatever level the player picks
+                input = new StreamReader("level1.txt"); // this will load in whatever level the player picks
                 string text = "";
                 levelName = input.ReadLine(); // brings in the level name
                 text = input.ReadLine(); // brings in the high score as a string
