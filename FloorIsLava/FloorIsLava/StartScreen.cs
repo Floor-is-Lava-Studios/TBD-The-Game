@@ -104,53 +104,56 @@ namespace FloorIsLava
             lastState = keyboardState;
         }
 
-        public void Draw(SpriteBatch spritebatch)
+        public void Draw(SpriteBatch spritebatch, Texture2D background, Texture2D title)
         {
             if(background != null)
             {
-                spritebatch.Draw(background, new Vector2(0f, 0f), Color.Green);
+                //spritebatch.Draw(background, new Vector2(0f, 0f), Color.Green);
+                spritebatch.Draw(background, new Rectangle(0,0,game.screenWidth,game.screenHeight), Color.White);
+                spritebatch.Draw(title, new Rectangle(200, 100, 1000, 512), Color.White);
+
             }
-            spritebatch.DrawString(font1, "This is start screen", new Vector2(50f, 50f), Color.White);
-            spritebatch.DrawString(font1, "" + gameState.Num, new Vector2(0, 0), Color.White);
+            //spritebatch.DrawString(font1, "This is start screen", new Vector2(50f, 50f), Color.White);
+            //spritebatch.DrawString(font1, "" + gameState.Num, new Vector2(0, 0), Color.White);
             if(count == 0)
             {
-                spritebatch.DrawString(font1, "Instruction", new Vector2(70f, 70f), Color.Gold);
+                spritebatch.DrawString(font1, "Instruction", new Vector2(650f, 400f), Color.Gold);
             }
             else
             {
-                spritebatch.DrawString(font1, "Instruction", new Vector2(70f, 70f), Color.White);
+                spritebatch.DrawString(font1, "Instruction", new Vector2(650f, 400f), Color.White);
             }
             if(count == 1)
             {
-                spritebatch.DrawString(font1, "Game", new Vector2(70f, 90f), Color.Gold);
+                spritebatch.DrawString(font1, "Game", new Vector2(650f, 420f), Color.Gold);
             }
             else
             {
-                spritebatch.DrawString(font1, "Game", new Vector2(70f, 90f), Color.White);
+                spritebatch.DrawString(font1, "Game", new Vector2(650f, 420f), Color.White);
             }
             if(count == 2)
             {
-                spritebatch.DrawString(font1, "Options", new Vector2(70f, 110f), Color.Gold);
+                spritebatch.DrawString(font1, "Options", new Vector2(650f, 440f), Color.Gold);
             }
             else
             {
-                spritebatch.DrawString(font1, "Options", new Vector2(70f, 110f), Color.White);
+                spritebatch.DrawString(font1, "Options", new Vector2(650f, 440f), Color.White);
             }
             if(count == 3)
             {
-                spritebatch.DrawString(font1, "Level", new Vector2(70f, 130f), Color.Gold);
+                spritebatch.DrawString(font1, "Level", new Vector2(650f, 460f), Color.Gold);
             }
             else
             {
-                spritebatch.DrawString(font1, "Level", new Vector2(70f, 130f), Color.White);
+                spritebatch.DrawString(font1, "Level", new Vector2(650f, 460f), Color.White);
             }
             if(count == 4)
             {
-                spritebatch.DrawString(font1, "Credits", new Vector2(70f, 150f), Color.Gold);
+                spritebatch.DrawString(font1, "Credits", new Vector2(650f, 480f), Color.Gold);
             }
             else
             {
-                spritebatch.DrawString(font1, "Credits", new Vector2(70f, 150f), Color.White);
+                spritebatch.DrawString(font1, "Credits", new Vector2(650f, 480f), Color.White);
             }
         }
     }

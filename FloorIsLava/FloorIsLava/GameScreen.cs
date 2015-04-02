@@ -26,14 +26,17 @@ namespace FloorIsLava
         public Player player;
         private List<GameObject> drawList;
         private Goal endGoal;
+        private string levelName = "test.txt";
 
         // these are for a later update
-        private string levelName;
+        private string level;
         private int highScore;
         private double bestTime;
 
         private int gameWidth;
         private int gameHeight;
+
+        private List<Rectangle> colList;
         #endregion Attributes
 
         #region Constructor
@@ -45,68 +48,57 @@ namespace FloorIsLava
             
             drawList = new List<GameObject>();
             
-            List<Rectangle> colList = new List<Rectangle>();
- //        Random rand = new Random();
- //
- //        player = new Player(game.playerSprite, 0, 0, game.playerSprite.Width, game.playerSprite.Height, colList);
- //
- //        for (int i = 0; i < 30; i++)
- //        {
- //            Platform block = new Platform(game.wallSprite, rand.Next(game.screenWidth), rand.Next(game.screenHeight), 150, 150);
- //            drawList.Add(block);
- //            colList.Add(block.rect);
- //        }
-
+            colList = new List<Rectangle>();
             // reading in the file
             StreamReader input = null;
 
-                input = new StreamReader("level1.txt"); // this will load in whatever level the player picks
-                string text = "";
-                levelName = input.ReadLine(); // brings in the level name
-                text = input.ReadLine(); // brings in the high score as a string
-                int.TryParse(text, out highScore); // now its an int
-                text = input.ReadLine(); // brings in the best time as a string
-                double.TryParse(text, out bestTime); // now its a double
+            input = new StreamReader(levelName); // this will load in whatever level the player picks
+            string text = "";
+            level = input.ReadLine(); // brings in the level name
+            text = input.ReadLine(); // brings in the high score as a string
+            int.TryParse(text, out highScore); // now its an int
+            text = input.ReadLine(); // brings in the best time as a string
+            double.TryParse(text, out bestTime); // now its a double
 
-                text = input.ReadLine(); // read in width
-                int.TryParse(text, out gameWidth);
+            text = input.ReadLine(); // read in width
+            int.TryParse(text, out gameWidth);
 
-                text = input.ReadLine(); // read in height
-                int.TryParse(text, out gameHeight);
+            text = input.ReadLine(); // read in height
+            int.TryParse(text, out gameHeight);
 
-                int xPos = game.screenWidth / gameWidth;
-                int yPos = game.screenHeight / gameHeight;
-                
-                int y = 0;
-                while ((text = input.ReadLine()) != null)
+            int xPos = game.screenWidth / gameWidth;
+            int yPos = game.screenHeight / gameHeight;
+
+            int y = 0;
+            while ((text = input.ReadLine()) != null)
+            {
+
+                int x = 0;
+                string[] gamePiece = text.Split();
+                foreach (string piece in gamePiece)
                 {
-
-                    int x = 0;
-                    string[] gamePiece = text.Split();
-                    foreach(string piece in gamePiece)
+                    if (piece == "w")
                     {
-                        if(piece == "w")
-                        {
-                            Platform block = new Platform(game.wallSprite, xPos * x + x, yPos * y + y, xPos, yPos);
-                            drawList.Add(block);
-                            colList.Add(block.rect);
-                        }
-                        else if(piece == "c")
-                        {
-                            player = new Player(game.playerSprite, xPos * x + x , yPos * y + y, xPos, yPos, colList);
-                        }
-                        else if(piece == "f")
-                        {
-                            endGoal = new Goal(game.goalSprite,xPos * x + x, yPos * y + y, xPos, yPos);
-                        }
-
-                        // will add code later for all the other objects that are going to be shown
-                        x++;
+                        Platform block = new Platform(game.wallSprite, xPos * x + x, yPos * y + y, xPos, yPos);
+                        drawList.Add(block);
+                        colList.Add(block.rect);
                     }
-                    y++;
+                    else if (piece == "c")
+                    {
+                        player = new Player(game.playerSprite, xPos * x + x, yPos * y + y, xPos, yPos, colList);
+                    }
+                    else if (piece == "f")
+                    {
+                        endGoal = new Goal(game.goalSprite, xPos * x + x, yPos * y + y, xPos, yPos);
+                    }
+
+                    // will add code later for all the other objects that are going to be shown
+                    x++;
                 }
-                input.Close();
+                y++;
             }
+            input.Close();
+        }
 
         #endregion Constructor
 
@@ -142,9 +134,10 @@ namespace FloorIsLava
         #endregion Update
 
         #region Draw
-        public void Draw(SpriteBatch sprBatch)
+        public void Draw(SpriteBatch sprBatch,Texture2D background)
         {
             SpriteBatch spriteBatch = sprBatch;
+            spriteBatch.Draw(background, new Rectangle(0, 0, game.screenWidth, game.screenHeight), Color.SlateGray);
             //spriteBatch.DrawString(font1, "This is the Game Screen", new Vector2(50f, 50f), Color.Red);
             endGoal.Draw(spriteBatch);
             player.Draw(spriteBatch);
@@ -155,6 +148,23 @@ namespace FloorIsLava
             spriteBatch.DrawString(font1, "Best Time: " + bestTime, new Vector2(100f, 110f), Color.Red);
         }
         #endregion Draw
+
+        #region Properties
+        // this will make the correct level load in
+        public string LevelName
+        {
+            set
+            {
+                levelName = value;
+            }
+            get
+            {
+                return levelName;
+            }
+        }
+        #endregion properties
+
+
 
     }
 }

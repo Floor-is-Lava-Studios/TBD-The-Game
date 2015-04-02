@@ -63,8 +63,9 @@ namespace FloorIsLava
         }
 
         //Draw Method
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Texture2D background)
         {
+            spriteBatch.Draw(background, new Rectangle(0, 0, game.screenWidth, game.screenHeight), Color.White);
             spriteBatch.DrawString(font1, "Credits", new Vector2(100f, 50f), Color.Blue);
         }
         #endregion Methods

@@ -60,8 +60,9 @@ namespace FloorIsLava
         }
 
         //Draw Method
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Texture2D background)
         {
+            spriteBatch.Draw(background, new Rectangle(0, 0, game.screenWidth, game.screenHeight), Color.White);
             spriteBatch.DrawString(font1, "This is Option Screen", new Vector2(50f, 50f), Color.Black);
         }
         #endregion Methods

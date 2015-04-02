@@ -19,6 +19,8 @@ namespace FloorIsLava
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         public Texture2D playerSprite;
+        public Texture2D backgroundSprite;
+        public Texture2D titleSprite;
         public Texture2D wallSprite;
         public Texture2D goalSprite;
         public int screenWidth;
@@ -73,8 +75,10 @@ namespace FloorIsLava
             gameState.StartScreen = new StartScreen(this);
 
             playerSprite = Content.Load<Texture2D>("Player");
-            wallSprite = Content.Load<Texture2D>("wallSprite");
-            goalSprite = Content.Load<Texture2D>("wallSprite"); // will change this
+            wallSprite = Content.Load<Texture2D>("stone box");
+            goalSprite = Content.Load<Texture2D>("goal");
+            backgroundSprite = Content.Load<Texture2D>("background");
+            titleSprite = Content.Load<Texture2D>("title");
 
             // Anna Stuff
             picHeight = 0;
@@ -167,7 +171,7 @@ namespace FloorIsLava
                     if (gameState.StartScreen != null)
                     {
                         GraphicsDevice.Clear(Color.Green);
-                        gameState.StartScreen.Draw(spriteBatch);
+                        gameState.StartScreen.Draw(spriteBatch, backgroundSprite, titleSprite);
                     }
                     break;
 
@@ -175,7 +179,7 @@ namespace FloorIsLava
                     if (gameState.GameScreen != null)
                     {
                         GraphicsDevice.Clear(Color.SteelBlue);
-                        gameState.GameScreen.Draw(spriteBatch);
+                        gameState.GameScreen.Draw(spriteBatch, backgroundSprite);
                     }
                     break;
 
@@ -183,7 +187,7 @@ namespace FloorIsLava
                     if(gameState.InstructionScreen != null)
                     {
                         GraphicsDevice.Clear(Color.Red);
-                        gameState.InstructionScreen.Draw(spriteBatch);
+                        gameState.InstructionScreen.Draw(spriteBatch, backgroundSprite);
                     }
                     break;
 
@@ -191,7 +195,7 @@ namespace FloorIsLava
                     if(gameState.OptionScreen != null)
                     {
                         GraphicsDevice.Clear(Color.Gold);
-                        gameState.OptionScreen.Draw(spriteBatch);
+                        gameState.OptionScreen.Draw(spriteBatch, backgroundSprite);
                     }
                     break;
 
@@ -199,7 +203,7 @@ namespace FloorIsLava
                     if (gameState.CreditScreen != null)
                     {
                         GraphicsDevice.Clear(Color.Black);
-                        gameState.CreditScreen.Draw(spriteBatch);
+                        gameState.CreditScreen.Draw(spriteBatch, backgroundSprite);
                     }
                     break;
 
@@ -207,7 +211,7 @@ namespace FloorIsLava
                     if (gameState.LevelScreen != null)
                     {
                         GraphicsDevice.Clear(Color.Gray);
-                        gameState.LevelScreen.Draw(spriteBatch);
+                        gameState.LevelScreen.Draw(spriteBatch, backgroundSprite);
                     }
                     break;
             }
