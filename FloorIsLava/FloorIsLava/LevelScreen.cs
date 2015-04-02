@@ -39,7 +39,6 @@ namespace FloorIsLava
         //Update Method
         public void Update(GameTime gameTime)
         {
-<<<<<<< HEAD
             KeyboardState keyState = Keyboard.GetState();
   //      if (keyState.IsKeyDown(Keys.S) && lastState.IsKeyDown(Keys.S))
   //      {
@@ -62,8 +61,9 @@ namespace FloorIsLava
   //          gameState.SwitchCredit(game);
   //      }
             if (keyState.IsKeyDown(Keys.A) && lastState.IsKeyUp(Keys.A))
-=======
-            KeyboardState keyState = Keyboard.GetState(); //create a keyboard state variable to hold current keyboard state
+
+            keyState = Keyboard.GetState(); //create a keyboard state variable to hold current keyboard state
+            
             if (keyState.IsKeyDown(Keys.S) && lastState.IsKeyDown(Keys.S))
             {
                 gameState.CurrentScreen = Screen.StartScreen;
@@ -73,7 +73,7 @@ namespace FloorIsLava
                 gameState.StartGame();
             }
             if (keyState.IsKeyDown(Keys.O) && lastState.IsKeyDown(Keys.O))
->>>>>>> origin/master
+
             {
                 count++;
                 if (count > 1)
@@ -114,12 +114,11 @@ namespace FloorIsLava
   //             gameState.SwitchCredit(game);
   //         }
             }
-<<<<<<< HEAD
+
             font1 = game.Content.Load<SpriteFont>("Font1");
             lastState = keyState;
-=======
+
             lastState = keyState; //assigns current keyboard state to lastState
->>>>>>> origin/master
         }
 
         //Draw Method

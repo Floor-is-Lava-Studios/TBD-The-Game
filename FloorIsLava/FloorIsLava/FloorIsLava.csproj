@@ -77,7 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Player.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\wallSprite.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
