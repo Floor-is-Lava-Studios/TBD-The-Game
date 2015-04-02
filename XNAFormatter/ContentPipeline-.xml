@@ -2,13 +2,13 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>Font1[1].spritefont</Source>
-      <Name>Font1[1]</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
+      <Source>player.png</Source>
+      <Name>player</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Josh\Documents\GitHub\TBD-The-Game\XNAFormatter\Content\Font1[1].xnb</Output>
-      <Time>2015-03-24T14:25:12.6467588-04:00</Time>
+      <Output>C:\Users\Josh\Documents\GitHub\TBD-The-Game\XNAFormatter\Content\player.xnb</Output>
+      <Time>2015-04-01T23:23:46.4666668-04:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -17,7 +17,7 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration Null="true" />
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Josh\AppData\Local\Microsoft\Windows\INetCache\IE\2KKBGZDO\</RootDirectory>
+      <RootDirectory>C:\Users\Josh\Documents\GitHub\TBD-The-Game\Game Art\</RootDirectory>
       <LoggerRootDirectory Null="true" />
       <IntermediateDirectory>C:\Users\Josh\Documents\GitHub\TBD-The-Game\XNAFormatter\</IntermediateDirectory>
       <OutputDirectory>C:\Users\Josh\Documents\GitHub\TBD-The-Game\XNAFormatter\Content\</OutputDirectory>
