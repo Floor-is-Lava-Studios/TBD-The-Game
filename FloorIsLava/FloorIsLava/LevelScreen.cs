@@ -30,8 +30,8 @@ namespace FloorIsLava
         public LevelScreen(Game1 game1)
         {
             game = game1;
-            gameState = new GameState(game);
-            font1 = game.Content.Load<SpriteFont>("Font1");
+            gameState = new GameState(game); // creates new gamestate object and assigns it to gameState
+            font1 = game.Content.Load<SpriteFont>("Font1"); // loads Font1
         }
         #endregion Constructor
 
@@ -39,6 +39,7 @@ namespace FloorIsLava
         //Update Method
         public void Update(GameTime gameTime)
         {
+<<<<<<< HEAD
             KeyboardState keyState = Keyboard.GetState();
   //      if (keyState.IsKeyDown(Keys.S) && lastState.IsKeyDown(Keys.S))
   //      {
@@ -61,6 +62,18 @@ namespace FloorIsLava
   //          gameState.SwitchCredit(game);
   //      }
             if (keyState.IsKeyDown(Keys.A) && lastState.IsKeyUp(Keys.A))
+=======
+            KeyboardState keyState = Keyboard.GetState(); //create a keyboard state variable to hold current keyboard state
+            if (keyState.IsKeyDown(Keys.S) && lastState.IsKeyDown(Keys.S))
+            {
+                gameState.CurrentScreen = Screen.StartScreen;
+            }
+            if (keyState.IsKeyDown(Keys.G) && lastState.IsKeyDown(Keys.G))
+            {
+                gameState.StartGame();
+            }
+            if (keyState.IsKeyDown(Keys.O) && lastState.IsKeyDown(Keys.O))
+>>>>>>> origin/master
             {
                 count++;
                 if (count > 1)
@@ -101,8 +114,12 @@ namespace FloorIsLava
   //             gameState.SwitchCredit(game);
   //         }
             }
+<<<<<<< HEAD
             font1 = game.Content.Load<SpriteFont>("Font1");
             lastState = keyState;
+=======
+            lastState = keyState; //assigns current keyboard state to lastState
+>>>>>>> origin/master
         }
 
         //Draw Method

@@ -19,6 +19,7 @@ namespace FloorIsLava
     public class GameScreen
     {
         #region Attributes
+        //attributes for gamescreen
         private Game1 game;
         private SpriteFont font1;
         private KeyboardState lastState;
@@ -43,8 +44,8 @@ namespace FloorIsLava
         public GameScreen(Game1 game)
         {
             this.game = game;
-            gameState = new GameState(game);
-            font1 = game.Content.Load<SpriteFont>("Font1");
+            gameState = new GameState(game); //creates new gameState object and assigns it to game screen
+            font1 = game.Content.Load<SpriteFont>("Font1"); //loads Font1
             
             drawList = new List<GameObject>();
             
@@ -105,9 +106,9 @@ namespace FloorIsLava
         #region Update
         public void Update(GameTime gt)
         {
-            GameTime gameTime = gt;
+            GameTime gameTime = gt; // takes gametime object and assigns it to gametime variable
             player.Update(gameTime);
-            KeyboardState keyBoardState = Keyboard.GetState();
+            KeyboardState keyBoardState = Keyboard.GetState(); //create a keyboard state variable to hold current keyboard state
             if (keyBoardState.IsKeyDown(Keys.M) && lastState.IsKeyDown(Keys.M))
             {
                 gameState.CurrentScreen = Screen.StartScreen;
@@ -128,8 +129,8 @@ namespace FloorIsLava
             {
                 gameState.SwitchCredit(game);
             }
-       
-            lastState = keyBoardState;
+
+            lastState = keyBoardState; // assigns current keyboard state to the last keyboard state
         }
         #endregion Update
 
