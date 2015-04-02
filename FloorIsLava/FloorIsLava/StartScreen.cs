@@ -33,14 +33,14 @@ namespace FloorIsLava
         public StartScreen(Game1 game1)
         {
             game = game1;
-            gameState = new GameState(game);
-            lastState = Keyboard.GetState(); 
+            gameState = new GameState(game); // creates new gamestate object and assigns gameState 
+            lastState = Keyboard.GetState();  // assigns keyboard state to lastState
         }
         #endregion Constructor
 
         public void Update()
         {
-            KeyboardState keyboardState = Keyboard.GetState();
+            KeyboardState keyboardState = Keyboard.GetState(); //create a keyboard state variable to hold current keyboard state
      //    if (keyboardState.IsKeyDown(Keys.I) && lastState.IsKeyDown(Keys.I))
      //    {
      //        gameState.SwitchInstruct(game);
@@ -100,8 +100,8 @@ namespace FloorIsLava
                     gameState.SwitchCredit(game);
                 }
             }
-            font1 = game.Content.Load<SpriteFont>("Font1");
-            lastState = keyboardState;
+            font1 = game.Content.Load<SpriteFont>("Font1"); // Loads Font1
+            lastState = keyboardState; //assigns current keyboard state to lastState
         }
 
         public void Draw(SpriteBatch spritebatch)

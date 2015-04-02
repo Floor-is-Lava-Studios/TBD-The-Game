@@ -35,7 +35,7 @@ namespace FloorIsLava
         //Update Method
         public void Update(GameTime gameTime)
         {
-            KeyboardState keyState = Keyboard.GetState();
+            KeyboardState keyState = Keyboard.GetState(); //create a keyboard state variable to hold current keyboard state
             if (keyState.IsKeyDown(Keys.S) && lastState.IsKeyDown(Keys.S))
             {
                 gameState.CurrentScreen = Screen.StartScreen;
@@ -56,7 +56,7 @@ namespace FloorIsLava
             {
                 gameState.SwitchCredit(game);
             }
-            lastState = keyState;
+            lastState = keyState; // assigns current keyboard state to lastState
         }
 
         //Draw Method

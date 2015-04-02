@@ -20,17 +20,17 @@ namespace FloorIsLava
         //Attributes
         private SpriteFont font1;
         private Game1 game;
-        private KeyboardState lastState;
-        private GameState gameState;
+        private KeyboardState lastState; //holds previous keyboard state
+        private GameState gameState; //hold the gameState class
         #endregion Attributes
 
         #region Constructor 
         //Constructor
         public CreditScreen(Game1 game1)
         {
-            game = game1;
-            gameState = new GameState(game);
-            font1 = game.Content.Load<SpriteFont>("Font1");
+            game = game1; //assigns the game1 object
+            gameState = new GameState(game); //creates a new gamestate class object and assigns it to gamestate
+            font1 = game.Content.Load<SpriteFont>("Font1"); // loads Font1 spriteFont
         }
         #endregion Constructor
 
@@ -38,18 +38,18 @@ namespace FloorIsLava
         //Update Method
         public void Update(GameTime gameTime)
         {
-            KeyboardState keyState = Keyboard.GetState();
-            if (keyState.IsKeyDown(Keys.S) && lastState.IsKeyDown(Keys.S))
+            KeyboardState keyState = Keyboard.GetState(); //create a keyboard state variable to hold current keyboard state
+            if (keyState.IsKeyDown(Keys.S) && lastState.IsKeyDown(Keys.S)) // if s key is pressed
             {
-                gameState.CurrentScreen = Screen.StartScreen;
+                gameState.CurrentScreen = Screen.StartScreen; // switches to start screen
             }
-            if (keyState.IsKeyDown(Keys.G) && lastState.IsKeyDown(Keys.G))
+            if (keyState.IsKeyDown(Keys.G) && lastState.IsKeyDown(Keys.G)) // if G key is pressed 
             {
-                gameState.StartGame();
+                gameState.StartGame(); // calls start game method to switch to game
             }
-            if (keyState.IsKeyDown(Keys.O) && lastState.IsKeyDown(Keys.O))
+            if (keyState.IsKeyDown(Keys.O) && lastState.IsKeyDown(Keys.O)) 
             {
-                gameState.SwitchOption(game);
+                gameState.SwitchOption(game);//calls switch option method to switch to option screen
             }
             if (keyState.IsKeyDown(Keys.L) && lastState.IsKeyDown(Keys.L))
             {
@@ -59,7 +59,7 @@ namespace FloorIsLava
             {
                 gameState.SwitchInstruct(game);
             }
-            lastState = keyState;
+            lastState = keyState; // assigns current keyboard state to the last keyboard state
         }
 
         //Draw Method
