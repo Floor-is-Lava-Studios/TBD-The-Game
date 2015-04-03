@@ -71,3 +71,7 @@ C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsG
 C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\stone box.xnb
 C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\background.xnb
 C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\title.xnb
+D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\goal.xnb
+D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\stone box.xnb
+D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\background.xnb
+D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\title.xnb

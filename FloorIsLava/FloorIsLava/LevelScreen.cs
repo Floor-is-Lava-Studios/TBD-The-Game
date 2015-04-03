@@ -32,6 +32,7 @@ namespace FloorIsLava
             game = game1;
             gameState = new GameState(game); // creates new gamestate object and assigns it to gameState
             font1 = game.Content.Load<SpriteFont>("Font1"); // loads Font1
+            lastState = Keyboard.GetState();
         }
         #endregion Constructor
 
@@ -60,9 +61,6 @@ namespace FloorIsLava
   //      {
   //          gameState.SwitchCredit(game);
   //      }
-            if (keyState.IsKeyDown(Keys.A) && lastState.IsKeyUp(Keys.A))
-
-            keyState = Keyboard.GetState(); //create a keyboard state variable to hold current keyboard state
             
             if (keyState.IsKeyDown(Keys.S) && lastState.IsKeyDown(Keys.S))
             {
@@ -72,8 +70,7 @@ namespace FloorIsLava
             {
                 gameState.StartGame();
             }
-            if (keyState.IsKeyDown(Keys.O) && lastState.IsKeyDown(Keys.O))
-
+            if (keyState.IsKeyDown(Keys.A) && lastState.IsKeyDown(Keys.A))
             {
                 count++;
                 if (count > 1)
@@ -93,13 +90,11 @@ namespace FloorIsLava
             {
                 if (count == 0)
                 {
-                    //gameScreen = new GameScreen(game, "test.txt");
                     gameState.StartGame();
                 }
                 else if (count == 1)
                 {
-                    //gameScreen = new GameScreen(game, "level1.txt");
-                    //gameState.StartGame();
+                    gameState.StartGame();
                 }
   //         else if (count == 2)
   //         {
