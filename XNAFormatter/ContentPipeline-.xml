@@ -2,13 +2,13 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>player_forward.png</Source>
-      <Name>player_forward</Name>
+      <Source>OptionsTitle.png</Source>
+      <Name>OptionsTitle</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\XNAFormatter\Content\player_forward.xnb</Output>
-      <Time>2015-04-03T12:42:57.4507521-04:00</Time>
+      <Output>D:\Users\jxm3392\Documents\GitHub\TBD-The-Game\XNAFormatter\Content\OptionsTitle.xnb</Output>
+      <Time>2015-04-03T12:28:37.4961528-04:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
