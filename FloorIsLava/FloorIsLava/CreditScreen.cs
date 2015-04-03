@@ -51,7 +51,7 @@ namespace FloorIsLava
             }
             if (keyState.IsKeyDown(Keys.G) && lastState.IsKeyDown(Keys.G)) // if G key is pressed 
             {
-                gameState.StartGame(); // calls start game method to switch to game
+                gameState.StartGame("test.txt"); // calls start game method to switch to game
             }
             if (keyState.IsKeyDown(Keys.O) && lastState.IsKeyDown(Keys.O)) 
             {

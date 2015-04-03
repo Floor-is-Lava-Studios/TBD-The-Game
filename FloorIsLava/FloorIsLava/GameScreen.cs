@@ -41,11 +41,12 @@ namespace FloorIsLava
         #endregion Attributes
 
         #region Constructor
-        public GameScreen(Game1 game)
+        public GameScreen(Game1 game, string lvlfile)
         {
             this.game = game;
             gameState = new GameState(game); //creates new gameState object and assigns it to game screen
             font1 = game.Content.Load<SpriteFont>("Font1"); //loads Font1
+            levelName = lvlfile;
             
             drawList = new List<GameObject>();
             

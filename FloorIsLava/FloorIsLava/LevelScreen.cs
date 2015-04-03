@@ -41,34 +41,10 @@ namespace FloorIsLava
         public void Update(GameTime gameTime)
         {
             KeyboardState keyState = Keyboard.GetState();
-  //      if (keyState.IsKeyDown(Keys.S) && lastState.IsKeyDown(Keys.S))
-  //      {
-  //          gameState.CurrentScreen = Screen.StartScreen;
-  //      }
-  //      if (keyState.IsKeyDown(Keys.G) && lastState.IsKeyDown(Keys.G))
-  //      {
-  //          gameState.StartGame();
-  //      }
-  //      if (keyState.IsKeyDown(Keys.O) && lastState.IsKeyDown(Keys.O))
-  //      {
-  //          gameState.SwitchOption(game);
-  //      }
-  //      if (keyState.IsKeyDown(Keys.I) && lastState.IsKeyDown(Keys.I))
-  //      {
-  //          gameState.SwitchInstruct(game);
-  //      }
-  //      if (keyState.IsKeyDown(Keys.C) && lastState.IsKeyDown(Keys.C))
-  //      {
-  //          gameState.SwitchCredit(game);
-  //      }
             
-            if (keyState.IsKeyDown(Keys.S) && lastState.IsKeyDown(Keys.S))
+            if (keyState.IsKeyDown(Keys.Back) && lastState.IsKeyDown(Keys.Back))
             {
                 gameState.CurrentScreen = Screen.StartScreen;
-            }
-            if (keyState.IsKeyDown(Keys.G) && lastState.IsKeyDown(Keys.G))
-            {
-                gameState.StartGame();
             }
             if (keyState.IsKeyDown(Keys.A) && lastState.IsKeyDown(Keys.A))
             {
@@ -90,24 +66,12 @@ namespace FloorIsLava
             {
                 if (count == 0)
                 {
-                    gameState.StartGame();
+                    gameState.StartGame("test.txt");
                 }
                 else if (count == 1)
                 {
-                    gameState.StartGame();
+                    gameState.StartGame("level1.txt");
                 }
-  //         else if (count == 2)
-  //         {
-  //             gameState.SwitchOption(game);
-  //         }
-  //         else if (count == 3)
-  //         {
-  //             gameState.SwitchLevel(game);
-  //         }
-  //         else if (count == 4)
-  //         {
-  //             gameState.SwitchCredit(game);
-  //         }
             }
 
             font1 = game.Content.Load<SpriteFont>("Font1");

@@ -41,26 +41,6 @@ namespace FloorIsLava
         public void Update()
         {
             KeyboardState keyboardState = Keyboard.GetState(); //create a keyboard state variable to hold current keyboard state
-     //    if (keyboardState.IsKeyDown(Keys.I) && lastState.IsKeyDown(Keys.I))
-     //    {
-     //        gameState.SwitchInstruct(game);
-     //    }
-     //    if (keyboardState.IsKeyDown(Keys.G) && lastState.IsKeyDown(Keys.G))
-     //    {
-     //        gameState.StartGame();
-     //    }
-     //    if (keyboardState.IsKeyDown(Keys.O) && lastState.IsKeyDown(Keys.O))
-     //    {
-     //        gameState.SwitchOption(game);
-     //    }
-     //    if (keyboardState.IsKeyDown(Keys.L) && lastState.IsKeyDown(Keys.L))
-     //    {
-     //        gameState.SwitchLevel(game);
-     //    }
-     //    if (keyboardState.IsKeyDown(Keys.C) && lastState.IsKeyDown(Keys.C))
-     //    {
-     //        gameState.SwitchCredit(game);
-     //    }
             if (keyboardState.IsKeyDown(Keys.S) && lastState.IsKeyUp(Keys.S))
             {
                 count++;
@@ -85,7 +65,7 @@ namespace FloorIsLava
                 }
                 else if (count == 1)
                 {
-                    gameState.StartGame();
+                    gameState.StartGame("test.txt");
                 }
                 else if (count == 2)
                 {
