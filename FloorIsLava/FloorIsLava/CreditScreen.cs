@@ -39,6 +39,12 @@ namespace FloorIsLava
         public void Update(GameTime gameTime)
         {
             KeyboardState keyState = Keyboard.GetState(); //create a keyboard state variable to hold current keyboard state
+            if (keyState.IsKeyDown(Keys.Back) && keyState.IsKeyDown(Keys.Back))
+            {
+                gameState.CurrentScreen = Screen.StartScreen;
+            }
+            lastState = keyState;
+
             if (keyState.IsKeyDown(Keys.S) && lastState.IsKeyDown(Keys.S)) // if s key is pressed
             {
                 gameState.CurrentScreen = Screen.StartScreen; // switches to start screen
@@ -67,6 +73,7 @@ namespace FloorIsLava
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, game.screenWidth, game.screenHeight), Color.White);
             spriteBatch.DrawString(font1, "Credits", new Vector2(100f, 50f), Color.Blue);
+            spriteBatch.DrawString(font1, "Press \"Back\" to go back", new Vector2(100f, 70f), Color.Blue);
         }
         #endregion Methods
     }
