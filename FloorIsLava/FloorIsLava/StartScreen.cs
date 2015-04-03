@@ -65,7 +65,7 @@ namespace FloorIsLava
                 }
                 else if (count == 1)
                 {
-                    gameState.StartGame("test.txt");
+                    gameState.StartGame();
                 }
                 else if (count == 2)
                 {

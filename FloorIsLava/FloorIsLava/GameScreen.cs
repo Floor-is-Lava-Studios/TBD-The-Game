@@ -41,6 +41,67 @@ namespace FloorIsLava
         #endregion Attributes
 
         #region Constructor
+        //basic game screen constructor
+        public GameScreen(Game1 game)
+        {
+            this.game = game;
+            gameState = new GameState(game); //creates new gameState object and assigns it to game screen
+            font1 = game.Content.Load<SpriteFont>("Font1"); //loads Font1
+
+            drawList = new List<GameObject>();
+
+            colList = new List<Rectangle>();
+            // reading in the file
+            StreamReader input = null;
+
+            input = new StreamReader(levelName); // this will load in whatever level the player picks
+            string text = "";
+            level = input.ReadLine(); // brings in the level name
+            text = input.ReadLine(); // brings in the high score as a string
+            int.TryParse(text, out highScore); // now its an int
+            text = input.ReadLine(); // brings in the best time as a string
+            double.TryParse(text, out bestTime); // now its a double
+
+            text = input.ReadLine(); // read in width
+            int.TryParse(text, out gameWidth);
+
+            text = input.ReadLine(); // read in height
+            int.TryParse(text, out gameHeight);
+
+            int xPos = game.screenWidth / gameWidth;
+            int yPos = game.screenHeight / gameHeight;
+
+            int y = 0;
+            while ((text = input.ReadLine()) != null)
+            {
+
+                int x = 0;
+                string[] gamePiece = text.Split();
+                foreach (string piece in gamePiece)
+                {
+                    if (piece == "w")
+                    {
+                        Platform block = new Platform(game.wallSprite, xPos * x + x, yPos * y + y, xPos, yPos);
+                        drawList.Add(block);
+                        colList.Add(block.rect);
+                    }
+                    else if (piece == "c")
+                    {
+                        player = new Player(game.playerSprite, xPos * x + x, yPos * y + y, xPos, yPos, colList);
+                    }
+                    else if (piece == "f")
+                    {
+                        endGoal = new Goal(game.goalSprite, xPos * x + x, yPos * y + y, xPos, yPos);
+                    }
+
+                    // will add code later for all the other objects that are going to be shown
+                    x++;
+                }
+                y++;
+            }
+            input.Close();
+        }
+        //gamescreen constructor that takes specific level
         public GameScreen(Game1 game, string lvlfile)
         {
             this.game = game;

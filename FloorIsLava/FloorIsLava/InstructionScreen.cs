@@ -40,22 +40,6 @@ namespace FloorIsLava
        {
            gameState.CurrentScreen = Screen.StartScreen;
        }
-   //    if (keyState.IsKeyDown(Keys.G) && lastState.IsKeyDown(Keys.G))
-   //    {
-   //        gameState.StartGame();
-   //    }
-   //    if (keyState.IsKeyDown(Keys.O) && lastState.IsKeyDown(Keys.O))
-   //    {
-   //        gameState.SwitchOption(game);
-   //    }
-   //    if (keyState.IsKeyDown(Keys.L) && lastState.IsKeyDown(Keys.L))
-   //    {
-   //        gameState.SwitchLevel(game);
-   //    }
-   //    if (keyState.IsKeyDown(Keys.C) && lastState.IsKeyDown(Keys.C))
-   //    {
-   //        gameState.SwitchCredit(game);
-   //    }
             if(keyState.IsKeyDown(Keys.Back)&&keyState.IsKeyDown(Keys.Back))
             {
                 gameState.CurrentScreen = Screen.StartScreen;
