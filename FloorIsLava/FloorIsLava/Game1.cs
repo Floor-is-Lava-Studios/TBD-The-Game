@@ -34,6 +34,8 @@ namespace FloorIsLava
         public Texture2D startButton2;
         public Texture2D options1;
         public Texture2D options2;
+        public Texture2D instructions1;
+        public Texture2D intstructions2;
 
 
         public int screenWidth;
@@ -99,7 +101,9 @@ namespace FloorIsLava
             levelButton1 = Content.Load<Texture2D>("levelbutton1");
             levelButton2 = Content.Load<Texture2D>("levelbutton2");
             startButton1 = Content.Load<Texture2D>("startbutton1");
-            startButton1 = Content.Load<Texture2D>("startbutton2");
+            startButton2 = Content.Load<Texture2D>("startbutton2");
+            options1 = Content.Load<Texture2D>("options1");
+            options2 = Content.Load<Texture2D>("options2");
 
             // Anna Stuff
             picHeight = 0;
@@ -192,7 +196,7 @@ namespace FloorIsLava
                     if (gameState.StartScreen != null)
                     {
                         GraphicsDevice.Clear(Color.Green);
-                        gameState.StartScreen.Draw(spriteBatch, backgroundSprite, titleSprite, creditButton1, creditButton2,levelButton1,levelButton2, startButton1,startButton2);
+                        gameState.StartScreen.Draw(spriteBatch, backgroundSprite, titleSprite, creditButton1, creditButton2,levelButton1,levelButton2, startButton1,startButton2, options1,options2);
                     }
                     break;
 

@@ -84,7 +84,7 @@ namespace FloorIsLava
             lastState = keyboardState; //assigns current keyboard state to lastState
         }
 
-        public void Draw(SpriteBatch spritebatch, Texture2D background, Texture2D title, Texture2D creditButton1, Texture2D creditButton2, Texture2D levelButton1, Texture2D levelButton2, Texture2D startButton1, Texture2D startButton2)
+        public void Draw(SpriteBatch spritebatch, Texture2D background, Texture2D title, Texture2D creditButton1, Texture2D creditButton2, Texture2D levelButton1, Texture2D levelButton2, Texture2D startButton1, Texture2D startButton2, Texture2D options1, Texture2D options2)
         {
             if(background != null)
             {
@@ -106,36 +106,36 @@ namespace FloorIsLava
             if(count == 1)
             {
                 //start
-                spritebatch.Draw(creditButton2, new Rectangle(200, 100, 500, 250), Color.White);
+                spritebatch.Draw(startButton1, new Rectangle(game.screenWidth / 2 - 220, 200, 500, 250), Color.White);
             }
             else
             {
                 //start
-                //spritebatch.Draw(creditButton1, new Rectangle(200, 100, 500, 250), Color.White);
+                spritebatch.Draw(startButton2, new Rectangle(game.screenWidth / 2 - 220, 200, 500, 250), Color.White);
             }
             if(count == 2)
             {
-                spritebatch.DrawString(font1, "Options", new Vector2(650f, 440f), Color.Gold);
+                spritebatch.Draw(options1, new Rectangle(game.screenWidth / 2 - 220, 275, 500, 250), Color.White);
             }
             else
             {
-                spritebatch.DrawString(font1, "Options", new Vector2(650f, 440f), Color.White);
+                spritebatch.Draw(options2, new Rectangle(game.screenWidth / 2 - 220, 275, 500, 250), Color.White);
             }
             if(count == 3)
             {
-                spritebatch.Draw(levelButton1, new Rectangle(200, 200, 500, 250), Color.White);
+                spritebatch.Draw(levelButton1, new Rectangle(game.screenWidth / 2 - 220, 350, 500, 250), Color.White);
             }
             else
             {
-                spritebatch.Draw(levelButton2, new Rectangle(200, 200, 500, 250), Color.White);
+                spritebatch.Draw(levelButton2, new Rectangle(game.screenWidth / 2 - 220, 350, 500, 250), Color.White);
             }
             if(count == 4)
             {
-                spritebatch.Draw(creditButton1, new Rectangle(200, 300, 500, 250), Color.White);
+                spritebatch.Draw(creditButton2, new Rectangle(game.screenWidth / 2 - 220, 425, 500, 250), Color.White);
             }
             else
             {
-                spritebatch.Draw(creditButton2, new Rectangle(200, 300, 500, 250), Color.White);
+                spritebatch.Draw(creditButton1, new Rectangle(game.screenWidth / 2 - 220, 425, 500, 250), Color.White);
             }
         }
     }
