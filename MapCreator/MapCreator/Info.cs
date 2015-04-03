@@ -29,19 +29,21 @@ namespace MapCreator
             bool xGood;
             bool yGood;
 
+            // parse int values in textboxes
             xGood = int.TryParse(XLength.Text, out x);
             yGood = int.TryParse(YHeight.Text, out y);
 
-            if(x < 1 && x > 50)
+            // check to see if int values are withing the range
+            if (x < 1 && x > 50)
             {
                 xGood = false;
             }
-
             if (y < 1 && y > 50)
             {
                 yGood = false;
             }
 
+            // check that all fields are valid
             if(xGood && yGood && fileName.Text != "")
             {
                 this.Hide();
