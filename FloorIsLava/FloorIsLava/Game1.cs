@@ -19,10 +19,23 @@ namespace FloorIsLava
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         public Texture2D playerSprite;
+        public Texture2D playerSprite_Forward;
+        public Texture2D playerSprite_Backwards;
         public Texture2D backgroundSprite;
         public Texture2D titleSprite;
         public Texture2D wallSprite;
         public Texture2D goalSprite;
+
+        public Texture2D creditButton1;
+        public Texture2D creditButton2;
+        public Texture2D levelButton1;
+        public Texture2D levelButton2;
+        public Texture2D startButton1;
+        public Texture2D startButton2;
+        public Texture2D options1;
+        public Texture2D options2;
+
+
         public int screenWidth;
         public int screenHeight;
         
@@ -74,11 +87,19 @@ namespace FloorIsLava
             gameState = new GameState(this);
             gameState.StartScreen = new StartScreen(this);
 
-            playerSprite = Content.Load<Texture2D>("Player");
+            playerSprite = Content.Load<Texture2D>("player_forward");
+            playerSprite_Forward = Content.Load<Texture2D>("player_forward");
+            playerSprite_Backwards = Content.Load<Texture2D>("player_backwards");
             wallSprite = Content.Load<Texture2D>("stone box");
             goalSprite = Content.Load<Texture2D>("goal");
             backgroundSprite = Content.Load<Texture2D>("background");
             titleSprite = Content.Load<Texture2D>("title");
+            creditButton1 = Content.Load<Texture2D>("credit1");
+            creditButton2 = Content.Load<Texture2D>("credit2");
+            levelButton1 = Content.Load<Texture2D>("levelbutton1");
+            levelButton2 = Content.Load<Texture2D>("levelbutton2");
+            startButton1 = Content.Load<Texture2D>("startbutton1");
+            startButton1 = Content.Load<Texture2D>("startbutton2");
 
             // Anna Stuff
             picHeight = 0;
@@ -171,7 +192,7 @@ namespace FloorIsLava
                     if (gameState.StartScreen != null)
                     {
                         GraphicsDevice.Clear(Color.Green);
-                        gameState.StartScreen.Draw(spriteBatch, backgroundSprite, titleSprite);
+                        gameState.StartScreen.Draw(spriteBatch, backgroundSprite, titleSprite, creditButton1, creditButton2,levelButton1,levelButton2, startButton1,startButton2);
                     }
                     break;
 

@@ -84,13 +84,13 @@ namespace FloorIsLava
             lastState = keyboardState; //assigns current keyboard state to lastState
         }
 
-        public void Draw(SpriteBatch spritebatch, Texture2D background, Texture2D title)
+        public void Draw(SpriteBatch spritebatch, Texture2D background, Texture2D title, Texture2D creditButton1, Texture2D creditButton2, Texture2D levelButton1, Texture2D levelButton2, Texture2D startButton1, Texture2D startButton2)
         {
             if(background != null)
             {
                 //spritebatch.Draw(background, new Vector2(0f, 0f), Color.Green);
                 spritebatch.Draw(background, new Rectangle(0,0,game.screenWidth,game.screenHeight), Color.White);
-                spritebatch.Draw(title, new Rectangle(200, 100, 1000, 512), Color.White);
+                spritebatch.Draw(title, new Rectangle(game.screenWidth/2-500, 100, 1000, 512), Color.White);
 
             }
             //spritebatch.DrawString(font1, "This is start screen", new Vector2(50f, 50f), Color.White);
@@ -105,11 +105,13 @@ namespace FloorIsLava
             }
             if(count == 1)
             {
-                spritebatch.DrawString(font1, "Game", new Vector2(650f, 420f), Color.Gold);
+                //start
+                spritebatch.Draw(creditButton2, new Rectangle(200, 100, 500, 250), Color.White);
             }
             else
             {
-                spritebatch.DrawString(font1, "Game", new Vector2(650f, 420f), Color.White);
+                //start
+                //spritebatch.Draw(creditButton1, new Rectangle(200, 100, 500, 250), Color.White);
             }
             if(count == 2)
             {
@@ -121,19 +123,19 @@ namespace FloorIsLava
             }
             if(count == 3)
             {
-                spritebatch.DrawString(font1, "Level", new Vector2(650f, 460f), Color.Gold);
+                spritebatch.Draw(levelButton1, new Rectangle(200, 200, 500, 250), Color.White);
             }
             else
             {
-                spritebatch.DrawString(font1, "Level", new Vector2(650f, 460f), Color.White);
+                spritebatch.Draw(levelButton2, new Rectangle(200, 200, 500, 250), Color.White);
             }
             if(count == 4)
             {
-                spritebatch.DrawString(font1, "Credits", new Vector2(650f, 480f), Color.Gold);
+                spritebatch.Draw(creditButton1, new Rectangle(200, 300, 500, 250), Color.White);
             }
             else
             {
-                spritebatch.DrawString(font1, "Credits", new Vector2(650f, 480f), Color.White);
+                spritebatch.Draw(creditButton2, new Rectangle(200, 300, 500, 250), Color.White);
             }
         }
     }

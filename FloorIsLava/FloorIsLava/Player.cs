@@ -40,6 +40,7 @@ namespace FloorIsLava
         private Texture2D playerTexture;
         private int width;
         private int height;
+
         public enum State { Walking, Still, Grappled, Stopping }
         private State currentState;
         private Vector2 position;
