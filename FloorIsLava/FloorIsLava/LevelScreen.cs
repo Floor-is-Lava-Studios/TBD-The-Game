@@ -46,7 +46,7 @@ namespace FloorIsLava
             {
                 gameState.CurrentScreen = Screen.StartScreen;
             }
-            if (keyState.IsKeyDown(Keys.A) && lastState.IsKeyDown(Keys.A))
+            if (keyState.IsKeyDown(Keys.A) && lastState.IsKeyUp(Keys.A))
             {
                 count++;
                 if (count > 1)
@@ -81,26 +81,26 @@ namespace FloorIsLava
         }
 
         //Draw Method
-        public void Draw(SpriteBatch spriteBatch, Texture2D background)
+        public void Draw(SpriteBatch spriteBatch, Texture2D background, Texture2D title)
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, game.screenWidth, game.screenHeight), Color.White);
-
-            spriteBatch.DrawString(font1, "This is the Level Selection Screen", new Vector2(50f, 50f), Color.Black);
+            spriteBatch.Draw(title, new Rectangle(game.screenWidth / 2 - 500, 100, 1000, 512), Color.White);
+            //spriteBatch.DrawString(font1, "This is the Level Selection Screen", new Vector2(50f, 50f), Color.Black);
             if (count == 0)
             {
-                spriteBatch.DrawString(font1, "Level 1", new Vector2(200f, 100f), Color.Gold);
+                spriteBatch.DrawString(font1, "Level 1", new Vector2(game.screenWidth / 2 - 250, 400f), Color.Gold);
             }
             else
             {
-                spriteBatch.DrawString(font1, "Level 1", new Vector2(200f, 100f), Color.White);
+                spriteBatch.DrawString(font1, "Level 1", new Vector2(game.screenWidth / 2 - 250, 400f), Color.White);
             }
             if (count == 1)
             {
-                spriteBatch.DrawString(font1, "Level 2", new Vector2(300f, 100f), Color.Gold);
+                spriteBatch.DrawString(font1, "Level 2", new Vector2(game.screenWidth / 2 + 150, 400f), Color.Gold);
             }
             else
             {
-                spriteBatch.DrawString(font1, "Level 2", new Vector2(300f, 100f), Color.White);
+                spriteBatch.DrawString(font1, "Level 2", new Vector2(game.screenWidth / 2 + 150, 400f), Color.White);
             }
         }
 

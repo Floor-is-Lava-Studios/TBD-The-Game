@@ -35,7 +35,10 @@ namespace FloorIsLava
         public Texture2D options1;
         public Texture2D options2;
         public Texture2D instructions1;
-        public Texture2D intstructions2;
+        public Texture2D instructions2;
+
+        public Texture2D levelTitle;
+        public Texture2D optionsTitle;
 
 
         public int screenWidth;
@@ -104,6 +107,10 @@ namespace FloorIsLava
             startButton2 = Content.Load<Texture2D>("startbutton2");
             options1 = Content.Load<Texture2D>("options1");
             options2 = Content.Load<Texture2D>("options2");
+            instructions1 = Content.Load<Texture2D>("instruction1");
+            instructions2 = Content.Load<Texture2D>("instruction2");
+            optionsTitle = Content.Load<Texture2D>("OptionsTitle");
+            levelTitle = Content.Load<Texture2D>("levelSelectTitle");
 
             // Anna Stuff
             picHeight = 0;
@@ -196,7 +203,7 @@ namespace FloorIsLava
                     if (gameState.StartScreen != null)
                     {
                         GraphicsDevice.Clear(Color.Green);
-                        gameState.StartScreen.Draw(spriteBatch, backgroundSprite, titleSprite, creditButton1, creditButton2,levelButton1,levelButton2, startButton1,startButton2, options1,options2);
+                        gameState.StartScreen.Draw(spriteBatch, backgroundSprite, titleSprite, creditButton1, creditButton2,levelButton1,levelButton2, startButton1,startButton2, options1,options2, instructions1, instructions2);
                     }
                     break;
 
@@ -220,7 +227,7 @@ namespace FloorIsLava
                     if(gameState.OptionScreen != null)
                     {
                         GraphicsDevice.Clear(Color.Gold);
-                        gameState.OptionScreen.Draw(spriteBatch, backgroundSprite);
+                        gameState.OptionScreen.Draw(spriteBatch, backgroundSprite, optionsTitle);
                     }
                     break;
 
@@ -236,7 +243,7 @@ namespace FloorIsLava
                     if (gameState.LevelScreen != null)
                     {
                         GraphicsDevice.Clear(Color.Gray);
-                        gameState.LevelScreen.Draw(spriteBatch, backgroundSprite);
+                        gameState.LevelScreen.Draw(spriteBatch, backgroundSprite, levelTitle);
                     }
                     break;
             }

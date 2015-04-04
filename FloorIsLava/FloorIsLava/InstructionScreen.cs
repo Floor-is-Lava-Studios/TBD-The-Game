@@ -76,6 +76,10 @@ namespace FloorIsLava
             spriteBatch.Draw(background, new Rectangle(0, 0, game.screenWidth, game.screenHeight), Color.White);
             spriteBatch.DrawString(font1, "this is instruction Screen", new Vector2(50f, 50f), Color.Black);
             spriteBatch.DrawString(font1, "Press \"Back\" to go back", new Vector2(50f, 70f), Color.Black);
+
+            spriteBatch.DrawString(font1, "D to go forward", new Vector2(game.screenWidth / 2 - 100, 200f), Color.Gold);
+            spriteBatch.DrawString(font1, "A to go backwards", new Vector2(game.screenWidth / 2 - 100, 300f), Color.Gold);
+            spriteBatch.DrawString(font1, "Space to jump", new Vector2(game.screenWidth / 2 - 100, 400f), Color.Gold);
         }
         #endregion Methods
     }

@@ -66,11 +66,13 @@ namespace FloorIsLava
         }
 
         //Draw Method
-        public void Draw(SpriteBatch spriteBatch, Texture2D background)
+        public void Draw(SpriteBatch spriteBatch, Texture2D background, Texture2D title)
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, game.screenWidth, game.screenHeight), Color.White);
-            spriteBatch.DrawString(font1, "This is Option Screen", new Vector2(50f, 50f), Color.Black);
-            spriteBatch.DrawString(font1, "Press \"Back\" to go back", new Vector2(50f, 70f), Color.Black);
+            //spriteBatch.DrawString(font1, "This is Option Screen", new Vector2(50f, 50f), Color.Black);
+            spriteBatch.Draw(title, new Rectangle(game.screenWidth / 2 - 500, 100, 1000, 512), Color.White);
+            spriteBatch.DrawString(font1, "Press \"Back\" to go back", new Vector2(50f, 70f), Color.Blue);
+            spriteBatch.DrawString(font1, "COMING SOON TO A UPDATE NEAR YOU", new Vector2(game.screenWidth / 2 - 200, 300f), Color.Gold);
         }
         #endregion Methods
     }

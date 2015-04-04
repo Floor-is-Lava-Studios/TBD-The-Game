@@ -97,3 +97,7 @@ C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsG
 C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\startbutton2.xnb
 C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\options1.xnb
 C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\options2.xnb
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\instruction1.xnb
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\instruction2.xnb
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\levelSelectTitle.xnb
+C:\Users\Anna\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\OptionsTitle.xnb

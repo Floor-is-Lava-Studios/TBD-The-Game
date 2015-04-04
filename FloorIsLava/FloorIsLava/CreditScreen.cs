@@ -74,6 +74,11 @@ namespace FloorIsLava
             spriteBatch.Draw(background, new Rectangle(0, 0, game.screenWidth, game.screenHeight), Color.White);
             spriteBatch.DrawString(font1, "Credits", new Vector2(100f, 50f), Color.Blue);
             spriteBatch.DrawString(font1, "Press \"Back\" to go back", new Vector2(100f, 70f), Color.Blue);
+
+            spriteBatch.DrawString(font1, "             The Floor is Lava Studio", new Vector2(game.screenWidth / 2 - 70, 200f), Color.Gold);
+            spriteBatch.DrawString(font1, "Alexander Bellavia               Kasey Hilton", new Vector2(game.screenWidth / 2 - 70, 250f), Color.Gold);
+            spriteBatch.DrawString(font1, "Josh Malmquist                   Jacob Roos", new Vector2(game.screenWidth / 2 - 70, 300f), Color.Gold);
+            spriteBatch.DrawString(font1, "                 Anna Karwacki", new Vector2(game.screenWidth / 2 - 70, 350f), Color.Gold);
         }
         #endregion Methods
     }
