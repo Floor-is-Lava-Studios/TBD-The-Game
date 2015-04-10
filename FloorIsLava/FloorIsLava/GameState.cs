@@ -23,7 +23,8 @@ namespace FloorIsLava
         CreditScreen, //state for Credit Screen
         OptionScreen, //state for Option Screen
         LevelScreen, //state for the Level Screen
-        InstructionScreen //state for the instruction Screen
+        InstructionScreen, //state for the instruction Screen
+        PauseScreen //state for PauseScreen
     }
     #endregion GameStates
 
@@ -40,6 +41,7 @@ namespace FloorIsLava
         private static CreditScreen creditScreen;
         private static InstructionScreen instructionScreen;
         private static OptionScreen optionScreen;
+        private static PauseScreen pauseScreen;
 
         private static Screen currentScreen; // attribute that controls which screen state is currently being displayed
         private int num;
@@ -124,6 +126,15 @@ namespace FloorIsLava
                 levelScreen = value;
             }
         }
+        //Pause Screen Property
+        public PauseScreen PauseScreen
+        {
+            get { return pauseScreen; }
+            set
+            {
+                pauseScreen = value;
+            }
+        }
         #endregion Properties
 
         #region Methods
@@ -164,6 +175,12 @@ namespace FloorIsLava
         {
             levelScreen = new LevelScreen(game); //makes new level screen
             currentScreen = Screen.LevelScreen; // sets current screen to level screen
+        }
+
+        public void PauseGame(Game1 game1, GameScreen currentGame) //pauses game
+        {
+            pauseScreen = new PauseScreen(game1, currentGame);
+            currentScreen = Screen.PauseScreen;
         }
         #endregion Methods
     }

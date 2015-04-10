@@ -183,6 +183,13 @@ namespace FloorIsLava
                         gameState.LevelScreen.Update(gameTime);
                     }
                     break;
+
+                case Screen.PauseScreen:
+                    if (gameState.PauseScreen != null)
+                    {
+                        gameState.PauseScreen.Update(gameTime);
+                    }
+                    break;
             }
             base.Update(gameTime);
         }
@@ -244,6 +251,15 @@ namespace FloorIsLava
                     {
                         GraphicsDevice.Clear(Color.Gray);
                         gameState.LevelScreen.Draw(spriteBatch, backgroundSprite, levelTitle);
+                    }
+                    break;
+
+                case Screen.PauseScreen:
+                    if (gameState.PauseScreen != null)
+                    {
+                        GraphicsDevice.Clear(Color.Blue);
+                        gameState.GameScreen.Draw(spriteBatch, backgroundSprite);
+                        gameState.PauseScreen.Draw(spriteBatch, backgroundSprite);
                     }
                     break;
             }

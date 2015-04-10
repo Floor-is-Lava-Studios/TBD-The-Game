@@ -171,25 +171,9 @@ namespace FloorIsLava
             GameTime gameTime = gt; // takes gametime object and assigns it to gametime variable
             player.Update(gameTime);
             KeyboardState keyBoardState = Keyboard.GetState(); //create a keyboard state variable to hold current keyboard state
-            if (keyBoardState.IsKeyDown(Keys.M) && lastState.IsKeyDown(Keys.M))
+            if (keyBoardState.IsKeyDown(Keys.P) && lastState.IsKeyDown(Keys.P))
             {
-                gameState.CurrentScreen = Screen.StartScreen;
-            }
-            if (keyBoardState.IsKeyDown(Keys.I) && lastState.IsKeyDown(Keys.I))
-            {
-                gameState.SwitchInstruct(game);
-            }
-            if (keyBoardState.IsKeyDown(Keys.O) && lastState.IsKeyDown(Keys.O))
-            {
-                gameState.SwitchOption(game);
-            }
-            if (keyBoardState.IsKeyDown(Keys.L) && lastState.IsKeyDown(Keys.L))
-            {
-                gameState.SwitchLevel(game);
-            }
-            if (keyBoardState.IsKeyDown(Keys.C) && lastState.IsKeyDown(Keys.C))
-            {
-                gameState.SwitchCredit(game);
+                gameState.PauseGame(game, this);
             }
 
             lastState = keyBoardState; // assigns current keyboard state to the last keyboard state
