@@ -41,7 +41,7 @@ namespace FloorIsLava
         public void Update()
         {
             KeyboardState keyboardState = Keyboard.GetState(); //create a keyboard state variable to hold current keyboard state
-            if (keyboardState.IsKeyDown(Keys.S) && lastState.IsKeyUp(Keys.S))
+            if ((keyboardState.IsKeyDown(Keys.S) && lastState.IsKeyUp(Keys.S)) || (keyboardState.IsKeyDown(Keys.Down) && lastState.IsKeyUp(Keys.Down)))
             {
                 count++;
                 if(count > 4)
@@ -49,7 +49,7 @@ namespace FloorIsLava
                     count = 0;
                 }
             }
-            if (keyboardState.IsKeyDown(Keys.W) && lastState.IsKeyUp(Keys.W))
+            if (keyboardState.IsKeyDown(Keys.W) && lastState.IsKeyUp(Keys.W) || (keyboardState.IsKeyDown(Keys.Up) && lastState.IsKeyUp(Keys.Up)))
             {
                 count--;
                 if (count < 0)
@@ -57,7 +57,7 @@ namespace FloorIsLava
                     count = 4;
                 }
             }
-            if (keyboardState.IsKeyDown(Keys.Enter))
+            if (keyboardState.IsKeyDown(Keys.Enter) || keyboardState.IsKeyDown(Keys.Space))
             {
                 if (count == 0)
                 {
@@ -101,7 +101,7 @@ namespace FloorIsLava
             }
             else
             {
-                spritebatch.Draw(instructions1, new Rectangle(game.screenWidth / 2 - 220, 200, 500, 250), Color.White);
+                spritebatch.Draw(instructions1, new Rectangle(game.screenWidth / 2 - 220, 200, 500, 250), Color.Gray);
             }
             if(count == 1)
             {
@@ -111,7 +111,7 @@ namespace FloorIsLava
             else
             {
                 //start
-                spritebatch.Draw(startButton2, new Rectangle(game.screenWidth / 2 - 220, 275, 500, 250), Color.White);
+                spritebatch.Draw(startButton2, new Rectangle(game.screenWidth / 2 - 220, 275, 500, 250), Color.Gray);
             }
             if(count == 2)
             {
@@ -119,7 +119,7 @@ namespace FloorIsLava
             }
             else
             {
-                spritebatch.Draw(options2, new Rectangle(game.screenWidth / 2 - 220, 350, 500, 250), Color.White);
+                spritebatch.Draw(options2, new Rectangle(game.screenWidth / 2 - 220, 350, 500, 250), Color.Gray);
             }
             if(count == 3)
             {
@@ -127,7 +127,7 @@ namespace FloorIsLava
             }
             else
             {
-                spritebatch.Draw(levelButton2, new Rectangle(game.screenWidth / 2 - 220, 425, 500, 250), Color.White);
+                spritebatch.Draw(levelButton2, new Rectangle(game.screenWidth / 2 - 220, 425, 500, 250), Color.Gray);
             }
             if(count == 4)
             {
@@ -135,7 +135,7 @@ namespace FloorIsLava
             }
             else
             {
-                spritebatch.Draw(creditButton1, new Rectangle(game.screenWidth / 2 - 220, 500, 500, 250), Color.White);
+                spritebatch.Draw(creditButton1, new Rectangle(game.screenWidth / 2 - 220, 500, 500, 250), Color.Gray);
             }
         }
     }

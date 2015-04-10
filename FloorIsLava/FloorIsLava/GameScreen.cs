@@ -87,7 +87,7 @@ namespace FloorIsLava
                     }
                     else if (piece == "c")
                     {
-                        player = new Player(game.playerSprite, xPos * x + x, yPos * y + y, game.playerSprite.Width * 4, game.playerSprite.Height * 4, colList);
+                        player = new Player(game.playerSprite, xPos * x + x, yPos * y + y, game.playerSprite.Width * 4, game.playerSprite.Height * 4, colList, game);
                     }
                     else if (piece == "f")
                     {
@@ -148,7 +148,7 @@ namespace FloorIsLava
                     }
                     else if (piece == "c")
                     {
-                        player = new Player(game.playerSprite, xPos * x + x, yPos * y + y, game.playerSprite.Width * 4, game.playerSprite.Height * 4, colList);
+                        player = new Player(game.playerSprite, xPos * x + x, yPos * y + y, game.playerSprite.Width * 4, game.playerSprite.Height * 4, colList, game);
                     }
                     else if (piece == "f")
                     {

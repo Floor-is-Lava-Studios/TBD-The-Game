@@ -38,6 +38,8 @@ namespace FloorIsLava
         // attributes
         private Rectangle playerRect;
         private Texture2D playerTexture;
+
+        private Texture2D backwards;
         private int width;
         private int height;
 
@@ -65,7 +67,7 @@ namespace FloorIsLava
         /// <param name="y"></param>
         /// <param name="wid"></param>
         /// <param name="hgt"></param>
-        public Player(Texture2D plrTx, int x, int y, int wid, int hgt, List<Rectangle> colls)
+        public Player(Texture2D plrTx, int x, int y, int wid, int hgt, List<Rectangle> colls, Game1 game)
         {
             oldState = Keyboard.GetState();
             playerTexture = plrTx;
@@ -77,6 +79,8 @@ namespace FloorIsLava
             hasJumped = false;
             currentState = State.Still;
             collisionsToCheck = colls;
+            backwards = game.Content.Load<Texture2D>("player_backwards");
+            
         }
         #endregion Constructor
 
@@ -140,6 +144,10 @@ namespace FloorIsLava
             KeyboardState newState = Keyboard.GetState();   // gets keyboard state
             if (currentState != State.Grappled)             // sets state and direction (if player is not grappled)
             {
+                if(direction == 0)
+                {
+                    direction = 1;
+                }
                 if (currentState != State.Still && newState.IsKeyUp(Keys.A) && newState.IsKeyUp(Keys.D))
                     currentState = State.Stopping;
                 if (newState.IsKeyDown(Keys.A) && newState.IsKeyUp(Keys.D))
@@ -240,7 +248,14 @@ namespace FloorIsLava
         /// <param name="spriteBatch"></param>
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(playerTexture, playerRect, Color.White);
+            if(direction == 1)
+            {
+                spriteBatch.Draw(playerTexture, playerRect, Color.White);
+            }
+            else
+            {
+                spriteBatch.Draw(backwards, playerRect, Color.White);
+            }
         }
         #endregion Methods
     }
