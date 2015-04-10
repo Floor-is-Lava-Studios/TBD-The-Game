@@ -46,7 +46,7 @@ namespace FloorIsLava
             {
                 gameState.CurrentScreen = Screen.StartScreen;
             }
-            if (keyState.IsKeyDown(Keys.A) && lastState.IsKeyUp(Keys.A))
+            if (keyState.IsKeyDown(Keys.A) && lastState.IsKeyUp(Keys.A) || keyState.IsKeyDown(Keys.Left) && lastState.IsKeyUp(Keys.Left))
             {
                 count++;
                 if (count > 1)
@@ -54,7 +54,7 @@ namespace FloorIsLava
                     count = 0;
                 }
             }
-            if (keyState.IsKeyDown(Keys.D) && lastState.IsKeyUp(Keys.D))
+            if (keyState.IsKeyDown(Keys.D) && lastState.IsKeyUp(Keys.D) || keyState.IsKeyDown(Keys.Right) && lastState.IsKeyUp(Keys.Right))
             {
                 count--;
                 if (count < 0)
@@ -62,7 +62,7 @@ namespace FloorIsLava
                     count = 1;
                 }
             }
-            if (keyState.IsKeyDown(Keys.Enter) && lastState.IsKeyUp(Keys.Enter))
+            if (keyState.IsKeyDown(Keys.Enter) && lastState.IsKeyUp(Keys.Enter) || keyState.IsKeyDown(Keys.Space) && lastState.IsKeyUp(Keys.Space))
             {
                 if (count == 0)
                 {
