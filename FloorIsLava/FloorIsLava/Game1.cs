@@ -258,7 +258,6 @@ namespace FloorIsLava
                     if (gameState.PauseScreen != null)
                     {
                         GraphicsDevice.Clear(Color.Blue);
-                        gameState.GameScreen.Draw(spriteBatch, backgroundSprite);
                         gameState.PauseScreen.Draw(spriteBatch, backgroundSprite);
                     }
                     break;

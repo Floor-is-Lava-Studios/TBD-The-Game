@@ -43,7 +43,10 @@ namespace FloorIsLava
         public void Update(GameTime gameTime)
         {
             KeyboardState keyState = Keyboard.GetState();
-
+            if (keyState.IsKeyDown(Keys.R) && lastState.IsKeyDown(Keys.R))
+            {
+                gameState.ResumeGame(gameScreen);
+            }
             lastState = keyState;
            
         }
@@ -53,6 +56,7 @@ namespace FloorIsLava
         //Draw
         public void Draw(SpriteBatch spriteBatch, Texture2D background)
         {
+            gameScreen.Draw(spriteBatch, background);
             spriteBatch.Draw(background, new Rectangle((game.screenWidth/2) - 500, (game.screenHeight/2) - 400 , screenWidth, screenHeight), Color.White);
             //spriteBatch.Draw(title, new Rectangle(game.screenWidth / 2 - 500, 100, 1000, 512), Color.White);
         }
