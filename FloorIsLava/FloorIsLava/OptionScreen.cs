@@ -36,31 +36,63 @@ namespace FloorIsLava
         public void Update(GameTime gameTime)
         {
             KeyboardState keyState = Keyboard.GetState(); //create a keyboard state variable to hold current keyboard state
-            if (keyState.IsKeyDown(Keys.Back) && keyState.IsKeyDown(Keys.Back))
+            if (gameState.PauseScreen == null) //if pausescreen is not active
             {
-                gameState.CurrentScreen = Screen.StartScreen;
-            }
-            lastState = keyState;
+                if (keyState.IsKeyDown(Keys.Back) && keyState.IsKeyDown(Keys.Back))
+                {
+                    gameState.CurrentScreen = Screen.StartScreen;
+                }
+                lastState = keyState;
 
-            if (keyState.IsKeyDown(Keys.S) && lastState.IsKeyDown(Keys.S))
-            {
-                gameState.CurrentScreen = Screen.StartScreen;
+                if (keyState.IsKeyDown(Keys.S) && lastState.IsKeyDown(Keys.S))
+                {
+                    gameState.CurrentScreen = Screen.StartScreen;
+                }
+                if (keyState.IsKeyDown(Keys.G) && lastState.IsKeyDown(Keys.G))
+                {
+                    gameState.StartGame("text.txt");
+                }
+                if (keyState.IsKeyDown(Keys.I) && lastState.IsKeyDown(Keys.I))
+                {
+                    gameState.SwitchInstruct(game);
+                }
+                if (keyState.IsKeyDown(Keys.L) && lastState.IsKeyDown(Keys.L))
+                {
+                    gameState.SwitchLevel(game);
+                }
+                if (keyState.IsKeyDown(Keys.C) && lastState.IsKeyDown(Keys.C))
+                {
+                    gameState.SwitchCredit(game);
+                }
             }
-            if (keyState.IsKeyDown(Keys.G) && lastState.IsKeyDown(Keys.G))
+            else //if the pause screen is active only allow player to go back to pause menu
             {
-                gameState.StartGame("text.txt");
-            }
-            if (keyState.IsKeyDown(Keys.I) && lastState.IsKeyDown(Keys.I))
-            {
-                gameState.SwitchInstruct(game);
-            }
-            if (keyState.IsKeyDown(Keys.L) && lastState.IsKeyDown(Keys.L))
-            {
-                gameState.SwitchLevel(game);
-            }
-            if (keyState.IsKeyDown(Keys.C) && lastState.IsKeyDown(Keys.C))
-            {
-                gameState.SwitchCredit(game);
+                if (keyState.IsKeyDown(Keys.Back) && keyState.IsKeyDown(Keys.Back))
+                {
+                    gameState.SwitchPause(); //switches to pause screen
+                }
+                lastState = keyState;
+
+                if (keyState.IsKeyDown(Keys.S) && lastState.IsKeyDown(Keys.S))
+                {
+                    gameState.CurrentScreen = Screen.StartScreen;
+                }
+                if (keyState.IsKeyDown(Keys.G) && lastState.IsKeyDown(Keys.G))
+                {
+                    gameState.StartGame("text.txt");
+                }
+                if (keyState.IsKeyDown(Keys.I) && lastState.IsKeyDown(Keys.I))
+                {
+                    gameState.SwitchInstruct(game);
+                }
+                if (keyState.IsKeyDown(Keys.L) && lastState.IsKeyDown(Keys.L))
+                {
+                    gameState.SwitchLevel(game);
+                }
+                if (keyState.IsKeyDown(Keys.C) && lastState.IsKeyDown(Keys.C))
+                {
+                    gameState.SwitchCredit(game);
+                }
             }
             lastState = keyState; //assigns current keyboard state to lastState
         }

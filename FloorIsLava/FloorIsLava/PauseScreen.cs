@@ -47,6 +47,10 @@ namespace FloorIsLava
             {
                 gameState.ResumeGame(gameScreen);
             }
+            if (keyState.IsKeyDown(Keys.O) && lastState.IsKeyDown(Keys.O))
+            {
+                gameState.SwitchOption(game);
+            }
             lastState = keyState;
            
         }

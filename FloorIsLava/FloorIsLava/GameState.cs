@@ -183,11 +183,16 @@ namespace FloorIsLava
             currentScreen = Screen.PauseScreen;
         }
 
-        public void ResumeGame(GameScreen currentGame)
+        public void ResumeGame(GameScreen currentGame) //resumes game when it is paused
         {
             gameScreen = currentGame;
             currentScreen = Screen.GameScreen;
             pauseScreen = null;
+        }
+
+        public void SwitchPause() //switch to pause Screen 
+        {
+            currentScreen = Screen.PauseScreen;
         }
         #endregion Methods
     }
