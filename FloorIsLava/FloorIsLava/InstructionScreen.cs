@@ -36,36 +36,48 @@ namespace FloorIsLava
         public void Update(GameTime gameTime)
         {
             KeyboardState keyState = Keyboard.GetState();
-       if (keyState.IsKeyDown(Keys.S) && lastState.IsKeyDown(Keys.S))
-       {
-           gameState.CurrentScreen = Screen.StartScreen;
-       }
-            if(keyState.IsKeyDown(Keys.Back)&&keyState.IsKeyDown(Keys.Back))
+            if (gameState.PauseScreen == null)
             {
-                gameState.CurrentScreen = Screen.StartScreen;
-            }
-            lastState = keyState;
+                
+                if (keyState.IsKeyDown(Keys.S) && lastState.IsKeyDown(Keys.S))
+                {
+                    gameState.CurrentScreen = Screen.StartScreen;
+                }
+                if (keyState.IsKeyDown(Keys.Back) && keyState.IsKeyDown(Keys.Back))
+                {
+                    gameState.CurrentScreen = Screen.StartScreen;
+                }
+                lastState = keyState;
 
-            keyState = Keyboard.GetState(); //create a keyboard state variable to hold current keyboard state
-            if (keyState.IsKeyDown(Keys.S) && lastState.IsKeyDown(Keys.S))
-            {
-                gameState.CurrentScreen = Screen.StartScreen;
+                keyState = Keyboard.GetState(); //create a keyboard state variable to hold current keyboard state
+                if (keyState.IsKeyDown(Keys.S) && lastState.IsKeyDown(Keys.S))
+                {
+                    gameState.CurrentScreen = Screen.StartScreen;
+                }
+                if (keyState.IsKeyDown(Keys.G) && lastState.IsKeyDown(Keys.G))
+                {
+                    gameState.StartGame("test.txt");
+                }
+                if (keyState.IsKeyDown(Keys.O) && lastState.IsKeyDown(Keys.O))
+                {
+                    gameState.SwitchOption(game);
+                }
+                if (keyState.IsKeyDown(Keys.L) && lastState.IsKeyDown(Keys.L))
+                {
+                    gameState.SwitchLevel(game);
+                }
+                if (keyState.IsKeyDown(Keys.C) && lastState.IsKeyDown(Keys.C))
+                {
+                    gameState.SwitchCredit(game);
+                }
+                
             }
-            if (keyState.IsKeyDown(Keys.G) && lastState.IsKeyDown(Keys.G))
+            else
             {
-                gameState.StartGame("test.txt");
-            }
-            if (keyState.IsKeyDown(Keys.O) && lastState.IsKeyDown(Keys.O))
-            {
-                gameState.SwitchOption(game);
-            }
-            if (keyState.IsKeyDown(Keys.L) && lastState.IsKeyDown(Keys.L))
-            {
-                gameState.SwitchLevel(game);
-            }
-            if (keyState.IsKeyDown(Keys.C) && lastState.IsKeyDown(Keys.C))
-            {
-                gameState.SwitchCredit(game);
+                if(keyState.IsKeyDown(Keys.Back)&&lastState.IsKeyDown(Keys.Back))
+                {
+                    gameState.SwitchPause();
+                }
             }
             lastState = keyState; // assigns current keyboard state to lastState
         }
@@ -80,6 +92,7 @@ namespace FloorIsLava
             spriteBatch.DrawString(font1, "D to go forward", new Vector2(game.screenWidth / 2 - 100, 200f), Color.Gold);
             spriteBatch.DrawString(font1, "A to go backwards", new Vector2(game.screenWidth / 2 - 100, 300f), Color.Gold);
             spriteBatch.DrawString(font1, "Space to jump", new Vector2(game.screenWidth / 2 - 100, 400f), Color.Gold);
+            spriteBatch.DrawString(font1, "P to Pause", new Vector2(game.screenWidth / 2 - 100, 500f), Color.Gold);
         }
         #endregion Methods
     }

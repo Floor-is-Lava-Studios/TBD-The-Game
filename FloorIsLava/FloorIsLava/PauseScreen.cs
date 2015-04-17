@@ -22,6 +22,8 @@ namespace FloorIsLava
         private GameScreen gameScreen; //holds current Gamescreen
         private int screenWidth; //Width for Pause screen
         private int screenHeight; //Height for PauseScreen
+
+        private int button; //what the user wants to do next
         #endregion Attributes
 
         #region Constructor
@@ -35,6 +37,8 @@ namespace FloorIsLava
             gameScreen = currentGame; // sets gameScreen to current Gamescreen
             screenWidth = 1000; //sets width to 1000
             screenHeight = 800; //sets height to 800
+
+            button = 0;
         }
         #endregion Constructor
 
@@ -51,6 +55,39 @@ namespace FloorIsLava
             {
                 gameState.SwitchOption(game);
             }
+
+            // using either the "W" or "S" key or the up and down arrow picking what to do next
+            if ((keyState.IsKeyDown(Keys.W) && lastState.IsKeyUp(Keys.W)) || (keyState.IsKeyDown(Keys.Up) && lastState.IsKeyUp(Keys.Up)))
+            {
+                button--;
+                if(button < 0)
+                {
+                    button = 2;
+                }
+            }
+            if ((keyState.IsKeyDown(Keys.S) && lastState.IsKeyUp(Keys.S)) || (keyState.IsKeyDown(Keys.Down) && lastState.IsKeyUp(Keys.Down)))
+            {
+                button++;
+                if (button > 2)
+                {
+                    button = 0;
+                }
+            }
+            if ((keyState.IsKeyDown(Keys.Enter) && lastState.IsKeyUp(Keys.Enter)) || (keyState.IsKeyDown(Keys.Space) && lastState.IsKeyUp(Keys.Space)))
+            {
+                switch(button)
+                {
+                    case 0:
+                        gameState.ResumeGame(gameScreen);
+                        break;
+                    case 1:
+                        gameState.SwitchOption(game);
+                        break;
+                    case 2:
+                        gameState.SwitchInstruct(game);
+                        break;
+                }
+            }
             lastState = keyState;
            
         }
@@ -63,6 +100,33 @@ namespace FloorIsLava
             gameScreen.Draw(spriteBatch, background);
             spriteBatch.Draw(background, new Rectangle((game.screenWidth/2) - 500, (game.screenHeight/2) - 400 , screenWidth, screenHeight), Color.White);
             //spriteBatch.Draw(title, new Rectangle(game.screenWidth / 2 - 500, 100, 1000, 512), Color.White);
+            spriteBatch.DrawString(font1,"PAUSE", new Vector2(game.screenWidth / 2, 100),Color.Blue);
+
+            // drawing the buttons, if selected the color changes
+            if(button == 0)
+            {
+                spriteBatch.DrawString(font1, "Continue", new Vector2(game.screenWidth / 2, 200), Color.Yellow);
+            }
+            else
+            {
+                spriteBatch.DrawString(font1, "Contine", new Vector2(game.screenWidth / 2, 200), Color.Blue);
+            }
+            if (button == 1)
+            {
+                spriteBatch.DrawString(font1, "Options", new Vector2(game.screenWidth / 2, 300), Color.Yellow);
+            }
+            else
+            {
+                spriteBatch.DrawString(font1, "Options", new Vector2(game.screenWidth / 2, 300), Color.Blue);
+            }
+            if (button == 2)
+            {
+                spriteBatch.DrawString(font1, "How To Play", new Vector2(game.screenWidth / 2, 400), Color.Yellow);
+            }
+            else
+            {
+                spriteBatch.DrawString(font1, "How To Play", new Vector2(game.screenWidth / 2, 400), Color.Blue);
+            }
         }
         #endregion Draw 
     }
