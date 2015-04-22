@@ -22,6 +22,7 @@ namespace FloorIsLava
         {
             rect = new Rectangle(x, y, width, height);
             blockTexture = texture;
+            isGrappleable = true;
         }
 
         public void Draw(SpriteBatch spriteBatch)

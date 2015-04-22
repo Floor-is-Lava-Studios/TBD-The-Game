@@ -19,5 +19,6 @@ namespace FloorIsLava
     {
         // attributes
         public Rectangle rect;
+        public bool isGrappleable;
     }
 }

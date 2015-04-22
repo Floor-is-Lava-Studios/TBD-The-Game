@@ -55,6 +55,8 @@ namespace FloorIsLava
         private int jumpNumber;
         Rectangle nextPlayerRect;
         List<Rectangle> collisionsToCheck;
+
+        private GameScreen gameScreen;
         #endregion Attributes
 
         #region Constructor
@@ -67,7 +69,7 @@ namespace FloorIsLava
         /// <param name="y"></param>
         /// <param name="wid"></param>
         /// <param name="hgt"></param>
-        public Player(Texture2D plrTx, int x, int y, int wid, int hgt, List<Rectangle> colls, Game1 game)
+        public Player(Texture2D plrTx, int x, int y, int wid, int hgt, List<Rectangle> colls, Game1 game, GameScreen gS)
         {
             oldState = Keyboard.GetState();
             playerTexture = plrTx;
@@ -79,7 +81,8 @@ namespace FloorIsLava
             hasJumped = false;
             currentState = State.Still;
             collisionsToCheck = colls;
-            backwards = game.Content.Load<Texture2D>("player_backwards");
+            backwards = game.playerSprite_Backwards;
+            gameScreen = gS;
             
         }
         #endregion Constructor

@@ -10,7 +10,13 @@ namespace FloorIsLava
      * or be bound between two points, similar to the MoveablePlatform.  It will also have a 
      * bullet object that it will shoot on a timer.
      */
-    class Enemy
+    class Enemy : MoveableGameObject
     {
+        private Bullet myBullet;
+
+        public Bullet MyBullet
+        {
+            get { return myBullet; }
+        }
     }
 }

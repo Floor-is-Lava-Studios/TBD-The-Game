@@ -28,6 +28,8 @@ namespace FloorIsLava
         private List<GameObject> drawList;
         private Goal endGoal;
         private string levelName = "test.txt";
+        private List<GameObject> grappleableObjectList;
+        private List<Enemy> enemyList;
 
         // these are for a later update
         private string level;
@@ -39,6 +41,14 @@ namespace FloorIsLava
 
         private List<Rectangle> colList;
         #endregion Attributes
+
+        #region Properties
+        // properties
+        public List<GameObject> GrappleableObjectList
+        {
+            get { return grappleableObjectList; }
+        }
+        #endregion Properties
 
         #region Constructor
         //basic game screen constructor
@@ -87,11 +97,16 @@ namespace FloorIsLava
                     }
                     else if (piece == "c")
                     {
-                        player = new Player(game.playerSprite, xPos * x + x, yPos * y + y, game.playerSprite.Width * 4, game.playerSprite.Height * 4, colList, game);
+                        player = new Player(game.playerSprite, xPos * x + x, yPos * y + y, game.playerSprite.Width * 4, game.playerSprite.Height * 4, colList, game, this);
                     }
                     else if (piece == "f")
                     {
                         endGoal = new Goal(game.goalSprite, xPos * x + x, yPos * y + y, xPos, yPos);
+                    }
+                    else if (piece == "e")
+                    {
+                        enemyList.Add(new Enemy());
+                        drawList.Add(enemyList[enemyList.Count - 1]);
                     }
 
                     // will add code later for all the other objects that are going to be shown
@@ -100,7 +115,7 @@ namespace FloorIsLava
                 y++;
             }
             input.Close();
-        }
+        } // is not updated to current
         //gamescreen constructor that takes specific level
         public GameScreen(Game1 game, string lvlfile)
         {
@@ -145,10 +160,11 @@ namespace FloorIsLava
                         Platform block = new Platform(game.wallSprite, xPos * x + x, yPos * y + y, xPos, yPos);
                         drawList.Add(block);
                         colList.Add(block.rect);
+                        grappleableObjectList.Add(block);
                     }
                     else if (piece == "c")
                     {
-                        player = new Player(game.playerSprite, xPos * x + x, yPos * y + y, game.playerSprite.Width * 4, game.playerSprite.Height * 4, colList, game);
+                        player = new Player(game.playerSprite, xPos * x + x, yPos * y + y, game.playerSprite.Width * 4, game.playerSprite.Height * 4, colList, game, this);
                     }
                     else if (piece == "f")
                     {

@@ -18,27 +18,9 @@ namespace FloorIsLava
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        public Texture2D playerSprite;
-        public Texture2D playerSprite_Forward;
-        public Texture2D playerSprite_Backwards;
-        public Texture2D backgroundSprite;
-        public Texture2D titleSprite;
-        public Texture2D wallSprite;
-        public Texture2D goalSprite;
-
-        public Texture2D creditButton1;
-        public Texture2D creditButton2;
-        public Texture2D levelButton1;
-        public Texture2D levelButton2;
-        public Texture2D startButton1;
-        public Texture2D startButton2;
-        public Texture2D options1;
-        public Texture2D options2;
-        public Texture2D instructions1;
-        public Texture2D instructions2;
-
-        public Texture2D levelTitle;
-        public Texture2D optionsTitle;
+        public Texture2D playerSprite, playerSprite_Forward, playerSprite_Backwards, backgroundSprite, titleSprite, wallSprite, goalSprite,
+            creditButton1, creditButton2, levelButton1, levelButton2, startButton1, startButton2, options1, options2, instructions1, instructions2,
+            levelTitle, optionsTitle;
 
 
         public int screenWidth;
