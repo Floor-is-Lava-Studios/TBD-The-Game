@@ -1,0 +1,2 @@
+level1.txt true
+level2.txt false

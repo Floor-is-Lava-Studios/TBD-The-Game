@@ -86,6 +86,9 @@ namespace FloorIsLava
                     case 2:
                         gameState.SwitchInstruct(game);
                         break;
+               //  case 3:
+               //      gameState.CurrentScreen = Screen.StartScreen;
+               //      break;
                 }
             }
             lastState = keyState;
@@ -127,6 +130,14 @@ namespace FloorIsLava
             {
                 spriteBatch.DrawString(font1, "How To Play", new Vector2(game.screenWidth / 2, 400), Color.Blue);
             }
+     //  if (button == 3)
+     //  {
+     //      spriteBatch.DrawString(font1, "Quit", new Vector2(game.screenWidth / 2, 500), Color.Yellow);
+     //  }
+     //  else
+     //  {
+     //      spriteBatch.DrawString(font1, "Quit", new Vector2(game.screenWidth / 2, 500), Color.Blue);
+     //  }
         }
         #endregion Draw 
     }

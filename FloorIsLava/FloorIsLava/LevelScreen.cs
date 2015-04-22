@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
+using System.IO;
 
 namespace FloorIsLava
 {
@@ -21,6 +22,8 @@ namespace FloorIsLava
         private GameState gameState;
         private GameScreen gameScreen;
         private string levelName;
+        private SaveInfo save;
+        Dictionary<string, bool> levels;
 
         private int count = 0;
         #endregion Attributes
@@ -29,10 +32,12 @@ namespace FloorIsLava
         //Constructor
         public LevelScreen(Game1 game1)
         {
+            save = new SaveInfo();
             game = game1;
             gameState = new GameState(game); // creates new gamestate object and assigns it to gameState
             font1 = game.Content.Load<SpriteFont>("Font1"); // loads Font1
             lastState = Keyboard.GetState();
+            levels = save.ReadUnlock();          
         }
         #endregion Constructor
 
@@ -66,11 +71,11 @@ namespace FloorIsLava
             {
                 if (count == 0)
                 {
-                    gameState.StartGame("test.txt");
-                }
-                else if (count == 1)
-                {
                     gameState.StartGame("level1.txt");
+                }
+                else if (count == 1 && levels["level2.txt"] == true)
+                {
+                    gameState.StartGame("test.txt");
                 }
             }
 
@@ -94,15 +99,21 @@ namespace FloorIsLava
             {
                 spriteBatch.DrawString(font1, "Level 1", new Vector2(game.screenWidth / 2 - 250, 400f), Color.White);
             }
-            if (count == 1)
+            if (count == 1 && levels["level2.txt"] == true)
             {
                 spriteBatch.DrawString(font1, "Level 2", new Vector2(game.screenWidth / 2 + 150, 400f), Color.Gold);
+            }
+            else if (count == 1 && levels["level2.txt"] == false)
+            {
+                spriteBatch.DrawString(font1, "Level 2", new Vector2(game.screenWidth / 2 + 150, 400f), Color.Blue);
             }
             else
             {
                 spriteBatch.DrawString(font1, "Level 2", new Vector2(game.screenWidth / 2 + 150, 400f), Color.White);
             }
         }
+
+       
 
 
         #endregion Methods
