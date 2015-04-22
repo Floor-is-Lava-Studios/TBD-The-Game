@@ -44,10 +44,6 @@ namespace FloorIsLava
 
         #region Properties
         // properties
-        public List<GameObject> GrappleableObjectList
-        {
-            get { return grappleableObjectList; }
-        }
         #endregion Properties
 
         #region Constructor

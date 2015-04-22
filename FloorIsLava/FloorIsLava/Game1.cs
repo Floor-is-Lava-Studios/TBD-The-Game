@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
+using LineBatch;
 #endregion
 
 namespace FloorIsLava
@@ -48,7 +49,7 @@ namespace FloorIsLava
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            SpriteBatchEx.GraphicsDevice = GraphicsDevice;
             // Makes the game fullscreen
             graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
