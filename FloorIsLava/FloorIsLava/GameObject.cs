@@ -15,7 +15,7 @@ namespace FloorIsLava
      * The GameObject class will be the abstract class that all entities will inherit
      * from. It will have a rectangle attribute to represent the location of the entity.
      */ 
-    class GameObject
+    public class GameObject
     {
         // attributes
         public Rectangle rect;

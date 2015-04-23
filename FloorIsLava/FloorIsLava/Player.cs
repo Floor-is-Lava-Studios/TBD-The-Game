@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
+using LineBatch;
 
 namespace FloorIsLava
 {
@@ -30,6 +31,7 @@ namespace FloorIsLava
         const int GRAVITY = -1;
         const int JUMP_STRENGTH = 20;
         const int MAX_JUMPS = 2;
+        const int GRAPPLE_DISTANCE = 450;
         Vector2 RIGHT = new Vector2(1, 0);
         Vector2 LEFT = new Vector2(-1, 0);
         #endregion Constants
@@ -43,7 +45,7 @@ namespace FloorIsLava
         private int width;
         private int height;
 
-        public enum State { Walking, Still, Grappled, Stopping }
+        public enum State { Walking, Still, Stopping }
         private State currentState;
         private Vector2 position;
         private Vector2 velocity;
@@ -55,9 +57,11 @@ namespace FloorIsLava
         private int jumpNumber;
         Rectangle nextPlayerRect;
         List<Rectangle> collisionsToCheck;
+        private Vector2 grappleEndpoint;
         int xPostion;
         int yPostion;
         private GameScreen gameScreen;
+        bool isGrappled;
         #endregion Attributes
 
         #region Constructor
@@ -86,7 +90,8 @@ namespace FloorIsLava
             collisionsToCheck = colls;
             backwards = game.playerSprite_Backwards;
             gameScreen = gS;
-            
+            grappleEndpoint = new Vector2(playerRect.X, playerRect.Y);
+            isGrappled = false;
         }
         #endregion Constructor
 
@@ -100,25 +105,6 @@ namespace FloorIsLava
                 collisionsToCheck = value;
             }
         }
-        //XPostion Property
-        public int X 
-        {
-            get { return xPostion; }
-            set
-            {
-                xPostion = value;
-            }
-        }
-
-        //y Postion
-        public int Y
-        {
-            get { return yPostion; }
-            set
-            {
-                yPostion = value;
-            }
-        }
 
         //Player rect Property
         public Rectangle PlayerRect
@@ -130,6 +116,7 @@ namespace FloorIsLava
             }
         }
         #endregion Properties
+
         #region Methods
         public void DetectCollisions()
         {
@@ -139,9 +126,9 @@ namespace FloorIsLava
                 if (nextPlayerRect.Intersects(r))
                 {
                     if (velocity.X > 0)
-                        position.X = r.Left - width;
+                        position.X -= velocity.X / 2;
                     else if (velocity.X < 0)
-                        position.X = r.Right;
+                        position.X -= velocity.X / 2;
                     velocity.X = 0;
                 }
             }
@@ -168,8 +155,14 @@ namespace FloorIsLava
         /// <param name="newPress"></param>
         private void UpdateJump(bool newPress)
         {
-            if (!hasJumped && newPress)     // code that executes when a jump is performed
+            if (newPress && isGrappled)
             {
+                hasJumped = false;
+                jumpNumber = 1;
+                isGrappled = false;                
+            }
+            if (!hasJumped && newPress)     // code that executes when a jump is performed
+            {                
                 jumpStartPosition = position;
                 velocity.Y = -JUMP_STRENGTH;
                 jumpNumber++;
@@ -188,36 +181,43 @@ namespace FloorIsLava
         public void Update(GameTime gameTime)
         {
             KeyboardState newState = Keyboard.GetState();   // gets keyboard state
-            if (currentState != State.Grappled)             // sets state and direction (if player is not grappled)
+            if (newState.IsKeyDown(Keys.LeftShift) && oldState.IsKeyUp(Keys.LeftShift))
             {
-                if(direction == 0)
-                {
-                    direction = 1;
-                }
-                if (currentState != State.Still && newState.IsKeyUp(Keys.A) && newState.IsKeyUp(Keys.D))
-                    currentState = State.Stopping;
-                if (newState.IsKeyDown(Keys.A) && newState.IsKeyUp(Keys.D))
-                {
-                    currentState = State.Walking;
-                    direction = -1;
-                }
-                if (newState.IsKeyDown(Keys.D) && newState.IsKeyUp(Keys.A))
-                {
-                    currentState = State.Walking;
-                    direction = 1;
-                }
-                if (newState.IsKeyDown(Keys.A) && newState.IsKeyDown(Keys.D))
-                {
-                    if (oldState.IsKeyUp(Keys.A))
-                        direction = -1;
-                    if (oldState.IsKeyUp(Keys.D))
-                        direction = 1;
-                    currentState = State.Walking;
-                }
+                this.FireGrapple();
+            }                         
+           
+            if(direction == 0)      // sets state and direction (if player is not grappled)
+            {
+                direction = 1;
             }
-            else                                            // handles direction and movement when grappled
+            if (currentState != State.Still && newState.IsKeyUp(Keys.A) && newState.IsKeyUp(Keys.D))
+                currentState = State.Stopping;
+            if (newState.IsKeyDown(Keys.A) && newState.IsKeyUp(Keys.D))
             {
-                // code when grappled
+                currentState = State.Walking;
+                direction = -1;
+            }
+            if (newState.IsKeyDown(Keys.D) && newState.IsKeyUp(Keys.A))
+            {
+                currentState = State.Walking;
+                direction = 1;
+            }
+            if (newState.IsKeyDown(Keys.A) && newState.IsKeyDown(Keys.D))
+            {
+                if (oldState.IsKeyUp(Keys.A))
+                    direction = -1;
+                if (oldState.IsKeyUp(Keys.D))
+                    direction = 1;
+                currentState = State.Walking;
+            }
+            
+            if (isGrappled)     // handles direction and movement when grappled
+            {
+                if (newState.IsKeyDown(Keys.W) && Math.Abs((grappleEndpoint.Y - playerRect.Y)) > 30)
+                    position.Y -= 10;
+                if (newState.IsKeyDown(Keys.S) && Math.Abs((grappleEndpoint.Y - playerRect.Y)) < GRAPPLE_DISTANCE)
+                    position.Y += 10;
+
             }
 
 
@@ -231,61 +231,56 @@ namespace FloorIsLava
             }
             this.UpdateJump(newPress);
 
-
-            switch (currentState)                           // master switch statement for the various states
+            if(!isGrappled)
             {
-                case State.Still:
-                    {
-                        break;
-                    }
-                case State.Walking:
-                    {
-                        if (direction == 1)
+                switch (currentState)                           // master switch statement for the various states
+                {
+                    case State.Still:
                         {
-                            if (velocity.X < MAX_SPEED)
+                            break;
+                        }
+                    case State.Walking:
+                        {
+                            if (direction == 1)
                             {
-                                velocity += RIGHT * ACCELERATION;
+                                if (velocity.X < MAX_SPEED)
+                                {
+                                    velocity += RIGHT * ACCELERATION;
+                                }
                             }
-                        }
-                        else if (direction == -1)
-                        {
-                            if (velocity.X > -1 * MAX_SPEED)
+                            else if (direction == -1)
                             {
-                                velocity += LEFT * ACCELERATION;
+                                if (velocity.X > -1 * MAX_SPEED)
+                                {
+                                    velocity += LEFT * ACCELERATION;
+                                }
                             }
+
+                            break;
                         }
-
-                        break;
-                    }
-                case State.Stopping:
-                    {
-                        if (velocity.X > 0)
-                            velocity -= RIGHT * ACCELERATION;
-                        else if (velocity.X < 0)
-                            velocity -= LEFT * ACCELERATION;
-
-                        if (velocity.X == 0)
+                    case State.Stopping:
                         {
-                            currentState = State.Still;
+                            if (velocity.X > 0)
+                                velocity -= RIGHT * ACCELERATION;
+                            else if (velocity.X < 0)
+                                velocity -= LEFT * ACCELERATION;
+
+                            if (velocity.X == 0)
+                            {
+                                currentState = State.Still;
+                            }
+                            break;
                         }
-                        break;
-                    }
-                case State.Grappled:
-                    {
-                        break;
-                    }
-
-
+                }
+                velocity.Y -= GRAVITY;
             }
-
-            velocity.Y -= GRAVITY;
+            
+            
 
             this.DetectCollisions();       // detects and adjusts for collisions
 
             position += velocity;           // adds the player's velocity to his current position
-            xPostion = (int)position.X;
-            yPostion = (int)position.Y;
-            playerRect = new Rectangle(xPostion, yPostion, width, height);    // sets the new position
+            playerRect = new Rectangle((int)position.X, (int)position.Y, width, height);    // sets the new position
             oldState = newState;            // sets the old keyboard state
         }
 
@@ -303,7 +298,54 @@ namespace FloorIsLava
             {
                 spriteBatch.Draw(backwards, playerRect, Color.White);
             }
+            if (isGrappled)
+            {
+                spriteBatch.DrawLine(new Vector2(playerRect.X + (playerRect.Width / 2), playerRect.Y), grappleEndpoint, Color.Black, 5);
+            }
+        }
+        public void FireGrapple()
+        {
+            if (isGrappled)
+            {
+                isGrappled = false;
+                return;
+            }               
+            Rectangle grappleRect = new Rectangle(playerRect.X, playerRect.Y - 20, playerRect.Width, 1);
+            bool foundObject = false;
+            while (Math.Abs((grappleRect.Y - playerRect.Y)) < GRAPPLE_DISTANCE && !foundObject)
+            {
+                grappleRect = new Rectangle(grappleRect.X, grappleRect.Y - 15, playerRect.Width, 1);
+                foreach (GameObject g in gameScreen.GrappleableObjectList)
+                {
+                    if (g.rect.Intersects(grappleRect))
+                    {
+                        foundObject = true;
+                        grappleEndpoint = new Vector2(grappleRect.X + (playerRect.Width / 2), grappleRect.Y);
+                        velocity = new Vector2(0, 0);
+                        isGrappled = true;
+                        break;
+                    }
+                }
+            }
         }
         #endregion Methods
+
+        internal void MoveDown(int y)
+        {
+            if (isGrappled)
+            {                
+                position.Y += y;
+                grappleEndpoint.Y += y;
+            }
+        }
+
+        internal void MoveUp(int y)
+        {
+            if (isGrappled)
+            {
+                position.Y -= y;
+                grappleEndpoint.Y -= y;
+            }
+        }
     }
 }

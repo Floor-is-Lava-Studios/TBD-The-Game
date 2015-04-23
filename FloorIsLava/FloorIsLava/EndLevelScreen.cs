@@ -59,7 +59,7 @@ namespace FloorIsLava
             }
             if (keyState.IsKeyDown(Keys.Enter) || keyState.IsKeyDown(Keys.Space))
             {
-                switch(count)
+                switch (count)
                 {
                     case 0: gameState.SwitchLevel(game); // this will go to the next level
                         break;

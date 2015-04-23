@@ -30,6 +30,7 @@ namespace FloorIsLava
         private string levelName = "test.txt";
         private List<GameObject> grappleableObjectList;
         private List<Enemy> enemyList;
+        private int timeSinceLastMove;
 
         // these are for a later update
         private string level;
@@ -44,6 +45,11 @@ namespace FloorIsLava
 
         #region Properties
         // properties
+        public List<GameObject> GrappleableObjectList
+        {
+            get { return grappleableObjectList; }
+            set { grappleableObjectList = value; }
+        }
         #endregion Properties
 
         #region Constructor
@@ -55,7 +61,7 @@ namespace FloorIsLava
             font1 = game.Content.Load<SpriteFont>("Font1"); //loads Font1
 
             drawList = new List<GameObject>();
-
+            timeSinceLastMove = 0;
             colList = new List<Rectangle>();
             // reading in the file
             StreamReader input = null;
@@ -75,9 +81,10 @@ namespace FloorIsLava
             int.TryParse(text, out gameHeight);
 
             int xPos = game.screenWidth / gameWidth;
-            int yPos = game.screenHeight / gameHeight;
+            //int yPos = game.screenHeight / gameHeight;
 
-            int y = 0;
+            grappleableObjectList = new List<GameObject>();
+            int y = -gameHeight + 8;
             while ((text = input.ReadLine()) != null)
             {
 
@@ -87,17 +94,18 @@ namespace FloorIsLava
                 {
                     if (piece == "w")
                     {
-                        Platform block = new Platform(game.wallSprite, xPos * x + x, yPos * y + y, xPos, yPos);
+                        Platform block = new Platform(game.wallSprite, xPos * x + x, xPos * y + y, xPos, xPos);
                         drawList.Add(block);
                         colList.Add(block.rect);
+                        grappleableObjectList.Add(block);
                     }
                     else if (piece == "c")
-                    {
-                        player = new Player(game.playerSprite, xPos * x + x, yPos * y + y, game.playerSprite.Width * 4, game.playerSprite.Height * 4, colList, game, this);
+                    {   
+                        player = new Player(game.playerSprite, xPos * x + x, xPos * y + y, game.playerSprite.Width * 4, game.playerSprite.Height * 4, colList, game, this);
                     }
                     else if (piece == "f")
                     {
-                        endGoal = new Goal(game.goalSprite, xPos * x + x, yPos * y + y, xPos, yPos);
+                        endGoal = new Goal(game.goalSprite, xPos * x + x, xPos * y + y, xPos, xPos);
                     }
                     else if (piece == "e")
                     {
@@ -106,6 +114,7 @@ namespace FloorIsLava
                     }
 
                     // will add code later for all the other objects that are going to be shown
+
                     x++;
                 }
                 y++;
@@ -121,7 +130,7 @@ namespace FloorIsLava
             levelName = lvlfile;
             
             drawList = new List<GameObject>();
-            
+            timeSinceLastMove = 0;
             colList = new List<Rectangle>();
             // reading in the file
             StreamReader input = null;
@@ -141,8 +150,9 @@ namespace FloorIsLava
             int.TryParse(text, out gameHeight);
 
             int xPos = game.screenWidth / gameWidth;
-            int yPos = game.screenHeight / gameHeight;
+            //int yPos = game.screenHeight / gameHeight;
 
+            grappleableObjectList = new List<GameObject>();
             int y = 0;
             while ((text = input.ReadLine()) != null)
             {
@@ -153,18 +163,18 @@ namespace FloorIsLava
                 {
                     if (piece == "w")
                     {
-                        Platform block = new Platform(game.wallSprite, xPos * x + x, yPos * y + y, xPos, yPos);
+                        Platform block = new Platform(game.wallSprite, xPos * x + x, xPos * y + y, xPos + 1, xPos + 1);
                         drawList.Add(block);
                         colList.Add(block.rect);
                         grappleableObjectList.Add(block);
                     }
                     else if (piece == "c")
                     {
-                        player = new Player(game.playerSprite, xPos * x + x, yPos * y + y, game.playerSprite.Width * 4, game.playerSprite.Height * 4, colList, game, this);
+                        player = new Player(game.playerSprite, xPos * x + x, xPos * y + y, game.playerSprite.Width * 4, game.playerSprite.Height * 4, colList, game, this);
                     }
                     else if (piece == "f")
                     {
-                        endGoal = new Goal(game.goalSprite, xPos * x + x, yPos * y + y, xPos, yPos);
+                        endGoal = new Goal(game.goalSprite, xPos * x + x, xPos * y + y, xPos, xPos);
                     }
 
                     // will add code later for all the other objects that are going to be shown
@@ -208,13 +218,14 @@ namespace FloorIsLava
             }
             if (keyBoardState.IsKeyDown(Keys.K) && lastState.IsKeyUp(Keys.K))
             {
-                MoveDown(200);
+                MoveDown(5);
             }
             if (keyBoardState.IsKeyDown(Keys.I) && lastState.IsKeyUp(Keys.I))
             {
-                MoveUp(-200);
-                //MoveUp(-50);
+                MoveUp(-5);
             }
+            this.MoveScreen(gameTime);
+
             /*if (player.Y <= 20)
             {
                 MoveDown((game.screenHeight/2));
@@ -254,8 +265,7 @@ namespace FloorIsLava
                 b.PostionChange(0, y);
                 colList.Add(b.rect);
             }
-            player.Y = player.Y + y;
-            player.PlayerRect = new Rectangle(player.X, player.Y, player.PlayerRect.Width, player.PlayerRect.Height);
+            player.MoveDown(y);
             player.CollisionsToCheck = colList;
         }
         
@@ -269,10 +279,20 @@ namespace FloorIsLava
                 b.PostionChange(0, y);
                 colList.Add(b.rect);
             }
-             player.Y = player.Y + y;
-            player.PlayerRect = new Rectangle(player.X, player.Y, player.PlayerRect.Width, player.PlayerRect.Height);
+            player.MoveUp(y);
             player.CollisionsToCheck = colList;
-                
+        }
+
+
+        public void MoveScreen(GameTime gt)
+        {
+            GameTime gameTime = gt;
+            timeSinceLastMove += gameTime.ElapsedGameTime.Milliseconds;
+            if(timeSinceLastMove >= 15)
+            {
+                timeSinceLastMove = 0;
+                this.MoveDown(1);
+            }
         }
         #endregion Methods
 

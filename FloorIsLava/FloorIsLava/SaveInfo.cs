@@ -62,7 +62,6 @@ namespace FloorIsLava
                 output.WriteLine(levels.Keys + ", " + levels.Values);
             }
         }
-
         // after sucessfully finishing a level the next level will be unlocked
         public void LevelUnlocked(string lvlName) // get it so that the name of the current level identifies the next one
         {
