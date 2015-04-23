@@ -114,6 +114,20 @@ namespace FloorIsLava
         public int Y
         {
             get { return yPostion; }
+            set
+            {
+                yPostion = value;
+            }
+        }
+
+        //Player rect Property
+        public Rectangle PlayerRect
+        {
+            get { return playerRect; }
+            set 
+            {
+                playerRect = value;
+            }
         }
         #endregion Properties
         #region Methods
@@ -269,8 +283,9 @@ namespace FloorIsLava
             this.DetectCollisions();       // detects and adjusts for collisions
 
             position += velocity;           // adds the player's velocity to his current position
-            playerRect = new Rectangle((int)position.X, (int)position.Y, width, height);    // sets the new position
-
+            xPostion = (int)position.X;
+            yPostion = (int)position.Y;
+            playerRect = new Rectangle(xPostion, yPostion, width, height);    // sets the new position
             oldState = newState;            // sets the old keyboard state
         }
 

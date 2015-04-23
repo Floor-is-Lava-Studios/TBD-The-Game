@@ -206,22 +206,23 @@ namespace FloorIsLava
             {
                 gameState.EndGame();
             }
-            if (keyBoardState.IsKeyDown(Keys.K) && lastState.IsKeyDown(Keys.K))
+            if (keyBoardState.IsKeyDown(Keys.K) && lastState.IsKeyUp(Keys.K))
             {
-                MoveDown();
+                MoveDown(200);
             }
-            if (keyBoardState.IsKeyDown(Keys.I) && lastState.IsKeyDown(Keys.I))
+            if (keyBoardState.IsKeyDown(Keys.I) && lastState.IsKeyUp(Keys.I))
             {
-                MoveUp();
+                MoveUp(-200);
+                //MoveUp(-50);
             }
-            if (player.Y <= 20)
+            /*if (player.Y <= 20)
             {
-                MoveDown();
+                MoveDown((game.screenHeight/2));
             }
             if (player.Y >= (game.screenHeight - 20))
             {
-                MoveUp();
-            }
+                MoveUp(-(game.screenHeight/2));
+            }*/
             lastState = keyBoardState; // assigns current keyboard state to the last keyboard state
         }
         #endregion Update
@@ -244,29 +245,32 @@ namespace FloorIsLava
 
         #region Methods
         //MoveScreen Down Method
-        public void MoveDown()
+        public void MoveDown(int y)
         {
             colList = new List<Rectangle>();
-            endGoal.PostionChange(0, 50);
+            endGoal.PostionChange(0, y);
             foreach (Platform b in drawList)
             {
-                b.PostionChange(0, 50);
+                b.PostionChange(0, y);
                 colList.Add(b.rect);
             }
+            player.Y = player.Y + y;
+            player.PlayerRect = new Rectangle(player.X, player.Y, player.PlayerRect.Width, player.PlayerRect.Height);
             player.CollisionsToCheck = colList;
         }
         
         //MoveScreen Down Method
-        public void MoveUp()
+        public void MoveUp(int y)
         {
             colList = new List<Rectangle>();
-            endGoal.PostionChange(0, -50);
+            endGoal.PostionChange(0, y);
             foreach (Platform b in drawList)
             {
-                b.PostionChange(0, -50);
+                b.PostionChange(0, y);
                 colList.Add(b.rect);
             }
-            
+             player.Y = player.Y + y;
+            player.PlayerRect = new Rectangle(player.X, player.Y, player.PlayerRect.Width, player.PlayerRect.Height);
             player.CollisionsToCheck = colList;
                 
         }
