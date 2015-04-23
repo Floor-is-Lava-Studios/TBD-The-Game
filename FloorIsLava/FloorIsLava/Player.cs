@@ -181,7 +181,7 @@ namespace FloorIsLava
         public void Update(GameTime gameTime)
         {
             KeyboardState newState = Keyboard.GetState();   // gets keyboard state
-            if (newState.IsKeyDown(Keys.LeftShift) && oldState.IsKeyUp(Keys.LeftShift))
+            if (newState.IsKeyDown(Keys.LeftShift) && oldState.IsKeyUp(Keys.LeftShift) || newState.IsKeyDown(Keys.RightShift) && oldState.IsKeyUp(Keys.RightShift) || newState.IsKeyDown(Keys.E) && oldState.IsKeyUp(Keys.E))
             {
                 this.FireGrapple();
             }                         
@@ -190,32 +190,32 @@ namespace FloorIsLava
             {
                 direction = 1;
             }
-            if (currentState != State.Still && newState.IsKeyUp(Keys.A) && newState.IsKeyUp(Keys.D))
+            if (currentState != State.Still && newState.IsKeyUp(Keys.A) && newState.IsKeyUp(Keys.D) && newState.IsKeyUp(Keys.Left) && newState.IsKeyUp(Keys.Right))
                 currentState = State.Stopping;
-            if (newState.IsKeyDown(Keys.A) && newState.IsKeyUp(Keys.D))
+            if (newState.IsKeyDown(Keys.A) && newState.IsKeyUp(Keys.D) || newState.IsKeyDown(Keys.Left) && newState.IsKeyUp(Keys.Right))
             {
                 currentState = State.Walking;
                 direction = -1;
             }
-            if (newState.IsKeyDown(Keys.D) && newState.IsKeyUp(Keys.A))
+            if (newState.IsKeyDown(Keys.D) && newState.IsKeyUp(Keys.A) || newState.IsKeyDown(Keys.Right) && newState.IsKeyUp(Keys.Left))
             {
                 currentState = State.Walking;
                 direction = 1;
             }
             if (newState.IsKeyDown(Keys.A) && newState.IsKeyDown(Keys.D))
             {
-                if (oldState.IsKeyUp(Keys.A))
+                if (oldState.IsKeyUp(Keys.A) || oldState.IsKeyUp(Keys.Left))
                     direction = -1;
-                if (oldState.IsKeyUp(Keys.D))
+                if (oldState.IsKeyUp(Keys.D) || oldState.IsKeyUp(Keys.Right))
                     direction = 1;
                 currentState = State.Walking;
             }
             
             if (isGrappled)     // handles direction and movement when grappled
             {
-                if (newState.IsKeyDown(Keys.W) && Math.Abs((grappleEndpoint.Y - playerRect.Y)) > 30)
+                if (newState.IsKeyDown(Keys.W) && Math.Abs((grappleEndpoint.Y - playerRect.Y)) > 30 || newState.IsKeyDown(Keys.Up) && Math.Abs((grappleEndpoint.Y - playerRect.Y)) > 30)
                     position.Y -= 10;
-                if (newState.IsKeyDown(Keys.S) && Math.Abs((grappleEndpoint.Y - playerRect.Y)) < GRAPPLE_DISTANCE)
+                if (newState.IsKeyDown(Keys.S) && Math.Abs((grappleEndpoint.Y - playerRect.Y)) < GRAPPLE_DISTANCE || newState.IsKeyDown(Keys.Down) && Math.Abs((grappleEndpoint.Y - playerRect.Y)) < GRAPPLE_DISTANCE)
                     position.Y += 10;
 
             }

@@ -212,7 +212,7 @@ namespace FloorIsLava
             {
                 gameState.PauseGame(game, this);
             }
-            if (keyBoardState.IsKeyDown(Keys.E) && lastState.IsKeyDown(Keys.E))
+            if (keyBoardState.IsKeyDown(Keys.G) && lastState.IsKeyDown(Keys.G))
             {
                 gameState.EndGame();
             }
@@ -224,7 +224,7 @@ namespace FloorIsLava
             {
                 MoveUp(-5);
             }
-            this.MoveScreen(gameTime);
+            //this.MoveScreen(gameTime);
 
             /*if (player.Y <= 20)
             {
@@ -269,7 +269,7 @@ namespace FloorIsLava
             player.CollisionsToCheck = colList;
         }
         
-        //MoveScreen Down Method
+        //MoveScreen UP Method
         public void MoveUp(int y)
         {
             colList = new List<Rectangle>();

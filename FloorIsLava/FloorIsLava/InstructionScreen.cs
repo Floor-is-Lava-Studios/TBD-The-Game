@@ -89,10 +89,13 @@ namespace FloorIsLava
             spriteBatch.DrawString(font1, "this is instruction Screen", new Vector2(50f, 50f), Color.Black);
             spriteBatch.DrawString(font1, "Press \"Back\" to go back", new Vector2(50f, 70f), Color.Black);
 
-            spriteBatch.DrawString(font1, "D to go forward", new Vector2(game.screenWidth / 2 - 100, 200f), Color.Gold);
-            spriteBatch.DrawString(font1, "A to go backwards", new Vector2(game.screenWidth / 2 - 100, 300f), Color.Gold);
+            spriteBatch.DrawString(font1, "D or Right Arrow Key to go forward", new Vector2(game.screenWidth / 2 - 100, 200f), Color.Gold);
+            spriteBatch.DrawString(font1, "A or Left Arrow Key to go backwards", new Vector2(game.screenWidth / 2 - 100, 300f), Color.Gold);
             spriteBatch.DrawString(font1, "Space to jump", new Vector2(game.screenWidth / 2 - 100, 400f), Color.Gold);
-            spriteBatch.DrawString(font1, "P to Pause", new Vector2(game.screenWidth / 2 - 100, 500f), Color.Gold);
+            spriteBatch.DrawString(font1, "Press E, LeftShift or RightShift to shoot Grappling Hook", new Vector2(game.screenWidth / 2 - 100, 500f), Color.Gold);
+            spriteBatch.DrawString(font1, "W or Up Arrow Key to go up grappling hook", new Vector2(game.screenWidth / 2 - 100, 600f), Color.Gold);
+            spriteBatch.DrawString(font1, "S or Down Arrow Key to go up grappling hook", new Vector2(game.screenWidth / 2 - 100, 700f), Color.Gold);
+            spriteBatch.DrawString(font1, "P to Pause", new Vector2(game.screenWidth / 2 - 100, 800f), Color.Gold);
         }
         #endregion Methods
     }
