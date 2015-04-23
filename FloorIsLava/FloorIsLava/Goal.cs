@@ -43,5 +43,13 @@ namespace FloorIsLava
             yPostion = yPostion + y;
             rect = new Rectangle(xPostion, yPostion, width, height);
         }
+
+        public void isColliding(Player play)
+        {
+            // checks to see if the player has reached the goal
+            
+            //is the player has switch to end level screen
+            //also updates the unlocked levels
+        }
     }
 }
