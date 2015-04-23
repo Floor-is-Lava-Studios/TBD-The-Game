@@ -216,15 +216,15 @@ namespace FloorIsLava
             {
                 gameState.EndGame();
             }
-            if (keyBoardState.IsKeyDown(Keys.K) && lastState.IsKeyUp(Keys.K))
+            /*if (keyBoardState.IsKeyDown(Keys.K) && lastState.IsKeyUp(Keys.K))
             {
                 MoveDown(5);
             }
             if (keyBoardState.IsKeyDown(Keys.I) && lastState.IsKeyUp(Keys.I))
             {
                 MoveUp(-5);
-            }
-            //this.MoveScreen(gameTime);
+            }*/
+            this.MoveScreen(gameTime);
 
             /*if (player.Y <= 20)
             {
