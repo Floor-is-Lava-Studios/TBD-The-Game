@@ -226,14 +226,15 @@ namespace FloorIsLava
             }*/
             this.MoveScreen(gameTime);
 
-            /*if (player.Y <= 20)
+            /*if (player.PlayerRect.Y <= 20)
             {
                 MoveDown((game.screenHeight/2));
-            }
-            if (player.Y >= (game.screenHeight - 20))
-            {
-                MoveUp(-(game.screenHeight/2));
             }*/
+
+            if (player.PlayerRect.Y >= (game.screenHeight ))
+            {
+                gameState.EndGame();
+            }
             lastState = keyBoardState; // assigns current keyboard state to the last keyboard state
         }
         #endregion Update
