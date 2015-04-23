@@ -18,15 +18,30 @@ namespace FloorIsLava
     class Goal : GameObject
     {
         Texture2D goalTexture;
+        int xPostion;
+        int yPostion;
+        int width;
+        int height;
         public Goal(Texture2D texture, int x, int y, int width, int height)
         {
             rect = new Rectangle(x, y, width, height);
+            xPostion = x;
+            yPostion = y;
+            this.width = width;
+            this.height = height;
             goalTexture = texture;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(goalTexture, rect, Color.Gold);
+        }
+
+        internal void PostionChange(int x, int y)
+        {
+            xPostion = xPostion + x;
+            yPostion = yPostion + y;
+            rect = new Rectangle(xPostion, yPostion, width, height);
         }
     }
 }

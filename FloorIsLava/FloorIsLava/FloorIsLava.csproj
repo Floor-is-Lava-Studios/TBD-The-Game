@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="Bullet.cs" />
     <Compile Include="CreditScreen.cs" />
+    <Compile Include="EndLevelScreen.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="GameScreen.cs" />
     <Compile Include="Game1.cs" />

@@ -18,16 +18,33 @@ namespace FloorIsLava
     class Platform : GameObject
     {
         Texture2D blockTexture;
+        int yPostion;
+        int xPostion;
+        int width;
+        int height;
+
         public Platform(Texture2D texture, int x, int y, int width, int height)
         {
             rect = new Rectangle(x, y, width, height);
+            xPostion = x;
+            yPostion = y;
+            this.width = width;
+            this.height = height;
+
             blockTexture = texture;
             isGrappleable = true;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(blockTexture, rect, Color.White);
+            spriteBatch.Draw(blockTexture,  rect, Color.White);
+        }
+
+        public void PostionChange( int x, int y)
+        {
+            xPostion = xPostion + x;
+            yPostion = yPostion + y;
+            rect = new Rectangle(xPostion, yPostion, width, height);
         }
     }
 }

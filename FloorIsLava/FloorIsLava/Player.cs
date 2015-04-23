@@ -55,7 +55,8 @@ namespace FloorIsLava
         private int jumpNumber;
         Rectangle nextPlayerRect;
         List<Rectangle> collisionsToCheck;
-
+        int xPostion;
+        int yPostion;
         private GameScreen gameScreen;
         #endregion Attributes
 
@@ -76,6 +77,8 @@ namespace FloorIsLava
             width = wid;
             height = hgt;
             playerRect = new Rectangle(x, y, width, height);
+            xPostion = x;
+            yPostion = y;
             position = new Vector2(x, y);
             velocity = new Vector2();
             hasJumped = false;
@@ -87,6 +90,32 @@ namespace FloorIsLava
         }
         #endregion Constructor
 
+        #region Properties
+        //Collision to check Property
+        public List<Rectangle> CollisionsToCheck
+        {
+            get { return collisionsToCheck; }
+            set
+            {
+                collisionsToCheck = value;
+            }
+        }
+        //XPostion Property
+        public int X 
+        {
+            get { return xPostion; }
+            set
+            {
+                xPostion = value;
+            }
+        }
+
+        //y Postion
+        public int Y
+        {
+            get { return yPostion; }
+        }
+        #endregion Properties
         #region Methods
         public void DetectCollisions()
         {

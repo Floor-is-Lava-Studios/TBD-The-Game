@@ -177,6 +177,21 @@ namespace FloorIsLava
 
         #endregion Constructor
 
+        #region Properties
+        // this will make the correct level load in
+        public string LevelName
+        {
+            set
+            {
+                levelName = value;
+            }
+            get
+            {
+                return levelName;
+            }
+        }
+        #endregion properties
+
         #region Update
         public void Update(GameTime gt)
         {
@@ -187,7 +202,26 @@ namespace FloorIsLava
             {
                 gameState.PauseGame(game, this);
             }
-
+            if (keyBoardState.IsKeyDown(Keys.E) && lastState.IsKeyDown(Keys.E))
+            {
+                gameState.EndGame();
+            }
+            if (keyBoardState.IsKeyDown(Keys.K) && lastState.IsKeyDown(Keys.K))
+            {
+                MoveDown();
+            }
+            if (keyBoardState.IsKeyDown(Keys.I) && lastState.IsKeyDown(Keys.I))
+            {
+                MoveUp();
+            }
+            if (player.Y <= 20)
+            {
+                MoveDown();
+            }
+            if (player.Y >= (game.screenHeight - 20))
+            {
+                MoveUp();
+            }
             lastState = keyBoardState; // assigns current keyboard state to the last keyboard state
         }
         #endregion Update
@@ -208,20 +242,35 @@ namespace FloorIsLava
         }
         #endregion Draw
 
-        #region Properties
-        // this will make the correct level load in
-        public string LevelName
+        #region Methods
+        //MoveScreen Down Method
+        public void MoveDown()
         {
-            set
+            colList = new List<Rectangle>();
+            endGoal.PostionChange(0, 50);
+            foreach (Platform b in drawList)
             {
-                levelName = value;
+                b.PostionChange(0, 50);
+                colList.Add(b.rect);
             }
-            get
-            {
-                return levelName;
-            }
+            player.CollisionsToCheck = colList;
         }
-        #endregion properties
+        
+        //MoveScreen Down Method
+        public void MoveUp()
+        {
+            colList = new List<Rectangle>();
+            endGoal.PostionChange(0, -50);
+            foreach (Platform b in drawList)
+            {
+                b.PostionChange(0, -50);
+                colList.Add(b.rect);
+            }
+            
+            player.CollisionsToCheck = colList;
+                
+        }
+        #endregion Methods
 
 
 

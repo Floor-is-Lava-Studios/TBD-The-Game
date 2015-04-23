@@ -173,6 +173,13 @@ namespace FloorIsLava
                         gameState.PauseScreen.Update(gameTime);
                     }
                     break;
+
+                case Screen.EndLevelScreen:
+                    if (gameState.EndLevelScreen != null)
+                    {
+                        gameState.EndLevelScreen.Update(gameTime);
+                    }
+                    break;
             }
             base.Update(gameTime);
         }
@@ -242,6 +249,14 @@ namespace FloorIsLava
                     {
                         GraphicsDevice.Clear(Color.Blue);
                         gameState.PauseScreen.Draw(spriteBatch, backgroundSprite);
+                    }
+                    break;
+
+                case Screen.EndLevelScreen:
+                    if (gameState.EndLevelScreen != null)
+                    {
+                        GraphicsDevice.Clear(Color.Black);
+                        gameState.EndLevelScreen.Draw(spriteBatch, backgroundSprite);
                     }
                     break;
             }

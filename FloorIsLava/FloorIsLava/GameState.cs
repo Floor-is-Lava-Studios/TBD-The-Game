@@ -24,7 +24,8 @@ namespace FloorIsLava
         OptionScreen, //state for Option Screen
         LevelScreen, //state for the Level Screen
         InstructionScreen, //state for the instruction Screen
-        PauseScreen //state for PauseScreen
+        PauseScreen, //state for PauseScreen
+        EndLevelScreen //state for EndLevel Screen
     }
     #endregion GameStates
 
@@ -42,9 +43,9 @@ namespace FloorIsLava
         private static InstructionScreen instructionScreen;
         private static OptionScreen optionScreen;
         private static PauseScreen pauseScreen;
+        private static EndLevelScreen endLevelScreen;
 
         private static Screen currentScreen; // attribute that controls which screen state is currently being displayed
-        private int num;
         #endregion Attributes
 
         #region Constructors
@@ -53,16 +54,10 @@ namespace FloorIsLava
         {
             this.game = game;
             currentScreen = Screen.StartScreen; //current screen set to StartScreen State
-            num = 0;
         }
         #endregion Constructors
 
         #region Properties
-        public int Num
-        {
-            get { return num; }
-            set { Num = value; }
-        }
         //property for the currentScreen attribute
         public Screen CurrentScreen
         {
@@ -135,6 +130,17 @@ namespace FloorIsLava
                 pauseScreen = value;
             }
         }
+
+        //EndLevel Screen Property
+        public EndLevelScreen EndLevelScreen
+        {
+            get { return endLevelScreen; }
+            set
+            {
+                endLevelScreen = value;
+            }
+        }
+
         #endregion Properties
 
         #region Methods
@@ -143,14 +149,12 @@ namespace FloorIsLava
         {
             gameScreen = new GameScreen(game); // makes new gamescreen
             currentScreen = Screen.GameScreen; // sets current screen to game screen
-            num++;
         }
 
         public void StartGame(string lvlName) //starts a new game using specific lvl and switch screen to game screen
         {
             gameScreen = new GameScreen(game, lvlName); // makes new gamescreen
             currentScreen = Screen.GameScreen; // sets current screen to game screen
-            num++;
         }
 
         public void SwitchInstruct(Game1 game) // switched screen to instruction screen
@@ -193,6 +197,14 @@ namespace FloorIsLava
         public void SwitchPause() //switch to pause Screen 
         {
             currentScreen = Screen.PauseScreen;
+        }
+
+        public void EndGame()
+        {
+            
+            gameScreen = null;
+            endLevelScreen = new EndLevelScreen(game);
+            currentScreen = Screen.EndLevelScreen;
         }
         #endregion Methods
     }
