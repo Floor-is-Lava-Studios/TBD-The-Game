@@ -21,7 +21,7 @@ namespace FloorIsLava
         SpriteBatch spriteBatch;
         public Texture2D playerSprite, playerSprite_Forward, playerSprite_Backwards, backgroundSprite, titleSprite, wallSprite, goalSprite,
             creditButton1, creditButton2, levelButton1, levelButton2, startButton1, startButton2, options1, options2, instructions1, instructions2,
-            levelTitle, optionsTitle, enemySprite, bulletSprite, gemSprite;
+            levelTitle, optionsTitle, enemySprite, bulletSprite, gemSprite, lavaFront, lavaBack;
 
 
         public int screenWidth;
@@ -97,6 +97,9 @@ namespace FloorIsLava
             enemySprite = Content.Load<Texture2D>("enemy");
             bulletSprite = Content.Load<Texture2D>("tempBullet");
             gemSprite = Content.Load<Texture2D>("gem");
+            lavaBack = Content.Load<Texture2D>("lavaBack");
+            lavaFront = Content.Load<Texture2D>("lavaFront");
+            
 
 
             // Anna Stuff

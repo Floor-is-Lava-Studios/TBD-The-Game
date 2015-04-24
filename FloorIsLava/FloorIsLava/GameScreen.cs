@@ -220,8 +220,8 @@ namespace FloorIsLava
         {
             GameTime gameTime = gt; // takes gametime object and assigns it to gametime variable
             player.Update(gameTime);
-            foreach (Enemy e in enemyList)
-                e.Update(gameTime, player);
+            //foreach (Enemy e in enemyList)
+            //    e.Update(gameTime, player);
             KeyboardState keyBoardState = Keyboard.GetState(); //create a keyboard state variable to hold current keyboard state
             if (keyBoardState.IsKeyDown(Keys.P) && lastState.IsKeyDown(Keys.P))
             {
@@ -285,10 +285,10 @@ namespace FloorIsLava
                 b.PostionChange(0, y);
                 colList.Add(b.rect);
             }
-            foreach (Enemy e in enemyList)
-            {
-                e.MoveDown(y);
-            }
+            //foreach (Enemy e in enemyList)
+            //{
+            //    e.MoveDown(y);
+            //}
             player.MoveDown(y);
             player.CollisionsToCheck = colList;
         }
