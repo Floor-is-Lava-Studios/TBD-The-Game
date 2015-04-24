@@ -120,16 +120,19 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Brief overview of controls
 
-use the arrow keys to move your cursor
+Use the arrow keys to move your cursor
 
-press a to add a wall
-press c to add the player
-press f to add the goal
-press g to add a gold piece
-press n to remove a piece
-press u to add an enemy moving up
-press r to add an enemy moving right
-press s to add an enemy that is stationary
-press o to add an obstacle</value>
+Press  w  to select wall
+Press  c  to select player
+Press  f  to select the goal
+Press  g  to select a gold piece
+Press  n  to select the eraser
+Press  u  to select an enemy moving up
+Press  r  to select an enemy moving right
+Press  s  to select an enemy that is stationary
+Press  o  to select obstacle
+
+Once the piece is selected, press space to 
+add the pice on to the board</value>
   </data>
 </root>
