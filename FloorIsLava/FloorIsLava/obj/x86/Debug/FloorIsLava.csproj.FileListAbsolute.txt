@@ -168,3 +168,5 @@ C:\Users\Alexander\Desktop\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\De
 C:\Users\Alexander\Desktop\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\OpenTK.dll
 C:\Users\Alexander\Desktop\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Tao.Sdl.dll
 C:\Users\Alexander\Desktop\TBD-The-Game\FloorIsLava\FloorIsLava\obj\x86\Debug\FloorIsLava.csprojResolveAssemblyReference.cache
+C:\Users\Alexander\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\enemy.xnb
+C:\Users\Alexander\Documents\GitHub\TBD-The-Game\FloorIsLava\FloorIsLava\bin\WindowsGL\Debug\Content\tempBullet.xnb

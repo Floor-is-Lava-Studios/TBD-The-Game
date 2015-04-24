@@ -41,6 +41,7 @@ namespace FloorIsLava
         private int gameHeight;
 
         private List<Rectangle> colList;
+        public List<EnemyPathEnd> enemyPathList;
         #endregion Attributes
 
         #region Properties
@@ -61,7 +62,9 @@ namespace FloorIsLava
             font1 = game.Content.Load<SpriteFont>("Font1"); //loads Font1
 
             drawList = new List<GameObject>();
+            enemyList = new List<Enemy>();
             timeSinceLastMove = 0;
+            enemyPathList = new List<EnemyPathEnd>();
             colList = new List<Rectangle>();
             // reading in the file
             StreamReader input = null;
@@ -100,7 +103,7 @@ namespace FloorIsLava
                         grappleableObjectList.Add(block);
                     }
                     else if (piece == "c")
-                    {   
+                    {
                         player = new Player(game.playerSprite, xPos * x + x, xPos * y + y, game.playerSprite.Width * 4, game.playerSprite.Height * 4, colList, game, this);
                     }
                     else if (piece == "f")
@@ -109,8 +112,15 @@ namespace FloorIsLava
                     }
                     else if (piece == "e")
                     {
-                        enemyList.Add(new Enemy());
-                        drawList.Add(enemyList[enemyList.Count - 1]);
+                        enemyList.Add(new Enemy(game.enemySprite, xPos * x + x, xPos * y + y, xPos, xPos, player, game, this, true, colList));
+                    }
+                    else if (piece == "t")
+                    {
+                        enemyPathList.Add(new EnemyPathEnd(xPos * x + x, xPos * y + y, xPos, 5, true, this));
+                    }
+                    else if (piece == "b")
+                    {
+                        enemyPathList.Add(new EnemyPathEnd(xPos * x + x, xPos * y + y, xPos, 5, false, this));
                     }
 
                     // will add code later for all the other objects that are going to be shown
@@ -249,6 +259,8 @@ namespace FloorIsLava
             player.Draw(spriteBatch);
             foreach (Platform b in drawList)
                 b.Draw(spriteBatch);
+            foreach (Enemy e in enemyList)
+                e.Draw(spriteBatch);
             spriteBatch.DrawString(font1, "Level Name: " + levelName, new Vector2(100f, 70f), Color.Red);
             spriteBatch.DrawString(font1, "High Score: " + highScore, new Vector2(100f, 90f), Color.Red);
             spriteBatch.DrawString(font1, "Best Time: " + bestTime, new Vector2(100f, 110f), Color.Red);
@@ -296,8 +308,5 @@ namespace FloorIsLava
             }
         }
         #endregion Methods
-
-
-
     }
 }

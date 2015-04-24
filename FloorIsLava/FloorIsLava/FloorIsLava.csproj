@@ -39,6 +39,7 @@
     <Compile Include="CreditScreen.cs" />
     <Compile Include="EndLevelScreen.cs" />
     <Compile Include="Enemy.cs" />
+    <Compile Include="EnemyPathEnd.cs" />
     <Compile Include="GameScreen.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameObject.cs" />
@@ -156,6 +157,14 @@
     </Content>
     <Content Include="Content\OptionsTitle.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\enemy.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tempBullet.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
