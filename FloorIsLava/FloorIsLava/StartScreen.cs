@@ -57,7 +57,7 @@ namespace FloorIsLava
                     count = 4;
                 }
             }
-            if (keyboardState.IsKeyDown(Keys.Enter) || keyboardState.IsKeyDown(Keys.Space))
+            if (keyboardState.IsKeyDown(Keys.Enter) && lastState.IsKeyUp(Keys.Enter) || keyboardState.IsKeyDown(Keys.Space) && lastState.IsKeyUp(Keys.Space))
             {
                 if (count == 0)
                 {

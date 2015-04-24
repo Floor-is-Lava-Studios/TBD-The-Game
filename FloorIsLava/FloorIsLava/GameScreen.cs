@@ -226,7 +226,7 @@ namespace FloorIsLava
             }
             if (keyBoardState.IsKeyDown(Keys.G) && lastState.IsKeyDown(Keys.G))
             {
-                gameState.EndGame();
+                gameState.EndGame(levelName);
             }
             /*if (keyBoardState.IsKeyDown(Keys.K) && lastState.IsKeyUp(Keys.K))
             {
@@ -245,7 +245,7 @@ namespace FloorIsLava
 
             if (player.PlayerRect.Y >= (game.screenHeight ))
             {
-                gameState.EndGame();
+                gameState.EndGame(levelName);
             }
             lastState = keyBoardState; // assigns current keyboard state to the last keyboard state
         }

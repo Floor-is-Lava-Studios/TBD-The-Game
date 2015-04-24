@@ -20,11 +20,13 @@ namespace FloorIsLava
         private KeyboardState lastState; //holds previous keyboard state
         private GameState gameState; //hold the gameState class
         private int count;
+        string prevLevel;
         #endregion Attributes
 
         #region Constructors
-        public EndLevelScreen(Game1 game1)
+        public EndLevelScreen(Game1 game1, string lvl)
         {
+            prevLevel = lvl;
             game = game1; //assigns the game1 object
             gameState = new GameState(game); //creates a new gamestate class object and assigns it to gamestate
             font1 = game.Content.Load<SpriteFont>("Font1"); // loads Font1 spriteFont
@@ -63,7 +65,7 @@ namespace FloorIsLava
                 {
                     case 0: gameState.SwitchLevel(game); // this will go to the next level
                         break;
-                    case 1: gameState.SwitchLevel(game); //this will start the level over
+                    case 1: gameState.StartGame(prevLevel); //this will start the level over
                         break;
                     case 2: gameState.CurrentScreen = Screen.StartScreen;
                         break;
@@ -78,7 +80,7 @@ namespace FloorIsLava
         public void Draw(SpriteBatch spriteBatch, Texture2D background)
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, game.screenWidth, game.screenHeight), Color.White);
-            spriteBatch.DrawString(font1, "This is Level End Screen", new Vector2(500f, 500f), Color.Black);
+            spriteBatch.DrawString(font1, "GAME OVER", new Vector2(700f, 300f), Color.Black);
 
             if(count == 0)
             {
