@@ -285,62 +285,65 @@ namespace MapCreator
                     break;
                 case Keys.Space:
 
-                    switch (tile)
+                    if (posX >= 0 && posX < x && posY >= 0 && posY < y)
                     {
-                        case 'g':
-                            images[posX, posY].Image = Gold;
-                            values[posX, posY] = 'g';
-                            break;
-                        case 'f':
-                            // check to see if there is already a goal
-                            if (!CheckGoal())
-                            {
-                                images[posX, posY].Image = Goal;
-                                values[posX, posY] = 'f';
-                            }
-                            // give error message if there is already a goal
-                            else
-                            {
-                                MessageBox.Show("There is already a goal");
-                            }
-                            break;
-                        case 'c':
-                            // check to see if there is already a player
-                            if (!CheckPlayer())
-                            {
-                                images[posX, posY].Image = Player;
-                                values[posX, posY] = 'c';
-                            }
-                            // give error message if there is already a player
-                            else
-                            {
-                                MessageBox.Show("There is already a player");
-                            }
-                            break;
-                        case 'u':
-                            images[posX, posY].Image = EnemyUp;
-                            values[posX, posY] = 'u';
-                            break;
-                        case 'r':
-                            images[posX, posY].Image = EnemyRight;
-                            values[posX, posY] = 'd';
-                            break;
-                        case 's':
-                            images[posX, posY].Image = Enemy;
-                            values[posX, posY] = 's';
-                            break;
-                        case 'n':
-                            images[posX, posY].Image = Empty;
-                            values[posX, posY] = '0';
-                            break;
-                        case 'w':
-                            images[posX, posY].Image = Wall;
-                            values[posX, posY] = 'w';
-                            break;
-                        case 'o':
-                            images[posX, posY].Image = Obstacle;
-                            values[posX, posY] = 'o';
-                            break;
+                        switch (tile)
+                        {
+                            case 'g':
+                                images[posX, posY].Image = Gold;
+                                values[posX, posY] = 'g';
+                                break;
+                            case 'f':
+                                // check to see if there is already a goal
+                                if (!CheckGoal())
+                                {
+                                    images[posX, posY].Image = Goal;
+                                    values[posX, posY] = 'f';
+                                }
+                                // give error message if there is already a goal
+                                else
+                                {
+                                    MessageBox.Show("There is already a goal");
+                                }
+                                break;
+                            case 'c':
+                                // check to see if there is already a player
+                                if (!CheckPlayer())
+                                {
+                                    images[posX, posY].Image = Player;
+                                    values[posX, posY] = 'c';
+                                }
+                                // give error message if there is already a player
+                                else
+                                {
+                                    MessageBox.Show("There is already a player");
+                                }
+                                break;
+                            case 'u':
+                                images[posX, posY].Image = EnemyUp;
+                                values[posX, posY] = 'u';
+                                break;
+                            case 'r':
+                                images[posX, posY].Image = EnemyRight;
+                                values[posX, posY] = 'd';
+                                break;
+                            case 's':
+                                images[posX, posY].Image = Enemy;
+                                values[posX, posY] = 's';
+                                break;
+                            case 'n':
+                                images[posX, posY].Image = Empty;
+                                values[posX, posY] = '0';
+                                break;
+                            case 'w':
+                                images[posX, posY].Image = Wall;
+                                values[posX, posY] = 'w';
+                                break;
+                            case 'o':
+                                images[posX, posY].Image = Obstacle;
+                                values[posX, posY] = 'o';
+                                break;
+                        }
                     }
                     break;
 
