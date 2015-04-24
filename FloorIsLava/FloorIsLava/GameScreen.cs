@@ -195,7 +195,7 @@ namespace FloorIsLava
             }
             input.Close();
             y--;
-            lavaRect = new Rectangle(0, xPos * y + y, game.screenWidth, game.screenHeight);
+            lavaRect = new Rectangle(0, game.screenHeight - game.lavaBack.Height, game.screenWidth, game.lavaBack.Height);
         }
 
         #endregion Constructor  
@@ -259,7 +259,7 @@ namespace FloorIsLava
         {
             SpriteBatch spriteBatch = sprBatch;
             spriteBatch.Draw(background, new Rectangle(0, 0, game.screenWidth, game.screenHeight), Color.SlateGray);
-            spriteBatch.Draw(game.lavaBack, lavaRect, Color.Transparent);
+            spriteBatch.Draw(game.lavaBack, lavaRect, Color.White);
             //spriteBatch.DrawString(font1, "This is the Game Screen", new Vector2(50f, 50f), Color.Red);
             endGoal.Draw(spriteBatch);
             player.Draw(spriteBatch);
@@ -270,7 +270,7 @@ namespace FloorIsLava
             spriteBatch.DrawString(font1, "Level Name: " + levelName, new Vector2(100f, 70f), Color.Red);
             spriteBatch.DrawString(font1, "High Score: " + highScore, new Vector2(100f, 90f), Color.Red);
             spriteBatch.DrawString(font1, "Best Time: " + bestTime, new Vector2(100f, 110f), Color.Red);
-            spriteBatch.Draw(game.lavaFront, lavaRect, Color.Transparent);
+            spriteBatch.Draw(game.lavaFront, lavaRect, Color.White);
         }
         #endregion Draw
 
