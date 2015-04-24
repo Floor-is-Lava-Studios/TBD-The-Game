@@ -20,12 +20,14 @@ namespace FloorIsLava
         private KeyboardState lastState; //holds previous keyboard state
         private GameState gameState; //hold the gameState class
         private int count;
+        private string previousLevel;
         #endregion Attributes
 
         #region Constructors
-        public EndLevelScreen(Game1 game1)
+        public EndLevelScreen(Game1 game1, string level)
         {
             game = game1; //assigns the game1 object
+            previousLevel = level;
             gameState = new GameState(game); //creates a new gamestate class object and assigns it to gamestate
             font1 = game.Content.Load<SpriteFont>("Font1"); // loads Font1 spriteFont
             count = 0;
@@ -41,20 +43,20 @@ namespace FloorIsLava
             {
                 gameState.CurrentScreen = Screen.StartScreen;
             }
-            if ((keyState.IsKeyDown(Keys.W) && lastState.IsKeyUp(Keys.W)) || (keyState.IsKeyDown(Keys.Up) && lastState.IsKeyUp(Keys.Up)))
-            {      
-                count--;
-                if (count < 0)
-                {
-                    count = 2;
-                }
-            }
-            if (keyState.IsKeyDown(Keys.S) && lastState.IsKeyUp(Keys.S) || (keyState.IsKeyDown(Keys.Down) && lastState.IsKeyUp(Keys.Down)))
+            if ((keyState.IsKeyDown(Keys.A) && lastState.IsKeyUp(Keys.A)) || (keyState.IsKeyDown(Keys.Left) && lastState.IsKeyUp(Keys.Left)))
             {
                 count++;
                 if (count > 2)
                 {
                     count = 0;
+                }
+            }
+            if (keyState.IsKeyDown(Keys.D) && lastState.IsKeyUp(Keys.D) || (keyState.IsKeyDown(Keys.Right) && lastState.IsKeyUp(Keys.Right)))
+            {
+                count--;
+                if (count < 0)
+                {
+                    count = 2;
                 }
             }
             if (keyState.IsKeyDown(Keys.Enter) || keyState.IsKeyDown(Keys.Space))
@@ -63,7 +65,7 @@ namespace FloorIsLava
                 {
                     case 0: gameState.SwitchLevel(game); // this will go to the next level
                         break;
-                    case 1: gameState.SwitchLevel(game); //this will start the level over
+                    case 1: gameState.StartGame(previousLevel); //this will start the level over
                         break;
                     case 2: gameState.CurrentScreen = Screen.StartScreen;
                         break;
@@ -80,30 +82,9 @@ namespace FloorIsLava
             spriteBatch.Draw(background, new Rectangle(0, 0, game.screenWidth, game.screenHeight), Color.White);
             spriteBatch.DrawString(font1, "This is Level End Screen", new Vector2(500f, 500f), Color.Black);
 
-            if(count == 0)
-            {
-                spriteBatch.DrawString(font1, "Contine", new Vector2(700f, 400f), Color.Gold);
-            }
-            else
-            {
-                spriteBatch.DrawString(font1, "Contine", new Vector2(700f, 400f), Color.Blue);
-            }
-            if(count == 1)
-            {
-                spriteBatch.DrawString(font1, "Try Again", new Vector2(700f, 500f), Color.Gold);
-            }
-            else
-            {
-                spriteBatch.DrawString(font1, "Try Again", new Vector2(700f, 500f), Color.Blue);
-            }
-            if(count == 2)
-            {
-                spriteBatch.DrawString(font1, "Quit", new Vector2(700f, 600f), Color.Gold);
-            }
-            else
-            {
-                spriteBatch.DrawString(font1, "Quit", new Vector2(700f, 600f), Color.Blue);
-            }
+            spriteBatch.DrawString(font1, "Contine", new Vector2(700f, 400f), Color.Black);
+            spriteBatch.DrawString(font1, "Try Again", new Vector2(700f, 500f), Color.Black);
+            spriteBatch.DrawString(font1, "Quit", new Vector2(700f, 600f), Color.Black);
         }
 
         #endregion Draw

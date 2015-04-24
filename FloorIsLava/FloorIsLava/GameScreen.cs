@@ -42,6 +42,7 @@ namespace FloorIsLava
 
         private List<Rectangle> colList;
         public List<EnemyPathEnd> enemyPathList;
+        private Rectangle lavaRect;
         #endregion Attributes
 
         #region Properties
@@ -110,18 +111,18 @@ namespace FloorIsLava
                     {
                         endGoal = new Goal(game.goalSprite, xPos * x + x, xPos * y + y, xPos, xPos, game);
                     }
-                    else if (piece == "e")
-                    {
-                        enemyList.Add(new Enemy(game.enemySprite, xPos * x + x, xPos * y + y, xPos, xPos, player, game, this, true, colList));
-                    }
-                    else if (piece == "t")
-                    {
-                        enemyPathList.Add(new EnemyPathEnd(xPos * x + x, xPos * y + y, xPos, 5, true, this));
-                    }
-                    else if (piece == "b")
-                    {
-                        enemyPathList.Add(new EnemyPathEnd(xPos * x + x, xPos * y + y, xPos, 5, false, this));
-                    }
+                    //else if (piece == "e")
+                    //{
+                    //    enemyList.Add(new Enemy(game.enemySprite, xPos * x + x, xPos * y + y, xPos, xPos, player, game, this, true, colList));
+                    //}
+                    //else if (piece == "t")
+                    //{
+                    //    enemyPathList.Add(new EnemyPathEnd(xPos * x + x, xPos * y + y, xPos, 5, true, this));
+                    //}
+                    //else if (piece == "b")
+                    //{
+                    //    enemyPathList.Add(new EnemyPathEnd(xPos * x + x, xPos * y + y, xPos, 5, false, this));
+                    //}
 
                     // will add code later for all the other objects that are going to be shown
 
@@ -138,7 +139,7 @@ namespace FloorIsLava
             gameState = new GameState(game); //creates new gameState object and assigns it to game screen
             font1 = game.Content.Load<SpriteFont>("Font1"); //loads Font1
             levelName = lvlfile;
-            
+            enemyList = new List<Enemy>();
             drawList = new List<GameObject>();
             timeSinceLastMove = 0;
             colList = new List<Rectangle>();
@@ -163,7 +164,7 @@ namespace FloorIsLava
             //int yPos = game.screenHeight / gameHeight;
 
             grappleableObjectList = new List<GameObject>();
-            int y = 0;
+            int y = -gameHeight + 8;;
             while ((text = input.ReadLine()) != null)
             {
 
@@ -193,9 +194,11 @@ namespace FloorIsLava
                 y++;
             }
             input.Close();
+            y--;
+            lavaRect = new Rectangle(0, game.screenHeight - game.lavaBack.Height, game.screenWidth, game.lavaBack.Height);
         }
 
-        #endregion Constructor
+        #endregion Constructor  
 
         #region Properties
         // this will make the correct level load in
@@ -218,6 +221,8 @@ namespace FloorIsLava
             endGoal.isColliding(player.PlayerRect);
             GameTime gameTime = gt; // takes gametime object and assigns it to gametime variable
             player.Update(gameTime);
+            //foreach (Enemy e in enemyList)
+            //    e.Update(gameTime, player);
             KeyboardState keyBoardState = Keyboard.GetState(); //create a keyboard state variable to hold current keyboard state
             if (keyBoardState.IsKeyDown(Keys.P) && lastState.IsKeyDown(Keys.P))
             {
@@ -225,7 +230,7 @@ namespace FloorIsLava
             }
             if (keyBoardState.IsKeyDown(Keys.G) && lastState.IsKeyDown(Keys.G))
             {
-                gameState.EndGame();
+                gameState.EndGame(levelName);
             }
             /*if (keyBoardState.IsKeyDown(Keys.K) && lastState.IsKeyUp(Keys.K))
             {
@@ -244,7 +249,7 @@ namespace FloorIsLava
 
             if (player.PlayerRect.Y >= (game.screenHeight ))
             {
-                gameState.EndGame();
+                gameState.EndGame(levelName);
             }
             
             lastState = keyBoardState; // assigns current keyboard state to the last keyboard state
@@ -258,6 +263,7 @@ namespace FloorIsLava
         {
             SpriteBatch spriteBatch = sprBatch;
             spriteBatch.Draw(background, new Rectangle(0, 0, game.screenWidth, game.screenHeight), Color.SlateGray);
+            spriteBatch.Draw(game.lavaBack, lavaRect, Color.White);
             //spriteBatch.DrawString(font1, "This is the Game Screen", new Vector2(50f, 50f), Color.Red);
             endGoal.Draw(spriteBatch);
             player.Draw(spriteBatch);
@@ -268,6 +274,7 @@ namespace FloorIsLava
             spriteBatch.DrawString(font1, "Level Name: " + levelName, new Vector2(100f, 70f), Color.Red);
             spriteBatch.DrawString(font1, "High Score: " + highScore, new Vector2(100f, 90f), Color.Red);
             spriteBatch.DrawString(font1, "Best Time: " + bestTime, new Vector2(100f, 110f), Color.Red);
+            spriteBatch.Draw(game.lavaFront, lavaRect, Color.White);
         }
         #endregion Draw
 
@@ -282,6 +289,10 @@ namespace FloorIsLava
                 b.PostionChange(0, y);
                 colList.Add(b.rect);
             }
+            //foreach (Enemy e in enemyList)
+            //{
+            //    e.MoveDown(y);
+            //}
             player.MoveDown(y);
             player.CollisionsToCheck = colList;
         }
