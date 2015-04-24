@@ -56,3 +56,6 @@ D:\Users\jxr5789.MAIN\Documents\GitHub\TBD-The-Game\MapCreator\MapCreator\obj\De
 F:\Game Dev & Algo Prob Solve II Homework\MapCreator 2\MapCreator\bin\Debug\MapCreator.exe.config
 F:\Game Dev & Algo Prob Solve II Homework\MapCreator 2\MapCreator\obj\Debug\MapCreator.exe
 F:\Game Dev & Algo Prob Solve II Homework\MapCreator 2\MapCreator\obj\Debug\MapCreator.pdb
+C:\Users\Alexander\Documents\GitHub\TBD-The-Game\MapCreator\MapCreator\bin\Debug\MapCreator.exe.config
+C:\Users\Alexander\Documents\GitHub\TBD-The-Game\MapCreator\MapCreator\obj\Debug\MapCreator.exe
+C:\Users\Alexander\Documents\GitHub\TBD-The-Game\MapCreator\MapCreator\obj\Debug\MapCreator.pdb

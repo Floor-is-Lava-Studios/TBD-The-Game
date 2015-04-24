@@ -131,6 +131,9 @@ namespace FloorIsLava
                 y++;
             }
             input.Close();
+            input.Close();
+            y--;
+            lavaRect = new Rectangle(0, game.screenHeight - game.lavaBack.Height, game.screenWidth, game.lavaBack.Height);
         } // is not updated to current
         //gamescreen constructor that takes specific level
         public GameScreen(Game1 game, string lvlfile)

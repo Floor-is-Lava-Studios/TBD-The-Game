@@ -75,7 +75,7 @@ namespace FloorIsLava
                 {
                     gameState.StartGame("level1.txt");
                     currentLvl = "level1.txt";
-                    nextLvl = "test.txt";
+                    nextLvl = "level2.txt";
                 }
                 else if (count == 1 && levels["level2.txt"] == true)
                 {

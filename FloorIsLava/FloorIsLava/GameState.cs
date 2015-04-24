@@ -147,7 +147,8 @@ namespace FloorIsLava
         //Methods
         public void StartGame() //starts a new game and switch screen to game screen
         {
-            gameScreen = new GameScreen(game); // makes new gamescreen
+            string lvlName = "level1.txt";
+            gameScreen = new GameScreen(game, lvlName); // makes new gamescreen
             currentScreen = Screen.GameScreen; // sets current screen to game screen
         }
 
