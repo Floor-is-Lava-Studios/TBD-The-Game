@@ -25,6 +25,7 @@ namespace FloorIsLava
         private KeyboardState lastState;
         private GameState gameState;
         public Player player;
+        private Gem gem;
         private List<GameObject> drawList;
         private Goal endGoal;
         private string levelName = "test.txt";
@@ -34,7 +35,7 @@ namespace FloorIsLava
 
         // these are for a later update
         private string level;
-        private int highScore;
+        public int highScore;
         private double bestTime;
 
         private int gameWidth;
@@ -42,6 +43,9 @@ namespace FloorIsLava
 
         private List<Rectangle> colList;
         public List<EnemyPathEnd> enemyPathList;
+        public List<Gem> gemsList;
+
+        public bool isVisible;
         #endregion Attributes
 
         #region Properties
@@ -66,6 +70,7 @@ namespace FloorIsLava
             timeSinceLastMove = 0;
             enemyPathList = new List<EnemyPathEnd>();
             colList = new List<Rectangle>();
+            gemsList = new List<Gem>();
             // reading in the file
             StreamReader input = null;
 
@@ -90,7 +95,6 @@ namespace FloorIsLava
             int y = -gameHeight + 8;
             while ((text = input.ReadLine()) != null)
             {
-
                 int x = 0;
                 string[] gamePiece = text.Split();
                 foreach (string piece in gamePiece)
@@ -110,6 +114,11 @@ namespace FloorIsLava
                     {
                         endGoal = new Goal(game.goalSprite, xPos * x + x, xPos * y + y, xPos, xPos);
                     }
+                    else if (piece == "g")
+                    {
+                        gem = new Gem(game.gemSprite, xPos * x + x, xPos * y + y, game.gemSprite.Width, game.gemSprite.Height, this, true);
+                        gemsList.Add(gem);
+                    }
                     else if (piece == "e")
                     {
                         enemyList.Add(new Enemy(game.enemySprite, xPos * x + x, xPos * y + y, xPos, xPos, player, game, this, true, colList));
@@ -122,6 +131,7 @@ namespace FloorIsLava
                     {
                         enemyPathList.Add(new EnemyPathEnd(xPos * x + x, xPos * y + y, xPos, 5, false, this));
                     }
+                    
 
                     // will add code later for all the other objects that are going to be shown
 
@@ -130,6 +140,7 @@ namespace FloorIsLava
                 y++;
             }
             input.Close();
+
         } // is not updated to current
         //gamescreen constructor that takes specific level
         public GameScreen(Game1 game, string lvlfile)
@@ -138,7 +149,7 @@ namespace FloorIsLava
             gameState = new GameState(game); //creates new gameState object and assigns it to game screen
             font1 = game.Content.Load<SpriteFont>("Font1"); //loads Font1
             levelName = lvlfile;
-            
+
             drawList = new List<GameObject>();
             timeSinceLastMove = 0;
             colList = new List<Rectangle>();
@@ -186,6 +197,11 @@ namespace FloorIsLava
                     {
                         endGoal = new Goal(game.goalSprite, xPos * x + x, xPos * y + y, xPos, xPos);
                     }
+                    else if (piece == "g")
+                    {
+                        gem = new Gem(game.gemSprite, xPos * x + x, xPos * y + y, game.bulletSprite.Width, game.bulletSprite.Height, this, true);
+                        gemsList.Add(gem);
+                    }
 
                     // will add code later for all the other objects that are going to be shown
                     x++;
@@ -217,6 +233,7 @@ namespace FloorIsLava
         {
             GameTime gameTime = gt; // takes gametime object and assigns it to gametime variable
             player.Update(gameTime);
+            gem.CollisionCheck(player.PlayerRect);
             KeyboardState keyBoardState = Keyboard.GetState(); //create a keyboard state variable to hold current keyboard state
             if (keyBoardState.IsKeyDown(Keys.P) && lastState.IsKeyDown(Keys.P))
             {
@@ -241,7 +258,7 @@ namespace FloorIsLava
                 MoveDown((game.screenHeight/2));
             }*/
 
-            if (player.PlayerRect.Y >= (game.screenHeight ))
+            if (player.PlayerRect.Y >= (game.screenHeight))
             {
                 gameState.EndGame();
             }
@@ -250,13 +267,15 @@ namespace FloorIsLava
         #endregion Update
 
         #region Draw
-        public void Draw(SpriteBatch sprBatch,Texture2D background)
+        public void Draw(SpriteBatch sprBatch, Texture2D background)
         {
             SpriteBatch spriteBatch = sprBatch;
             spriteBatch.Draw(background, new Rectangle(0, 0, game.screenWidth, game.screenHeight), Color.SlateGray);
             //spriteBatch.DrawString(font1, "This is the Game Screen", new Vector2(50f, 50f), Color.Red);
             endGoal.Draw(spriteBatch);
             player.Draw(spriteBatch);
+            foreach (Gem g in gemsList)
+                g.Draw(spriteBatch);
             foreach (Platform b in drawList)
                 b.Draw(spriteBatch);
             foreach (Enemy e in enemyList)
@@ -264,6 +283,7 @@ namespace FloorIsLava
             spriteBatch.DrawString(font1, "Level Name: " + levelName, new Vector2(100f, 70f), Color.Red);
             spriteBatch.DrawString(font1, "High Score: " + highScore, new Vector2(100f, 90f), Color.Red);
             spriteBatch.DrawString(font1, "Best Time: " + bestTime, new Vector2(100f, 110f), Color.Red);
+            spriteBatch.DrawString(font1, "Score: " + gem.numberOfGems, new Vector2(100f, 130f), Color.Red);
         }
         #endregion Draw
 
@@ -281,7 +301,7 @@ namespace FloorIsLava
             player.MoveDown(y);
             player.CollisionsToCheck = colList;
         }
-        
+
         //MoveScreen UP Method
         public void MoveUp(int y)
         {
@@ -301,7 +321,7 @@ namespace FloorIsLava
         {
             GameTime gameTime = gt;
             timeSinceLastMove += gameTime.ElapsedGameTime.Milliseconds;
-            if(timeSinceLastMove >= 15)
+            if (timeSinceLastMove >= 15)
             {
                 timeSinceLastMove = 0;
                 this.MoveDown(1);
