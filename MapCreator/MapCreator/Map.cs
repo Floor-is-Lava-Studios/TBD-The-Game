@@ -24,7 +24,7 @@ namespace MapCreator
         private static int posXHold;
         private static int posYHold;
 
-        private char tile = 'n';
+        private char tile = 'w';
 
         // holds the characters to be written to the file
         private char[,] values;
@@ -86,7 +86,7 @@ namespace MapCreator
             cursor = new PictureBox();
             cursor.SizeMode = PictureBoxSizeMode.AutoSize;
             cursor.BorderStyle = BorderStyle.FixedSingle;
-            cursor.Image = EmptyHalf;
+            cursor.Image = WallHalf;
             cursor.Location = new Point(4 * MapImages.ImageWidth, 4 * MapImages.ImageHeight);
             Controls.Add(cursor);
 
@@ -147,7 +147,7 @@ namespace MapCreator
                 {
                     for (int j = 0; j < y; j++)
                     {
-                        images[i, j].Location = new Point(400 + i * 100 - posX * 100, 400 + j * 100 - posY * 100);
+                        images[i, j].Location = new Point(4 * MapImages.ImageWidth + i * MapImages.ImageWidth - posX * MapImages.ImageWidth, 4 * MapImages.ImageWidth + j * MapImages.ImageWidth - posY * MapImages.ImageWidth);
                     }
                 }
 
@@ -174,38 +174,47 @@ namespace MapCreator
                 switch (e.KeyChar)
                 {
                     case 'g':
+                    case 'G':
                         tile = 'g';
                         cursor.Image = GoldHalf;
                         break;
                     case 'f':
+                    case 'F':
                         tile = 'f';
                         cursor.Image = GoalHalf;
                         break;
                     case 'c':
+                    case 'C':
                         tile = 'c';
                         cursor.Image = PlayerHalf;
                         break;
                     case 'u':
+                    case 'U':
                         tile = 'u';
                         cursor.Image = EnemyUpHalf;
                         break;
                     case 'r':
+                    case 'R':
                         tile = 'r';
                         cursor.Image = EnemyRightHalf;
                         break;
                     case 's':
+                    case 'S':
                         tile = 's';
                         cursor.Image = EnemyHalf;
                         break;
                     case 'n':
+                    case 'N':
                         tile = 'n';
                         cursor.Image = EmptyHalf;
                         break;
                     case 'w':
+                    case 'W':
                         tile = 'w';
                         cursor.Image = WallHalf;
                         break;
                     case 'o':
+                    case 'O':
                         tile = 'o';
                         cursor.Image = ObstacleHalf;
                         break;
