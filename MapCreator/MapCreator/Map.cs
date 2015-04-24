@@ -21,9 +21,6 @@ namespace MapCreator
         private int posX;
         private int posY;
 
-        private static int posXHold;
-        private static int posYHold;
-
         private char tile = 'w';
 
         // holds the characters to be written to the file
@@ -41,6 +38,7 @@ namespace MapCreator
         // holds the info form
         private Info infoForm;
 
+        // get all images in
         private Bitmap Wall = new Bitmap(MapImages.WallImage);
         private Bitmap Player = new Bitmap(MapImages.PlayerImage);
         private Bitmap Goal = new Bitmap(MapImages.GoalImage);
@@ -61,6 +59,7 @@ namespace MapCreator
         private Bitmap EmptyHalf = new Bitmap(MapImages.EmptyHalfImage);
         private Bitmap ObstacleHalf = new Bitmap(MapImages.ObstacleHalfImage);
 
+        // create control form
         Controls controls = new Controls();
 
         public Map(int xIn, int yIn, string fileNameIn, Info infoFormIn)
@@ -132,28 +131,20 @@ namespace MapCreator
             // assign default positions at 0,0
             posX = 0;
             posY = 0;
-
-            posXHold = 1;
-            posYHold = 1;
         }
 
         // draw all of the boxes
         public void Draw()
         {
-
-            if(posX != posXHold || posY != posYHold)
+            // set all location 
+            for (int i = 0; i < x; i++)
             {
-                for (int i = 0; i < x; i++)
+                for (int j = 0; j < y; j++)
                 {
-                    for (int j = 0; j < y; j++)
-                    {
-                        images[i, j].Location = new Point(4 * MapImages.ImageWidth + i * MapImages.ImageWidth - posX * MapImages.ImageWidth, 4 * MapImages.ImageWidth + j * MapImages.ImageWidth - posY * MapImages.ImageWidth);
-                    }
+                    images[i, j].Location = new Point(4 * MapImages.ImageWidth + i * MapImages.ImageWidth - posX * MapImages.ImageWidth, 4 * MapImages.ImageWidth + j * MapImages.ImageWidth - posY * MapImages.ImageWidth);
                 }
-
-                posXHold = posX;
-                posYHold = posY;
             }
+
         }
 
         private void Map_Load(object sender, EventArgs e)
@@ -169,8 +160,8 @@ namespace MapCreator
             if (posX >= 0 && posX < x && posY >= 0 && posY < y)
             {
                 // choose key that is pressed
-                // change image to the appropriate image
-                // change character to the pressed character
+                // change cursor image to the appropriate image
+                // change tile character to the pressed character
                 switch (e.KeyChar)
                 {
                     case 'g':
@@ -289,6 +280,7 @@ namespace MapCreator
                     {
                         switch (tile)
                         {
+                            // set image to appropriate image
                             case 'g':
                                 images[posX, posY].Image = Gold;
                                 values[posX, posY] = 'g';
@@ -406,12 +398,5 @@ namespace MapCreator
             
             controls.Show();
         }
-
-        private void mouseTimer_Tick(object sender, EventArgs e)
-        {
-            Draw();
-        }
-
-
     }
 }
