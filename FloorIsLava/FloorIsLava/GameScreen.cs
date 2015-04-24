@@ -27,7 +27,7 @@ namespace FloorIsLava
         public Player player;
         private List<GameObject> drawList;
         private Goal endGoal;
-        private string levelName = "test.txt";
+        private string levelName = "endTest.txt";
         private List<GameObject> grappleableObjectList;
         private List<Enemy> enemyList;
         private int timeSinceLastMove;

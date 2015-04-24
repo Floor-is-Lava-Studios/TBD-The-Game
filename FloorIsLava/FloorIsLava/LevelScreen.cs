@@ -24,6 +24,8 @@ namespace FloorIsLava
         private string levelName;
         private SaveInfo save;
         Dictionary<string, bool> levels;
+        private string currentLvl;
+        private string nextLvl;
 
         private int count = 0;
         #endregion Attributes
@@ -72,10 +74,13 @@ namespace FloorIsLava
                 if (count == 0)
                 {
                     gameState.StartGame("level1.txt");
+                    currentLvl = "level1.txt";
+                    nextLvl = "test.txt";
                 }
                 else if (count == 1 && levels["level2.txt"] == true)
                 {
                     gameState.StartGame("test.txt");
+                    currentLvl = "test.txt";
                 }
             }
 
@@ -117,5 +122,16 @@ namespace FloorIsLava
 
 
         #endregion Methods
+
+        public string CurrentLevel
+        {
+            get { return currentLvl; }
+            set { currentLvl = value; }
+        }
+        public string NextLevel
+        {
+            get { return nextLvl; }
+            set { nextLvl = value; }
+        }
     }
 }

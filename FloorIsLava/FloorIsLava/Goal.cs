@@ -24,8 +24,12 @@ namespace FloorIsLava
         int yPostion;
         int width;
         int height;
+        Game1 theGame;
+        LevelScreen ls;
         public Goal(Texture2D texture, int x, int y, int width, int height, Game1 game)
         {
+            ls = new LevelScreen(game);
+            theGame = game;
             save = new SaveInfo();
             state = new GameState(game);
             rect = new Rectangle(x, y, width, height);
@@ -52,7 +56,10 @@ namespace FloorIsLava
         {
             if ((pos.X > xPostion && pos.X < xPostion + width) && (pos.Y > yPostion && pos.Y < yPostion + height))
             {
-                state.EndGame();
+                save.LevelUnlocked(ls.NextLevel);
+                save.UpdateFile();
+                state.EndGame(ls.CurrentLevel);
+                // have the next level unlocked
             }
         }
     }
