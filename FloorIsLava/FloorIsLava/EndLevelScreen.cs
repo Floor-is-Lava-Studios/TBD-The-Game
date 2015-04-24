@@ -21,6 +21,15 @@ namespace FloorIsLava
         private GameState gameState; //hold the gameState class
         private int count;
         private string previousLevel;
+
+        // all the images
+        private Texture2D continue1;
+        private Texture2D continue2;
+        private Texture2D tryAgain1;
+        private Texture2D tryAgain2;
+        private Texture2D quit1;
+        private Texture2D quit2;
+
         #endregion Attributes
 
         #region Constructors
@@ -31,6 +40,16 @@ namespace FloorIsLava
             gameState = new GameState(game); //creates a new gamestate class object and assigns it to gamestate
             font1 = game.Content.Load<SpriteFont>("Font1"); // loads Font1 spriteFont
             count = 0;
+
+            // loading images
+            continue1 = game.Content.Load<Texture2D>("continue1");
+            continue2 = game.Content.Load<Texture2D>("continue2");
+
+            tryAgain1 = game.Content.Load<Texture2D>("tryagain1");
+            tryAgain2 = game.Content.Load<Texture2D>("tryagain2");
+
+            quit1 = game.Content.Load<Texture2D>("quit1");
+            quit2 = game.Content.Load<Texture2D>("quit2");
         }
         #endregion Constructors
 
@@ -80,31 +99,37 @@ namespace FloorIsLava
         public void Draw(SpriteBatch spriteBatch, Texture2D background)
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, game.screenWidth, game.screenHeight), Color.White);
-            spriteBatch.DrawString(font1, "This is Level End Screen", new Vector2(500f, 500f), Color.Black);
+            //spriteBatch.DrawString(font1, "This is Level End Screen", new Vector2(500f, 500f), Color.Black);
 
             if(count == 0)
             {
-                spriteBatch.DrawString(font1, "Contine", new Vector2(700f, 400f), Color.Gold);
+                spriteBatch.Draw(continue1, new Rectangle(game.screenWidth / 2 - 220, 200, 500, 250), Color.White);
+                //spriteBatch.DrawString(font1, "Contine", new Vector2(700f, 400f), Color.Gold);
             }
             else
             {
-                spriteBatch.DrawString(font1, "Contine", new Vector2(700f, 400f), Color.Black);
+                spriteBatch.Draw(continue2, new Rectangle(game.screenWidth / 2 - 220, 200, 500, 250), Color.Gray);
+                //spriteBatch.DrawString(font1, "Contine", new Vector2(700f, 400f), Color.Black);
             }
             if(count == 1)
             {
-                spriteBatch.DrawString(font1, "Try Again", new Vector2(700f, 500f), Color.Gold);
+                spriteBatch.Draw(tryAgain1, new Rectangle(game.screenWidth / 2 - 220, 275, 500, 250), Color.White);
+                //spriteBatch.DrawString(font1, "Try Again", new Vector2(700f, 500f), Color.Gold);
             }
             else
             {
-                spriteBatch.DrawString(font1, "Try Again", new Vector2(700f, 500f), Color.Black);
+                spriteBatch.Draw(tryAgain2, new Rectangle(game.screenWidth / 2 - 220, 275, 500, 250), Color.Gray);
+                //spriteBatch.DrawString(font1, "Try Again", new Vector2(700f, 500f), Color.Black);
             }
             if(count == 2)
             {
-                spriteBatch.DrawString(font1, "Quit", new Vector2(700f, 600f), Color.Gold);
+                spriteBatch.Draw(quit1, new Rectangle(game.screenWidth / 2 - 220, 350, 500, 250), Color.White);
+                //spriteBatch.DrawString(font1, "Quit", new Vector2(700f, 600f), Color.Gold);
             }
             else
             {
-                spriteBatch.DrawString(font1, "Quit", new Vector2(700f, 600f), Color.Black);
+                spriteBatch.Draw(quit2, new Rectangle(game.screenWidth / 2 - 220, 350, 500, 250), Color.Gray);
+                //spriteBatch.DrawString(font1, "Quit", new Vector2(700f, 600f), Color.Black);
             }
         }
 

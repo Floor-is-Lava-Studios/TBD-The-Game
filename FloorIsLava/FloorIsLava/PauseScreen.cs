@@ -24,6 +24,16 @@ namespace FloorIsLava
         private int screenHeight; //Height for PauseScreen
 
         private int button; //what the user wants to do next
+
+        // all the images
+        private Texture2D title;
+        private Texture2D continue1;
+        private Texture2D continue2;
+        private Texture2D options1;
+        private Texture2D options2;
+        private Texture2D howTo1;
+        private Texture2D howTo2;
+        private Texture2D screen;
         #endregion Attributes
 
         #region Constructor
@@ -39,6 +49,16 @@ namespace FloorIsLava
             screenHeight = 800; //sets height to 800
 
             button = 0;
+
+            // load all the images
+            title = game.Content.Load<Texture2D>("pauseTitle");
+            continue1 = game.Content.Load<Texture2D>("continue1");
+            continue2 = game.Content.Load<Texture2D>("continue2");
+            options1 = game.Content.Load<Texture2D>("options1");
+            options2 = game.Content.Load<Texture2D>("options2");
+            howTo1 = game.Content.Load<Texture2D>("instruction1");
+            howTo2 = game.Content.Load<Texture2D>("instruction2");
+            screen = game.Content.Load<Texture2D>("pause");
         }
         #endregion Constructor
 
@@ -101,34 +121,37 @@ namespace FloorIsLava
         public void Draw(SpriteBatch spriteBatch, Texture2D background)
         {
             gameScreen.Draw(spriteBatch, background);
-            spriteBatch.Draw(background, new Rectangle((game.screenWidth/2) - 500, (game.screenHeight/2) - 400 , screenWidth, screenHeight), Color.White);
+            spriteBatch.Draw(screen, new Rectangle((game.screenWidth/2) - 500, (game.screenHeight/2) - 400 , screenWidth, screenHeight), Color.White);
+            // fix the image 
             //spriteBatch.Draw(title, new Rectangle(game.screenWidth / 2 - 500, 100, 1000, 512), Color.White);
             spriteBatch.DrawString(font1,"PAUSE", new Vector2(game.screenWidth / 2, 100),Color.Blue);
 
             // drawing the buttons, if selected the color changes
-            if(button == 0)
+            if (button == 0)
             {
-                spriteBatch.DrawString(font1, "Continue", new Vector2(game.screenWidth / 2, 200), Color.Yellow);
+                spriteBatch.Draw(continue1, new Rectangle(game.screenWidth / 2 - 220, 200, 500, 250), Color.White);
+                //spriteBatch.DrawString(font1, "Contine", new Vector2(700f, 400f), Color.Gold);
             }
             else
             {
-                spriteBatch.DrawString(font1, "Contine", new Vector2(game.screenWidth / 2, 200), Color.Blue);
+                spriteBatch.Draw(continue2, new Rectangle(game.screenWidth / 2 - 220, 200, 500, 250), Color.Gray);
+                //spriteBatch.DrawString(font1, "Contine", new Vector2(700f, 400f), Color.Black);
             }
             if (button == 1)
             {
-                spriteBatch.DrawString(font1, "Options", new Vector2(game.screenWidth / 2, 300), Color.Yellow);
+                spriteBatch.Draw(options1, new Rectangle(game.screenWidth / 2 - 220, 275, 500, 250), Color.White);
             }
             else
             {
-                spriteBatch.DrawString(font1, "Options", new Vector2(game.screenWidth / 2, 300), Color.Blue);
+                spriteBatch.Draw(options2, new Rectangle(game.screenWidth / 2 - 220, 275, 500, 250), Color.Gray);
             }
             if (button == 2)
             {
-                spriteBatch.DrawString(font1, "How To Play", new Vector2(game.screenWidth / 2, 400), Color.Yellow);
+                spriteBatch.Draw(howTo1, new Rectangle(game.screenWidth / 2 - 220, 350, 500, 250), Color.White);
             }
             else
             {
-                spriteBatch.DrawString(font1, "How To Play", new Vector2(game.screenWidth / 2, 400), Color.Blue);
+                spriteBatch.Draw(howTo2, new Rectangle(game.screenWidth / 2 - 220, 350, 500, 250), Color.Gray);
             }
      //  if (button == 3)
      //  {
