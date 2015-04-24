@@ -31,7 +31,7 @@ namespace MapCreator
         public const string CursorHalfImage = "cursorHalf.PNG";
         public const string ObstacleHalfImage = "obstacleHalf.PNG";
 
-        public const int ImageHeight = 100;
-        public const int ImageWidth = 100;
+        public const int ImageHeight = 101;
+        public const int ImageWidth = 101;
     }
 }
