@@ -52,8 +52,7 @@ namespace FloorIsLava
 
         //Constructor
         public Enemy(Texture2D image, int xpos, int ypos, int wid, int ht, Player plyr, Game1 gm, GameScreen gS, bool tp, List<Rectangle> colLi)
-        {
-            enemy = new Rectangle(x, y, width, height);
+        {            
             enemyImage = image;
             player = plyr;
             game = gm;
@@ -66,10 +65,11 @@ namespace FloorIsLava
             colList = colLi;
             timeTillFire = 200;
             myBullet = new Bullet(game.bulletSprite, x, y, game.bulletSprite.Width / 10, game.bulletSprite.Height / 10);
+            enemy = new Rectangle(x, y, width, height);
         }
 
         //Update method
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Player plyr)
         {
             timeTillFire--; //decrementing timeTillFire
 
@@ -84,21 +84,23 @@ namespace FloorIsLava
 
             //Updating the bullet and checking for collision with the bullet
             myBullet.Update(gameTime);
-            myBullet.CollisionCheck(player.PlayerRect);
+            myBullet.CollisionCheck(plyr.PlayerRect);
             foreach (Rectangle r in colList)
             {
                 myBullet.CollisionCheck(r);
             }
 
             //Top starts as true, so it goes up first
-            if (top == false)
+            if (!top)
             {
-                enemy.Y = enemy.Y + 3;
+                y += 3;
             }
-            else if (top == true)
+            else
             {
-                enemy.Y = enemy.Y - 3;
+                y -= 3;
             }
+            
+            enemy = new Rectangle(x, y, width, height);
 
             foreach (EnemyPathEnd epe in gameScreen.enemyPathList)
             {
@@ -111,6 +113,11 @@ namespace FloorIsLava
                     top = false;
                 }
             }
+        }
+
+        public void MoveDown(int dist)
+        {
+            y += dist;
         }
 
         //Draw method

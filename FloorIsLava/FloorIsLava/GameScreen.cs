@@ -110,18 +110,18 @@ namespace FloorIsLava
                     {
                         endGoal = new Goal(game.goalSprite, xPos * x + x, xPos * y + y, xPos, xPos);
                     }
-                    else if (piece == "e")
-                    {
-                        enemyList.Add(new Enemy(game.enemySprite, xPos * x + x, xPos * y + y, xPos, xPos, player, game, this, true, colList));
-                    }
-                    else if (piece == "t")
-                    {
-                        enemyPathList.Add(new EnemyPathEnd(xPos * x + x, xPos * y + y, xPos, 5, true, this));
-                    }
-                    else if (piece == "b")
-                    {
-                        enemyPathList.Add(new EnemyPathEnd(xPos * x + x, xPos * y + y, xPos, 5, false, this));
-                    }
+                    //else if (piece == "e")
+                    //{
+                    //    enemyList.Add(new Enemy(game.enemySprite, xPos * x + x, xPos * y + y, xPos, xPos, player, game, this, true, colList));
+                    //}
+                    //else if (piece == "t")
+                    //{
+                    //    enemyPathList.Add(new EnemyPathEnd(xPos * x + x, xPos * y + y, xPos, 5, true, this));
+                    //}
+                    //else if (piece == "b")
+                    //{
+                    //    enemyPathList.Add(new EnemyPathEnd(xPos * x + x, xPos * y + y, xPos, 5, false, this));
+                    //}
 
                     // will add code later for all the other objects that are going to be shown
 
@@ -138,7 +138,7 @@ namespace FloorIsLava
             gameState = new GameState(game); //creates new gameState object and assigns it to game screen
             font1 = game.Content.Load<SpriteFont>("Font1"); //loads Font1
             levelName = lvlfile;
-            
+            enemyList = new List<Enemy>();
             drawList = new List<GameObject>();
             timeSinceLastMove = 0;
             colList = new List<Rectangle>();
@@ -163,7 +163,7 @@ namespace FloorIsLava
             //int yPos = game.screenHeight / gameHeight;
 
             grappleableObjectList = new List<GameObject>();
-            int y = 0;
+            int y = -gameHeight + 8;;
             while ((text = input.ReadLine()) != null)
             {
 
@@ -195,7 +195,7 @@ namespace FloorIsLava
             input.Close();
         }
 
-        #endregion Constructor
+        #endregion Constructor  
 
         #region Properties
         // this will make the correct level load in
@@ -217,6 +217,8 @@ namespace FloorIsLava
         {
             GameTime gameTime = gt; // takes gametime object and assigns it to gametime variable
             player.Update(gameTime);
+            foreach (Enemy e in enemyList)
+                e.Update(gameTime, player);
             KeyboardState keyBoardState = Keyboard.GetState(); //create a keyboard state variable to hold current keyboard state
             if (keyBoardState.IsKeyDown(Keys.P) && lastState.IsKeyDown(Keys.P))
             {
@@ -277,6 +279,10 @@ namespace FloorIsLava
             {
                 b.PostionChange(0, y);
                 colList.Add(b.rect);
+            }
+            foreach (Enemy e in enemyList)
+            {
+                e.MoveDown(y);
             }
             player.MoveDown(y);
             player.CollisionsToCheck = colList;
