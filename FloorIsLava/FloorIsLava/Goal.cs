@@ -17,13 +17,17 @@ namespace FloorIsLava
      */
     class Goal : GameObject
     {
+        SaveInfo save;
+        GameState state;
         Texture2D goalTexture;
         int xPostion;
         int yPostion;
         int width;
         int height;
-        public Goal(Texture2D texture, int x, int y, int width, int height)
+        public Goal(Texture2D texture, int x, int y, int width, int height, Game1 game)
         {
+            save = new SaveInfo();
+            state = new GameState(game);
             rect = new Rectangle(x, y, width, height);
             xPostion = x;
             yPostion = y;
@@ -44,12 +48,12 @@ namespace FloorIsLava
             rect = new Rectangle(xPostion, yPostion, width, height);
         }
 
-        public void isColliding(Player play)
+        public void isColliding(Rectangle pos)
         {
-            // checks to see if the player has reached the goal
-
-            //is the player has switch to end level screen
-            //also updates the unlocked levels
+            if ((pos.X > xPostion && pos.X < xPostion + width) && (pos.Y > yPostion && pos.Y < yPostion + height))
+            {
+                state.EndGame();
+            }
         }
     }
 }

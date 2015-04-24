@@ -108,7 +108,7 @@ namespace FloorIsLava
                     }
                     else if (piece == "f")
                     {
-                        endGoal = new Goal(game.goalSprite, xPos * x + x, xPos * y + y, xPos, xPos);
+                        endGoal = new Goal(game.goalSprite, xPos * x + x, xPos * y + y, xPos, xPos, game);
                     }
                     else if (piece == "e")
                     {
@@ -184,7 +184,7 @@ namespace FloorIsLava
                     }
                     else if (piece == "f")
                     {
-                        endGoal = new Goal(game.goalSprite, xPos * x + x, xPos * y + y, xPos, xPos);
+                        endGoal = new Goal(game.goalSprite, xPos * x + x, xPos * y + y, xPos, xPos, game);
                     }
 
                     // will add code later for all the other objects that are going to be shown
@@ -215,6 +215,7 @@ namespace FloorIsLava
         #region Update
         public void Update(GameTime gt)
         {
+            endGoal.isColliding(player.PlayerRect);
             GameTime gameTime = gt; // takes gametime object and assigns it to gametime variable
             player.Update(gameTime);
             KeyboardState keyBoardState = Keyboard.GetState(); //create a keyboard state variable to hold current keyboard state
@@ -245,7 +246,10 @@ namespace FloorIsLava
             {
                 gameState.EndGame();
             }
+            
             lastState = keyBoardState; // assigns current keyboard state to the last keyboard state
+
+            
         }
         #endregion Update
 

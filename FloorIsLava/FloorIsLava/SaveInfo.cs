@@ -17,7 +17,7 @@ namespace FloorIsLava
     {
         //attributes
         private Dictionary<string, bool> levels;
-        private string fileName = "UnlockedLevels.txt"; 
+        private string fileName = "UnlockedLevels.txt";
         
         // future plans: new game, load game (multiple save files)
 
@@ -67,6 +67,9 @@ namespace FloorIsLava
         {
             levels[lvlName] = true;
         }
+
+        // current level
+
         
     }
 }
