@@ -41,20 +41,20 @@ namespace FloorIsLava
             {
                 gameState.CurrentScreen = Screen.StartScreen;
             }
-            if ((keyState.IsKeyDown(Keys.A) && lastState.IsKeyUp(Keys.A)) || (keyState.IsKeyDown(Keys.Left) && lastState.IsKeyUp(Keys.Left)))
+            if ((keyState.IsKeyDown(Keys.W) && lastState.IsKeyUp(Keys.W)) || (keyState.IsKeyDown(Keys.Up) && lastState.IsKeyUp(Keys.Up)))
+            {      
+                count--;
+                if (count < 0)
+                {
+                    count = 2;
+                }
+            }
+            if (keyState.IsKeyDown(Keys.S) && lastState.IsKeyUp(Keys.S) || (keyState.IsKeyDown(Keys.Down) && lastState.IsKeyUp(Keys.Down)))
             {
                 count++;
                 if (count > 2)
                 {
                     count = 0;
-                }
-            }
-            if (keyState.IsKeyDown(Keys.D) && lastState.IsKeyUp(Keys.D) || (keyState.IsKeyDown(Keys.Right) && lastState.IsKeyUp(Keys.Right)))
-            {
-                count--;
-                if (count < 0)
-                {
-                    count = 2;
                 }
             }
             if (keyState.IsKeyDown(Keys.Enter) || keyState.IsKeyDown(Keys.Space))
@@ -80,9 +80,30 @@ namespace FloorIsLava
             spriteBatch.Draw(background, new Rectangle(0, 0, game.screenWidth, game.screenHeight), Color.White);
             spriteBatch.DrawString(font1, "This is Level End Screen", new Vector2(500f, 500f), Color.Black);
 
-            spriteBatch.DrawString(font1, "Contine", new Vector2(700f, 400f), Color.Black);
-            spriteBatch.DrawString(font1, "Try Again", new Vector2(700f, 500f), Color.Black);
-            spriteBatch.DrawString(font1, "Quit", new Vector2(700f, 600f), Color.Black);
+            if(count == 0)
+            {
+                spriteBatch.DrawString(font1, "Contine", new Vector2(700f, 400f), Color.Gold);
+            }
+            else
+            {
+                spriteBatch.DrawString(font1, "Contine", new Vector2(700f, 400f), Color.Blue);
+            }
+            if(count == 1)
+            {
+                spriteBatch.DrawString(font1, "Try Again", new Vector2(700f, 500f), Color.Gold);
+            }
+            else
+            {
+                spriteBatch.DrawString(font1, "Try Again", new Vector2(700f, 500f), Color.Blue);
+            }
+            if(count == 2)
+            {
+                spriteBatch.DrawString(font1, "Quit", new Vector2(700f, 600f), Color.Gold);
+            }
+            else
+            {
+                spriteBatch.DrawString(font1, "Quit", new Vector2(700f, 600f), Color.Blue);
+            }
         }
 
         #endregion Draw
