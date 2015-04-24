@@ -1,29 +1,15 @@
 level1
 0
 0
-14
-24
-w w w w w w w w w w w w w w 
-w 0 0 0 0 0 0 0 0 0 0 0 0 w
-w f 0 0 0 0 0 0 0 0 0 0 0 w
-w w w w w w w 0 0 0 0 0 0 w
-w 0 0 0 0 0 0 0 0 0 0 0 w w
-w 0 0 0 0 0 0 0 0 0 0 w w w
-w w 0 w 0 0 0 0 0 0 w w w w
-w w 0 w w w w w w w w 0 w w
-w w 0 0 0 w w w w 0 0 0 0 w
-w w 0 0 0 0 w w 0 0 0 0 0 w
-w w w 0 0 0 w w 0 0 0 w w w
-w w 0 0 0 0 0 0 0 0 0 0 w w
-w w 0 0 0 0 0 0 0 0 0 0 w w
-w 0 0 0 0 0 0 0 0 0 0 0 0 w
-w 0 0 w w 0 0 0 0 w w 0 0 w
-w 0 0 0 0 0 w w 0 0 0 0 0 w
-w 0 0 0 0 0 0 0 0 0 0 0 0 w
-w w 0 0 0 0 0 0 0 0 0 0 w w
-w w w 0 0 0 0 0 0 0 0 w w w
-w w 0 0 0 0 0 0 0 0 0 0 w w 
-w 0 0 0 0 0 c 0 0 0 0 0 0 w
-w 0 0 0 0 0 w w 0 0 0 0 0 w
-w 0 0 0 0 0 0 0 0 0 0 0 0 w 
-w 0 0 0 0 0 0 0 0 0 0 0 0 w
+12
+10
+w w w w w w w w w w w w 
+w 0 0 0 0 0 0 0 0 0 0 w 
+w 0 0 0 0 0 0 0 0 0 0 w 
+w 0 0 0 0 0 0 0 0 0 0 w 
+w 0 0 0 0 0 0 0 0 0 0 w 
+w 0 0 0 0 0 0 0 0 0 0 w 
+w 0 0 0 0 0 0 0 0 0 f w 
+w 0 0 0 0 0 0 0 0 w w w 
+w c 0 0 0 0 0 0 w w w w 
+w w w w w w w w w w w w 

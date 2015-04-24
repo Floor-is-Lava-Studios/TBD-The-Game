@@ -30,10 +30,5 @@ namespace FloorIsLava
                 enemyPathRect = new Rectangle(posX, posY + width - height, width, height);
             }
         }
-
-        public void MoveDown(int y)
-        {
-            enemyPathRect = new Rectangle(enemyPathRect.X, enemyPathRect.Y + y, enemyPathRect.Width, enemyPathRect.Height);
-        }
     }
 }
