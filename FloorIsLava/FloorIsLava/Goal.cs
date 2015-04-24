@@ -52,7 +52,7 @@ namespace FloorIsLava
         {
             if ((pos.X > xPostion && pos.X < xPostion + width) && (pos.Y > yPostion && pos.Y < yPostion + height))
             {
-                state.EndGame();
+                state.EndGame("level01");
             }
         }
     }
