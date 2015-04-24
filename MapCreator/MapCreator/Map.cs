@@ -21,6 +21,11 @@ namespace MapCreator
         private int posX;
         private int posY;
 
+        private static int posXHold;
+        private static int posYHold;
+
+        private char tile = 'n';
+
         // holds the characters to be written to the file
         private char[,] values;
 
@@ -35,6 +40,28 @@ namespace MapCreator
 
         // holds the info form
         private Info infoForm;
+
+        private Bitmap Wall = new Bitmap(MapImages.WallImage);
+        private Bitmap Player = new Bitmap(MapImages.PlayerImage);
+        private Bitmap Goal = new Bitmap(MapImages.GoalImage);
+        private Bitmap Gold = new Bitmap(MapImages.GoldImage);
+        private Bitmap Enemy = new Bitmap(MapImages.EnemyImage);
+        private Bitmap EnemyUp = new Bitmap(MapImages.EnemyUpImage);
+        private Bitmap EnemyRight = new Bitmap(MapImages.EnemyRightImage);
+        private Bitmap Empty = new Bitmap(MapImages.EmptyImage);
+        private Bitmap Obstacle = new Bitmap(MapImages.ObstacleImage);
+
+        private Bitmap WallHalf = new Bitmap(MapImages.WallHalfImage);
+        private Bitmap PlayerHalf = new Bitmap(MapImages.PlayerHalfImage);
+        private Bitmap GoalHalf = new Bitmap(MapImages.GoalHalfImage);
+        private Bitmap GoldHalf = new Bitmap(MapImages.GoldHalfImage);
+        private Bitmap EnemyHalf = new Bitmap(MapImages.EnemyHalfImage);
+        private Bitmap EnemyUpHalf = new Bitmap(MapImages.EnemyUpHalfImage);
+        private Bitmap EnemyRightHalf = new Bitmap(MapImages.EnemyRightHalfImage);
+        private Bitmap EmptyHalf = new Bitmap(MapImages.EmptyHalfImage);
+        private Bitmap ObstacleHalf = new Bitmap(MapImages.ObstacleHalfImage);
+
+        Controls controls = new Controls();
 
         public Map(int xIn, int yIn, string fileNameIn, Info infoFormIn)
         {
@@ -59,8 +86,8 @@ namespace MapCreator
             cursor = new PictureBox();
             cursor.SizeMode = PictureBoxSizeMode.AutoSize;
             cursor.BorderStyle = BorderStyle.FixedSingle;
-            cursor.Image = new Bitmap(MapImages.CursorImage);
-            cursor.Location = new Point(4 * MapImages.ImageWidth + MapImages.ImageWidth / 2 - 5, 4 * MapImages.ImageHeight + MapImages.ImageHeight / 2 - 5);
+            cursor.Image = EmptyHalf;
+            cursor.Location = new Point(4 * MapImages.ImageWidth, 4 * MapImages.ImageHeight);
             Controls.Add(cursor);
 
             // loop through all of the values in the arrays
@@ -75,7 +102,7 @@ namespace MapCreator
                     images[i,j] = new PictureBox();
                     images[i, j].SizeMode = PictureBoxSizeMode.AutoSize;
                     images[i, j].BorderStyle = BorderStyle.FixedSingle;
-                    images[i, j].Image = new Bitmap(MapImages.EmptyImage);
+                    images[i, j].Image = Empty;
                     images[i, j].Location = new Point(-300, -300);
                     Controls.Add(images[i, j]);
                 }
@@ -91,13 +118,13 @@ namespace MapCreator
                     if(j == 0 || j == y - 1)
                     {
                         values[i, j] = 'w';
-                        images[i, j].Image = new Bitmap(MapImages.WallImage);
+                        images[i, j].Image = Wall;
                     }
 
                     if (i == 0 || i == x - 1)
                     {
                         values[i, j] = 'w';
-                        images[i, j].Image = new Bitmap(MapImages.WallImage);
+                        images[i, j].Image = Wall;
                     }
                 }
             }
@@ -106,43 +133,26 @@ namespace MapCreator
             posX = 0;
             posY = 0;
 
+            posXHold = 1;
+            posYHold = 1;
         }
 
         // draw all of the boxes
         public void Draw()
         {
-            // keep track of which position on screen to draw
-            int xTrack = 0;
-            int yTrack = 0;
 
-            // loop through all of the values in the array
-            for (int i = 0; i < x; i++)
+            if(posX != posXHold || posY != posYHold)
             {
-                for (int j = 0; j < y; j++)
+                for (int i = 0; i < x; i++)
                 {
-                    // move all of the images off screen
-                    images[i, j].Location = new Point(-300, -300);
-                }
-            }
-
-            // loop through the values in the array that will apear on screen
-            for (int i = posX - 4; i <= posX + 4; i++)
-            {
-                for (int j = posY - 4; j <= posY + 4; j++)
-                {
-                    // only draw images if position is within array bounds
-                    if(i >= 0 && i < x && j >= 0 && j < y)
+                    for (int j = 0; j < y; j++)
                     {
-                        // move to approppriate location
-                        images[i, j].Location = new Point(xTrack * MapImages.ImageWidth, yTrack * MapImages.ImageHeight);
+                        images[i, j].Location = new Point(400 + i * 100 - posX * 100, 400 + j * 100 - posY * 100);
                     }
-                    // incriment tracking values
-                    yTrack += 1;
                 }
-                xTrack += 1;
 
-                // go to the top of the next row
-                yTrack = 0;
+                posXHold = posX;
+                posYHold = posY;
             }
         }
 
@@ -150,6 +160,7 @@ namespace MapCreator
         {
             // draw default positions
             Draw();
+            controls.Show();
         }
 
         private void Map_KeyPress(object sender, KeyPressEventArgs e)
@@ -163,58 +174,40 @@ namespace MapCreator
                 switch (e.KeyChar)
                 {
                     case 'g':
-                        images[posX, posY].Image = new Bitmap(MapImages.GoldImage);
-                        values[posX, posY] = 'g';
+                        tile = 'g';
+                        cursor.Image = GoldHalf;
                         break;
                     case 'f':
-                        // check to see if there is already a goal
-                        if(!CheckGoal())
-                        {
-                            images[posX, posY].Image = new Bitmap(MapImages.GoalImage);
-                            values[posX, posY] = 'f';
-                        }
-                        // give error message if there is already a goal
-                        else
-                        {
-                            MessageBox.Show("There is already a goal");
-                        }
+                        tile = 'f';
+                        cursor.Image = GoalHalf;
                         break;
                     case 'c':
-                        // check to see if there is already a player
-                        if(!CheckPlayer())
-                        {
-                            images[posX, posY].Image = new Bitmap(MapImages.PlayerImage);
-                            values[posX, posY] = 'c';
-                        }
-                        // give error message if there is already a player
-                        else
-                        {
-                            MessageBox.Show("There is already a player");
-                        }
+                        tile = 'c';
+                        cursor.Image = PlayerHalf;
                         break;
                     case 'u':
-                        images[posX, posY].Image = new Bitmap(MapImages.EnemyUpImage);
-                        values[posX, posY] = 'u';
+                        tile = 'u';
+                        cursor.Image = EnemyUpHalf;
                         break;
                     case 'r':
-                        images[posX, posY].Image = new Bitmap(MapImages.EnemyRightImage);
-                        values[posX, posY] = 'd';
+                        tile = 'r';
+                        cursor.Image = EnemyRightHalf;
                         break;
                     case 's':
-                        images[posX, posY].Image = new Bitmap(MapImages.EnemyImage);
-                        values[posX, posY] = 's';
+                        tile = 's';
+                        cursor.Image = EnemyHalf;
                         break;
                     case 'n':
-                        images[posX, posY].Image = new Bitmap(MapImages.EmptyImage);
-                        values[posX, posY] = '0';
+                        tile = 'n';
+                        cursor.Image = EmptyHalf;
                         break;
                     case 'w':
-                        images[posX, posY].Image = new Bitmap(MapImages.WallImage);
-                        values[posX, posY] = 'w';
+                        tile = 'w';
+                        cursor.Image = WallHalf;
                         break;
                     case 'o':
-                        images[posX, posY].Image = new Bitmap(MapImages.ObstacleImage);
-                        values[posX, posY] = 'o';
+                        tile = 'o';
+                        cursor.Image = ObstacleHalf;
                         break;
                 }
             }
@@ -281,6 +274,67 @@ namespace MapCreator
                 case Keys.Right:
                     posX += 1;
                     break;
+                case Keys.Space:
+
+                    switch (tile)
+                    {
+                        case 'g':
+                            images[posX, posY].Image = Gold;
+                            values[posX, posY] = 'g';
+                            break;
+                        case 'f':
+                            // check to see if there is already a goal
+                            if (!CheckGoal())
+                            {
+                                images[posX, posY].Image = Goal;
+                                values[posX, posY] = 'f';
+                            }
+                            // give error message if there is already a goal
+                            else
+                            {
+                                MessageBox.Show("There is already a goal");
+                            }
+                            break;
+                        case 'c':
+                            // check to see if there is already a player
+                            if (!CheckPlayer())
+                            {
+                                images[posX, posY].Image = Player;
+                                values[posX, posY] = 'c';
+                            }
+                            // give error message if there is already a player
+                            else
+                            {
+                                MessageBox.Show("There is already a player");
+                            }
+                            break;
+                        case 'u':
+                            images[posX, posY].Image = EnemyUp;
+                            values[posX, posY] = 'u';
+                            break;
+                        case 'r':
+                            images[posX, posY].Image = EnemyRight;
+                            values[posX, posY] = 'd';
+                            break;
+                        case 's':
+                            images[posX, posY].Image = Enemy;
+                            values[posX, posY] = 's';
+                            break;
+                        case 'n':
+                            images[posX, posY].Image = Empty;
+                            values[posX, posY] = '0';
+                            break;
+                        case 'w':
+                            images[posX, posY].Image = Wall;
+                            values[posX, posY] = 'w';
+                            break;
+                        case 'o':
+                            images[posX, posY].Image = Obstacle;
+                            values[posX, posY] = 'o';
+                            break;
+                    }
+                    break;
+
             }
 
             // draw new positions
@@ -337,8 +391,15 @@ namespace MapCreator
         private void infoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // display controls form
-            Controls controls = new Controls();
+            
             controls.Show();
         }
+
+        private void mouseTimer_Tick(object sender, EventArgs e)
+        {
+            Draw();
+        }
+
+
     }
 }
