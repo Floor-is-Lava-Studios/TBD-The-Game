@@ -123,8 +123,8 @@ namespace FloorIsLava
             gameScreen.Draw(spriteBatch, background);
             spriteBatch.Draw(screen, new Rectangle((game.screenWidth/2) - 500, (game.screenHeight/2) - 400 , screenWidth, screenHeight), Color.White);
             // fix the image 
-            //spriteBatch.Draw(title, new Rectangle(game.screenWidth / 2 - 500, 100, 1000, 512), Color.White);
-            spriteBatch.DrawString(font1,"PAUSE", new Vector2(game.screenWidth / 2, 100),Color.Blue);
+            spriteBatch.Draw(title, new Rectangle(game.screenWidth / 2 - 530, -100, 1000, 612), Color.White);
+            //spriteBatch.DrawString(font1,"PAUSE", new Vector2(game.screenWidth / 2, 100),Color.Blue);
 
             // drawing the buttons, if selected the color changes
             if (button == 0)

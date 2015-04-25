@@ -19,6 +19,8 @@ namespace FloorIsLava
         private Game1 game;
         private KeyboardState lastState;
         private GameState gameState;
+
+        private Texture2D back;
         #endregion Attributes
 
         #region Constructor
@@ -28,6 +30,7 @@ namespace FloorIsLava
             game = game1;
             gameState = new GameState(game); // creates new gamestate object and assigns it to gameState
             font1 = game.Content.Load<SpriteFont>("Font1"); //loads Font1
+            back = game.Content.Load<Texture2D>("back");
         }
         #endregion Constructor
 
@@ -103,7 +106,8 @@ namespace FloorIsLava
             spriteBatch.Draw(background, new Rectangle(0, 0, game.screenWidth, game.screenHeight), Color.White);
             //spriteBatch.DrawString(font1, "This is Option Screen", new Vector2(50f, 50f), Color.Black);
             spriteBatch.Draw(title, new Rectangle(game.screenWidth / 2 - 500, 100, 1000, 512), Color.White);
-            spriteBatch.DrawString(font1, "Press \"Back\" to go back", new Vector2(50f, 70f), Color.Blue);
+            //spriteBatch.DrawString(font1, "Press \"Back\" to go back", new Vector2(50f, 70f), Color.Blue);
+            spriteBatch.Draw(back, new Rectangle(50, 60, 150, 80), Color.White);
             spriteBatch.DrawString(font1, "COMING SOON TO A UPDATE NEAR YOU", new Vector2(game.screenWidth / 2 - 200, 300f), Color.Gold);
         }
         #endregion Methods
