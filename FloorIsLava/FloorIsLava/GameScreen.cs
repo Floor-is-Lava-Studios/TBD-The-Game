@@ -25,9 +25,10 @@ namespace FloorIsLava
         private KeyboardState lastState;
         private GameState gameState;
         public Player player;
+        public Gold gem;
         private List<GameObject> drawList;
         private Goal endGoal;
-        private string levelName = "endTest.txt";
+        private string levelName = "test2.txt";
         private List<GameObject> grappleableObjectList;
         private List<Enemy> enemyList;
         private int timeSinceLastMove;
@@ -43,6 +44,7 @@ namespace FloorIsLava
         private List<Rectangle> colList;
         public List<EnemyPathEnd> enemyPathList;
         private Rectangle lavaRect;
+        public List<Gold> gemsList;
         #endregion Attributes
 
         #region Properties
@@ -67,6 +69,7 @@ namespace FloorIsLava
             timeSinceLastMove = 0;
             enemyPathList = new List<EnemyPathEnd>();
             colList = new List<Rectangle>();
+            gemsList = new List<Gold>();
             // reading in the file
             StreamReader input = null;
 
@@ -111,6 +114,11 @@ namespace FloorIsLava
                     {
                         endGoal = new Goal(game.goalSprite, xPos * x + x, xPos * y + y, xPos, xPos, game);
                     }
+                    else if (piece == "g")
+                    {
+                        gem = new Gold(game.gemSprite, xPos * x + 25, xPos * y + 35, game.gemSprite.Width, game.gemSprite.Height, this);
+                        gemsList.Add(gem);
+                    }
                     //else if (piece == "e")
                     //{
                     //    enemyList.Add(new Enemy(game.enemySprite, xPos * x + x, xPos * y + y, xPos, xPos, player, game, this, true, colList));
@@ -146,6 +154,7 @@ namespace FloorIsLava
             drawList = new List<GameObject>();
             timeSinceLastMove = 0;
             colList = new List<Rectangle>();
+            gemsList = new List<Gold>();
             // reading in the file
             StreamReader input = null;
 
@@ -190,6 +199,11 @@ namespace FloorIsLava
                     {
                         endGoal = new Goal(game.goalSprite, xPos * x + x, xPos * y + y, xPos, xPos, game);
                     }
+                    else if (piece == "g")
+                    {
+                        gem = new Gold(game.gemSprite, xPos * x + 25, xPos * y + 35, game.gemSprite.Width, game.gemSprite.Height, this);
+                        gemsList.Add(gem);
+                    }
 
                     // will add code later for all the other objects that are going to be shown
                     x++;
@@ -224,6 +238,8 @@ namespace FloorIsLava
             endGoal.isColliding(player.PlayerRect);
             GameTime gameTime = gt; // takes gametime object and assigns it to gametime variable
             player.Update(gameTime);
+            foreach (Gold g in gemsList)
+                g.CollisionCheck(player.PlayerRect);
             //foreach (Enemy e in enemyList)
             //    e.Update(gameTime, player);
             KeyboardState keyBoardState = Keyboard.GetState(); //create a keyboard state variable to hold current keyboard state
@@ -270,6 +286,8 @@ namespace FloorIsLava
             //spriteBatch.DrawString(font1, "This is the Game Screen", new Vector2(50f, 50f), Color.Red);
             endGoal.Draw(spriteBatch);
             player.Draw(spriteBatch);
+            foreach (Gold g in gemsList)
+                g.Draw(spriteBatch);
             foreach (Platform b in drawList)
                 b.Draw(spriteBatch);
             foreach (Enemy e in enemyList)
@@ -291,6 +309,10 @@ namespace FloorIsLava
             {
                 b.PostionChange(0, y);
                 colList.Add(b.rect);
+            }
+            foreach (Gold g in gemsList)
+            {
+                g.MoveDown(y);
             }
             //foreach (Enemy e in enemyList)
             //{
