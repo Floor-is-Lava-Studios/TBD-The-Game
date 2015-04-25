@@ -24,6 +24,7 @@ namespace FloorIsLava
         private GameState gameState; //hold the gameState class
 
         private Texture2D back;
+        private Texture2D title;
         #endregion Attributes
 
         #region Constructor 
@@ -34,6 +35,7 @@ namespace FloorIsLava
             gameState = new GameState(game); //creates a new gamestate class object and assigns it to gamestate
             font1 = game.Content.Load<SpriteFont>("Font1"); // loads Font1 spriteFont
             back = game.Content.Load<Texture2D>("back");
+            title = game.Content.Load<Texture2D>("creditsTitle");
         }
         #endregion Constructor
 
@@ -77,11 +79,12 @@ namespace FloorIsLava
             spriteBatch.Draw(background, new Rectangle(0, 0, game.screenWidth, game.screenHeight), Color.White);
             //spriteBatch.DrawString(font1, "Credits", new Vector2(100f, 50f), Color.Blue);
             //spriteBatch.DrawString(font1, "Press \"Back\" to go back", new Vector2(100f, 70f), Color.Blue);
+            spriteBatch.Draw(title, new Rectangle(game.screenWidth / 2 - 500, 100, 1000, 512), Color.White);
             spriteBatch.Draw(back, new Rectangle(50, 60, 150, 80), Color.White);
-            spriteBatch.DrawString(font1, "             The Floor is Lava Studio", new Vector2(game.screenWidth / 2 - 70, 200f), Color.Gold);
-            spriteBatch.DrawString(font1, "Alexander Bellavia               Kasey Hilton", new Vector2(game.screenWidth / 2 - 70, 250f), Color.Gold);
-            spriteBatch.DrawString(font1, "Josh Malmquist                   Jacob Roos", new Vector2(game.screenWidth / 2 - 70, 300f), Color.Gold);
-            spriteBatch.DrawString(font1, "                 Anna Karwacki", new Vector2(game.screenWidth / 2 - 70, 350f), Color.Gold);
+            spriteBatch.DrawString(font1, "             The Floor is Lava Studio", new Vector2(game.screenWidth / 2 - 50, 300f), Color.Gold);
+            spriteBatch.DrawString(font1, "Alexander Bellavia               Kasey Hilton", new Vector2(game.screenWidth / 2 - 50, 350f), Color.Gold);
+            spriteBatch.DrawString(font1, "Josh Malmquist                   Jacob Roos", new Vector2(game.screenWidth / 2 - 50, 400f), Color.Gold);
+            spriteBatch.DrawString(font1, "                 Anna Karwacki", new Vector2(game.screenWidth / 2 - 50, 450f), Color.Gold);
         }
         #endregion Methods
     }

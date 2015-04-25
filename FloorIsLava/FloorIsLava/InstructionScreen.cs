@@ -32,6 +32,11 @@ namespace FloorIsLava
         private Texture2D pause;
         private Texture2D color;
         private Texture2D back;
+        private Texture2D grappleDown1;
+        private Texture2D grappleDown2;
+        private Texture2D grappleUp1;
+        private Texture2D grappleUp2;
+        private Texture2D title;
         #endregion Attributes
 
         #region Constructor 
@@ -49,12 +54,18 @@ namespace FloorIsLava
             forwardArrow = game.Content.Load<Texture2D>("forward arrow");
             grapple1 = game.Content.Load<Texture2D>("eGrapple");
             grapple2 = game.Content.Load<Texture2D>("leftshift");
-            //grapple3 = game.Content.Load<Texture2D>("righ")
+            grapple3 = game.Content.Load<Texture2D>("rightShift");
             space = game.Content.Load<Texture2D>("space");
             pause = game.Content.Load <Texture2D>("pauseControl");
             color = game.Content.Load<Texture2D>("pause");
             back = game.Content.Load<Texture2D>("back");
 
+            grappleDown1 = game.Content.Load<Texture2D>("grappleDownArrow");
+            grappleDown2 = game.Content.Load<Texture2D>("grappleDownS");
+
+            grappleUp1 = game.Content.Load<Texture2D>("grappleUPW");
+            grappleUp2 = game.Content.Load<Texture2D>("grappleUPArrow");
+            title = game.Content.Load<Texture2D>("instructionTitle");
         }
         #endregion Constructor
 
@@ -117,7 +128,7 @@ namespace FloorIsLava
             //spriteBatch.DrawString(font1, "this is instruction Screen", new Vector2(50f, 50f), Color.Black);
             //spriteBatch.DrawString(font1, "Press \"Back\" to go back", new Vector2(50f, 70f), Color.Black);
             spriteBatch.Draw(back, new Rectangle(50, 60, 150, 80), Color.White);
-
+            spriteBatch.Draw(title, new Rectangle(game.screenWidth / 2 - 500, -15, 1000, 512), Color.White);
             //spriteBatch.DrawString(font1, "D or Right Arrow Key to go forward", new Vector2(game.screenWidth / 2 - 100, 200f), Color.Gold);
             spriteBatch.Draw(forwardD, new Rectangle(game.screenWidth / 2 - 530, 200, 300,150), Color.White);
             spriteBatch.Draw(forwardArrow, new Rectangle(game.screenWidth / 2 - 530, 300, 300, 150), Color.White);
@@ -126,16 +137,24 @@ namespace FloorIsLava
             spriteBatch.Draw(backwardsA, new Rectangle(game.screenWidth / 2 - 530, 400, 300, 150), Color.White);
             spriteBatch.Draw(backwardsArrow, new Rectangle(game.screenWidth / 2 - 530, 500, 300, 150), Color.White);
             //spriteBatch.DrawString(font1, "Space to jump", new Vector2(game.screenWidth / 2 - 100, 400f), Color.Gold);
-            spriteBatch.Draw(space, new Rectangle(game.screenWidth / 2 - 150, 225, 300, 150), Color.White);
+
+            spriteBatch.Draw(grappleUp1, new Rectangle(game.screenWidth / 2 - 150, 200, 300, 150), Color.White);
+            spriteBatch.Draw(grappleUp2, new Rectangle(game.screenWidth / 2 - 150, 300, 300, 150), Color.White);
+            spriteBatch.Draw(grappleDown2, new Rectangle(game.screenWidth / 2 - 150, 400, 300, 150), Color.White);
+            spriteBatch.Draw(grappleDown1, new Rectangle(game.screenWidth / 2 - 150, 500, 300, 150), Color.White);
+            spriteBatch.Draw(space, new Rectangle(game.screenWidth / 2 + 250, 525, 250, 100), Color.White);
+            
+            
             //spriteBatch.DrawString(font1, "Press E, LeftShift or RightShift to shoot Grappling Hook", new Vector2(game.screenWidth / 2 - 100, 500f), Color.Gold);
-            spriteBatch.Draw(grapple1, new Rectangle(game.screenWidth / 2 + 250, 200, 300, 150), Color.White);
-            spriteBatch.Draw(grapple2, new Rectangle(game.screenWidth / 2 + 250, 300, 300, 150), Color.White);
+            spriteBatch.Draw(grapple1, new Rectangle(game.screenWidth / 2 + 250, 200, 250, 100), Color.White);
+            spriteBatch.Draw(grapple2, new Rectangle(game.screenWidth / 2 + 250, 275, 250, 100), Color.White);
             //this will be grapple 3
-            spriteBatch.Draw(grapple1, new Rectangle(game.screenWidth / 2 + 250, 400, 300, 150), Color.White);
-            spriteBatch.DrawString(font1, "W or Up Arrow Key to go up grappling hook", new Vector2(game.screenWidth / 2 - 100, 600f), Color.Gold);
-            spriteBatch.DrawString(font1, "S or Down Arrow Key to go up grappling hook", new Vector2(game.screenWidth / 2 - 100, 700f), Color.Gold);
+            spriteBatch.Draw(grapple3, new Rectangle(game.screenWidth / 2 + 250, 350, 250, 100), Color.White);
+           
             //spriteBatch.DrawString(font1, "P to Pause", new Vector2(game.screenWidth / 2 - 100, 800f), Color.Gold);
-            spriteBatch.Draw(pause, new Rectangle(game.screenWidth / 2 - 130, 350, 300, 150), Color.White);
+
+
+            spriteBatch.Draw(pause, new Rectangle(game.screenWidth / 2 + 250, 425, 250, 100), Color.White);
         }
         #endregion Methods
     }
