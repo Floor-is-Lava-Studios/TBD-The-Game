@@ -30,6 +30,11 @@ namespace FloorIsLava
         private int count = 0;
 
         private Texture2D back;
+        private Texture2D lvl1;
+        private Texture2D lvl2;
+        private Texture2D lvl3;
+        private Texture2D lvl4;
+        private Texture2D lvl5;
         #endregion Attributes
 
         #region Constructor
@@ -44,6 +49,11 @@ namespace FloorIsLava
             levels = save.ReadUnlock();
 
             back = game.Content.Load<Texture2D>("back");
+            lvl1 = game.Content.Load<Texture2D>("level1");
+            lvl2 = game.Content.Load<Texture2D>("level2");
+            lvl3 = game.Content.Load<Texture2D>("level3");
+            lvl4 = game.Content.Load<Texture2D>("level4");
+            lvl5 = game.Content.Load<Texture2D>("level5");
         }
         #endregion Constructor
 
@@ -59,18 +69,19 @@ namespace FloorIsLava
             }
             if (keyState.IsKeyDown(Keys.A) && lastState.IsKeyUp(Keys.A) || keyState.IsKeyDown(Keys.Left) && lastState.IsKeyUp(Keys.Left))
             {
-                count++;
-                if (count > 1)
-                {
-                    count = 0;
-                }
-            }
-            if (keyState.IsKeyDown(Keys.D) && lastState.IsKeyUp(Keys.D) || keyState.IsKeyDown(Keys.Right) && lastState.IsKeyUp(Keys.Right))
-            {
                 count--;
                 if (count < 0)
                 {
-                    count = 1;
+                    count = 4;
+                }
+                
+            }
+            if (keyState.IsKeyDown(Keys.D) && lastState.IsKeyUp(Keys.D) || keyState.IsKeyDown(Keys.Right) && lastState.IsKeyUp(Keys.Right))
+            {
+                count++;
+                if (count > 4)
+                {
+                    count = 0;
                 }
             }
             if (keyState.IsKeyDown(Keys.Enter) && lastState.IsKeyUp(Keys.Enter) || keyState.IsKeyDown(Keys.Space) && lastState.IsKeyUp(Keys.Space))
@@ -85,6 +96,22 @@ namespace FloorIsLava
                 {
                     gameState.StartGame("test.txt");
                     currentLvl = "test.txt";
+                }
+                else if (count == 2 && levels["level3.txt"] == true)
+                {
+                    // put level 3 here
+                    //gameState.StartGame("test.txt");
+                    //currentLvl = "test.txt";
+                }
+                else if (count == 3 && levels["level4.txt"] == true)
+                {
+                    //gameState.StartGame("test.txt");
+                    //currentLvl = "test.txt";
+                }
+                else if (count == 4 && levels["level5.txt"] == true)
+                {
+                    //gameState.StartGame("test.txt");
+                    //currentLvl = "test.txt";
                 }
             }
 
@@ -101,25 +128,67 @@ namespace FloorIsLava
             spriteBatch.Draw(title, new Rectangle(game.screenWidth / 2 - 500, 100, 1000, 512), Color.White);
             spriteBatch.Draw(back, new Rectangle(50, 60, 150, 80), Color.White);
             //spriteBatch.DrawString(font1, "This is the Level Selection Screen", new Vector2(50f, 50f), Color.Black);
+            //level 1
             if (count == 0)
             {
-                spriteBatch.DrawString(font1, "Level 1", new Vector2(game.screenWidth / 2 - 250, 400f), Color.Gold);
+                //spriteBatch.DrawString(font1, "Level 1", new Vector2(game.screenWidth / 2 - 250, 400f), Color.Gold);
+                spriteBatch.Draw(lvl1, new Rectangle(200, 400, 100, 100), Color.White);
             }
             else
             {
-                spriteBatch.DrawString(font1, "Level 1", new Vector2(game.screenWidth / 2 - 250, 400f), Color.White);
+                spriteBatch.Draw(lvl1, new Rectangle(200, 400, 100, 100), Color.Gold);
             }
+            //level 2
             if (count == 1 && levels["level2.txt"] == true)
             {
-                spriteBatch.DrawString(font1, "Level 2", new Vector2(game.screenWidth / 2 + 150, 400f), Color.Gold);
+                spriteBatch.Draw(lvl2, new Rectangle(400, 400, 100, 100), Color.White);
             }
             else if (count == 1 && levels["level2.txt"] == false)
             {
-                spriteBatch.DrawString(font1, "Level 2", new Vector2(game.screenWidth / 2 + 150, 400f), Color.Blue);
+                spriteBatch.Draw(lvl2, new Rectangle(400, 400, 100, 100), Color.Gray);
+            }
+            else if(count != 1)
+            {
+                spriteBatch.Draw(lvl2, new Rectangle(400, 400, 100, 100), Color.Gold);
+            }
+            // level 3
+            if (count == 2 && levels["level3.txt"] == true)
+            {
+                spriteBatch.Draw(lvl3, new Rectangle(600, 400, 100, 100), Color.White);
+            }
+            else if (count == 2 && levels["level3.txt"] == false)
+            {
+                spriteBatch.Draw(lvl3, new Rectangle(600, 400, 100, 100), Color.Gray);
             }
             else
             {
-                spriteBatch.DrawString(font1, "Level 2", new Vector2(game.screenWidth / 2 + 150, 400f), Color.White);
+                spriteBatch.Draw(lvl3, new Rectangle(600, 400, 100, 100), Color.Gold);
+            }
+            // level 4
+            if (count == 3 && levels["level4.txt"] == true)
+            {
+                spriteBatch.Draw(lvl4, new Rectangle(800, 400, 100, 100), Color.White);
+            }
+            else if (count == 3 && levels["level4.txt"] == false)
+            {
+                spriteBatch.Draw(lvl4, new Rectangle(800, 400, 100, 100), Color.Gray);
+            }
+            else
+            {
+                spriteBatch.Draw(lvl4, new Rectangle(800, 400, 100, 100), Color.Gold);
+            }
+            // level 5
+            if (count == 4 && levels["level5.txt"] == true)
+            {
+                spriteBatch.Draw(lvl5, new Rectangle(1000, 400, 100, 100), Color.White);
+            }
+            else if (count == 4 && levels["level5.txt"] == false)
+            {
+                spriteBatch.Draw(lvl5, new Rectangle(1000, 400, 100, 100), Color.Gray);
+            }
+            else
+            {
+                spriteBatch.Draw(lvl5, new Rectangle(1000, 400, 100, 100), Color.Gold);
             }
         }
 
