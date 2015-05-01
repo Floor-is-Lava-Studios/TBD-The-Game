@@ -123,35 +123,35 @@ namespace FloorIsLava
             gameScreen.Draw(spriteBatch, background);
             spriteBatch.Draw(screen, new Rectangle((game.screenWidth/2) - 500, (game.screenHeight/2) - 400 , screenWidth, screenHeight), Color.White);
             // fix the image 
-            spriteBatch.Draw(title, new Rectangle(game.screenWidth / 2 - 530, -100, 1000, 612), Color.White);
+            spriteBatch.Draw(title, new Rectangle(game.screenWidth / 2 - 530, (game.screenHeight / 2) - 400, 1000, 612), Color.White);
             //spriteBatch.DrawString(font1,"PAUSE", new Vector2(game.screenWidth / 2, 100),Color.Blue);
 
             // drawing the buttons, if selected the color changes
             if (button == 0)
             {
-                spriteBatch.Draw(continue1, new Rectangle(game.screenWidth / 2 - 220, 200, 500, 250), Color.White);
+                spriteBatch.Draw(continue1, new Rectangle(game.screenWidth / 2 - 220, (game.screenHeight / 2) - 150, 500, 250), Color.White);
                 //spriteBatch.DrawString(font1, "Contine", new Vector2(700f, 400f), Color.Gold);
             }
             else
             {
-                spriteBatch.Draw(continue2, new Rectangle(game.screenWidth / 2 - 220, 200, 500, 250), Color.Gray);
+                spriteBatch.Draw(continue2, new Rectangle(game.screenWidth / 2 - 220, (game.screenHeight / 2) - 150, 500, 250), Color.Gray);
                 //spriteBatch.DrawString(font1, "Contine", new Vector2(700f, 400f), Color.Black);
             }
             if (button == 1)
             {
-                spriteBatch.Draw(options1, new Rectangle(game.screenWidth / 2 - 220, 275, 500, 250), Color.White);
+                spriteBatch.Draw(options1, new Rectangle(game.screenWidth / 2 - 220, (game.screenHeight / 2) - 50, 500, 250), Color.White);
             }
             else
             {
-                spriteBatch.Draw(options2, new Rectangle(game.screenWidth / 2 - 220, 275, 500, 250), Color.Gray);
+                spriteBatch.Draw(options2, new Rectangle(game.screenWidth / 2 - 220, (game.screenHeight / 2) - 50, 500, 250), Color.Gray);
             }
             if (button == 2)
             {
-                spriteBatch.Draw(howTo1, new Rectangle(game.screenWidth / 2 - 220, 350, 500, 250), Color.White);
+                spriteBatch.Draw(howTo1, new Rectangle(game.screenWidth / 2 - 220, (game.screenHeight / 2) + 50, 500, 250), Color.White);
             }
             else
             {
-                spriteBatch.Draw(howTo2, new Rectangle(game.screenWidth / 2 - 220, 350, 500, 250), Color.Gray);
+                spriteBatch.Draw(howTo2, new Rectangle(game.screenWidth / 2 - 220, (game.screenHeight / 2) + 50, 500, 250), Color.Gray);
             }
      //  if (button == 3)
      //  {
