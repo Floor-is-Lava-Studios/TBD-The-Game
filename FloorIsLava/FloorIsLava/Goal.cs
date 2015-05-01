@@ -56,7 +56,8 @@ namespace FloorIsLava
         {
             if ((pos.X > xPostion && pos.X < xPostion + width) && (pos.Y > yPostion && pos.Y < yPostion + height))
             {
-                save.UnlockNextLvl(save.ReadUnlock());
+                
+                //ave.UnlockNextLvl(save.ReadUnlock());
                 save.UpdateFile();
                 state.EndGame(ls.CurrentLevel);
                 // have the next level unlocked

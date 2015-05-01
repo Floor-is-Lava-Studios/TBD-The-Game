@@ -54,6 +54,9 @@ namespace FloorIsLava
             lvl3 = game.Content.Load<Texture2D>("level3");
             lvl4 = game.Content.Load<Texture2D>("level4");
             lvl5 = game.Content.Load<Texture2D>("level5");
+
+            currentLvl = "level1.txt";
+            nextLvl = "test.txt";
         }
         #endregion Constructor
 
