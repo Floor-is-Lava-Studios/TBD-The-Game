@@ -1,5 +1,0 @@
-level1.txt true
-level2.txt false
-level3.txt false
-level4.txt false
-level5.txt false

@@ -17,7 +17,7 @@ namespace FloorIsLava
     {
         //attributes
         private Dictionary<string, bool> levels;
-        private string fileName = "UnlockedLevels.txt";
+        private const string UNLOCKEDLEVELFILE = "UnlockedLevels.txt";
         
         // future plans: new game, load game (multiple save files)
 
@@ -32,35 +32,42 @@ namespace FloorIsLava
         {
             // reading in the file
             StreamReader input = null;
-
-            input = new StreamReader(fileName);
-            string temp = "";
-            string name = "";
-            bool unlocked = false;
-
-            while ((temp = input.ReadLine()) != null)
+            Dictionary<string, bool> levelsUnlockedDict = new Dictionary<string, bool>();
+            input = new StreamReader(UNLOCKEDLEVELFILE);
+            string levelLine;
+            while ((levelLine = input.ReadLine()) != null)
             {
-                string[] words = temp.Split(' ');
-                name = words[0];
-                temp = words[1];
-                unlocked = Convert.ToBoolean(temp);
-                levels.Add(name, unlocked);
-            }
+                string[] levelLineArray = levelLine.Split(':');
+                
+                string level = levelLineArray[0];
+                string levelBool = levelLineArray[1];
+                
+                bool isUnlocked = false;
+                
+                if (levelBool == "true")
+                {
+                    isUnlocked = true;
+                }
 
+                levelsUnlockedDict.Add(level, isUnlocked);
+            }
             input.Close();
-            return levels;
+            return levelsUnlockedDict;
+            
         }
 
         // this will update the file containing the levels that have been unlocked
         public void UpdateFile()
         {
             StreamWriter output = null;
-            output = new StreamWriter(fileName);
+            output = new StreamWriter(UNLOCKEDLEVELFILE);
 
             for(int x = 0;x < levels.Count; x++)
             {
-                output.WriteLine(levels.Keys + ", " + levels.Values);
+                output.WriteLine(levels.Keys + ":" + levels.Values);
             }
+
+            output.Close();
         }
         // after sucessfully finishing a level the next level will be unlocked
         public void LevelUnlocked(string lvlName) // get it so that the name of the current level identifies the next one
@@ -68,6 +75,21 @@ namespace FloorIsLava
             levels[lvlName] = true;
         }
 
+        public void UnlockNextLvl(Dictionary<string, bool> levelsUnlockedDict)
+        {
+            string[] keys = levelsUnlockedDict.Keys.ToArray();
+            for (int i = 0; i < keys.Length; i++)
+            {
+                bool levelBool = levelsUnlockedDict[keys[i]];
+
+                if (levelBool == false)
+                {
+                    levelsUnlockedDict[keys[i]] = true;
+                    return;
+                }
+
+            }
+        }
         // current level
 
         

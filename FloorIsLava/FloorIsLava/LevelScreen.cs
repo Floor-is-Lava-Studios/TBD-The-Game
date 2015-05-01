@@ -92,23 +92,23 @@ namespace FloorIsLava
                     currentLvl = "level1.txt";
                     nextLvl = "level2.txt";
                 }
-                else if (count == 1 && levels["level2.txt"] == true)
+                else if (count == 1 && levels["level2"] == true)
                 {
                     gameState.StartGame("test.txt");
                     currentLvl = "test.txt";
                 }
-                else if (count == 2 && levels["level3.txt"] == true)
+                else if (count == 2 && levels["level3"] == true)
                 {
                     // put level 3 here
                     //gameState.StartGame("test.txt");
                     //currentLvl = "test.txt";
                 }
-                else if (count == 3 && levels["level4.txt"] == true)
+                else if (count == 3 && levels["level4"] == true)
                 {
                     //gameState.StartGame("test.txt");
                     //currentLvl = "test.txt";
                 }
-                else if (count == 4 && levels["level5.txt"] == true)
+                else if (count == 4 && levels["level5"] == true)
                 {
                     //gameState.StartGame("test.txt");
                     //currentLvl = "test.txt";
@@ -139,11 +139,11 @@ namespace FloorIsLava
                 spriteBatch.Draw(lvl1, new Rectangle(200, 400, 100, 100), Color.Gold);
             }
             //level 2
-            if (count == 1 && levels["level2.txt"] == true)
+            if (count == 1 && levels["level2"] == true)
             {
                 spriteBatch.Draw(lvl2, new Rectangle(400, 400, 100, 100), Color.White);
             }
-            else if (count == 1 && levels["level2.txt"] == false)
+            else if (count == 1 && levels["level2"] == false)
             {
                 spriteBatch.Draw(lvl2, new Rectangle(400, 400, 100, 100), Color.Gray);
             }
@@ -152,11 +152,11 @@ namespace FloorIsLava
                 spriteBatch.Draw(lvl2, new Rectangle(400, 400, 100, 100), Color.Gold);
             }
             // level 3
-            if (count == 2 && levels["level3.txt"] == true)
+            if (count == 2 && levels["level3"] == true)
             {
                 spriteBatch.Draw(lvl3, new Rectangle(600, 400, 100, 100), Color.White);
             }
-            else if (count == 2 && levels["level3.txt"] == false)
+            else if (count == 2 && levels["level3"] == false)
             {
                 spriteBatch.Draw(lvl3, new Rectangle(600, 400, 100, 100), Color.Gray);
             }
@@ -165,11 +165,11 @@ namespace FloorIsLava
                 spriteBatch.Draw(lvl3, new Rectangle(600, 400, 100, 100), Color.Gold);
             }
             // level 4
-            if (count == 3 && levels["level4.txt"] == true)
+            if (count == 3 && levels["level4"] == true)
             {
                 spriteBatch.Draw(lvl4, new Rectangle(800, 400, 100, 100), Color.White);
             }
-            else if (count == 3 && levels["level4.txt"] == false)
+            else if (count == 3 && levels["level4"] == false)
             {
                 spriteBatch.Draw(lvl4, new Rectangle(800, 400, 100, 100), Color.Gray);
             }
@@ -178,11 +178,11 @@ namespace FloorIsLava
                 spriteBatch.Draw(lvl4, new Rectangle(800, 400, 100, 100), Color.Gold);
             }
             // level 5
-            if (count == 4 && levels["level5.txt"] == true)
+            if (count == 4 && levels["level5"] == true)
             {
                 spriteBatch.Draw(lvl5, new Rectangle(1000, 400, 100, 100), Color.White);
             }
-            else if (count == 4 && levels["level5.txt"] == false)
+            else if (count == 4 && levels["level5"] == false)
             {
                 spriteBatch.Draw(lvl5, new Rectangle(1000, 400, 100, 100), Color.Gray);
             }
