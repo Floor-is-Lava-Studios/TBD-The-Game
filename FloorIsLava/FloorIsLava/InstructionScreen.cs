@@ -125,36 +125,27 @@ namespace FloorIsLava
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, game.screenWidth, game.screenHeight), Color.Wheat);
             spriteBatch.Draw(color, new Rectangle((game.screenWidth / 2) - 600, (game.screenHeight / 2 + 200) - 400, 1200, 500), Color.White);
-            //spriteBatch.DrawString(font1, "this is instruction Screen", new Vector2(50f, 50f), Color.Black);
-            //spriteBatch.DrawString(font1, "Press \"Back\" to go back", new Vector2(50f, 70f), Color.Black);
+;
             spriteBatch.Draw(back, new Rectangle(50, 60, 150, 80), Color.White);
             spriteBatch.Draw(title, new Rectangle(game.screenWidth / 2 - 500, -15, 1000, 512), Color.White);
-            //spriteBatch.DrawString(font1, "D or Right Arrow Key to go forward", new Vector2(game.screenWidth / 2 - 100, 200f), Color.Gold);
-            spriteBatch.Draw(forwardD, new Rectangle(game.screenWidth / 2 - 530, 200, 300,150), Color.White);
-            spriteBatch.Draw(forwardArrow, new Rectangle(game.screenWidth / 2 - 530, 300, 300, 150), Color.White);
 
-            //spriteBatch.DrawString(font1, "A or Left Arrow Key to go backwards", new Vector2(game.screenWidth / 2 - 100, 300f), Color.Gold);
-            spriteBatch.Draw(backwardsA, new Rectangle(game.screenWidth / 2 - 530, 400, 300, 150), Color.White);
-            spriteBatch.Draw(backwardsArrow, new Rectangle(game.screenWidth / 2 - 530, 500, 300, 150), Color.White);
-            //spriteBatch.DrawString(font1, "Space to jump", new Vector2(game.screenWidth / 2 - 100, 400f), Color.Gold);
+            spriteBatch.Draw(forwardD, new Rectangle(game.screenWidth / 2 - 530, (game.screenHeight / 2 + 200) - 400, 300, 150), Color.White);
+            spriteBatch.Draw(forwardArrow, new Rectangle(game.screenWidth / 2 - 530, (game.screenHeight / 2 + 300) - 400, 300, 150), Color.White);
 
-            spriteBatch.Draw(grappleUp1, new Rectangle(game.screenWidth / 2 - 150, 200, 300, 150), Color.White);
-            spriteBatch.Draw(grappleUp2, new Rectangle(game.screenWidth / 2 - 150, 300, 300, 150), Color.White);
-            spriteBatch.Draw(grappleDown2, new Rectangle(game.screenWidth / 2 - 150, 400, 300, 150), Color.White);
-            spriteBatch.Draw(grappleDown1, new Rectangle(game.screenWidth / 2 - 150, 500, 300, 150), Color.White);
-            spriteBatch.Draw(space, new Rectangle(game.screenWidth / 2 + 250, 525, 250, 100), Color.White);
+            spriteBatch.Draw(backwardsA, new Rectangle(game.screenWidth / 2 - 530, (game.screenHeight / 2 + 400) - 400, 300, 150), Color.White);
+            spriteBatch.Draw(backwardsArrow, new Rectangle(game.screenWidth / 2 - 530, (game.screenHeight / 2 + 500) - 400, 300, 150), Color.White);
+
+            spriteBatch.Draw(grappleUp1, new Rectangle(game.screenWidth / 2 - 150, (game.screenHeight / 2 + 200) - 400, 300, 150), Color.White);
+            spriteBatch.Draw(grappleUp2, new Rectangle(game.screenWidth / 2 - 150, (game.screenHeight / 2 + 300) - 400, 300, 150), Color.White);
+            spriteBatch.Draw(grappleDown2, new Rectangle(game.screenWidth / 2 - 150, (game.screenHeight / 2 + 400) - 400, 300, 150), Color.White);
+            spriteBatch.Draw(grappleDown1, new Rectangle(game.screenWidth / 2 - 150, (game.screenHeight / 2 + 500) - 400, 300, 150), Color.White);
             
-            
-            //spriteBatch.DrawString(font1, "Press E, LeftShift or RightShift to shoot Grappling Hook", new Vector2(game.screenWidth / 2 - 100, 500f), Color.Gold);
-            spriteBatch.Draw(grapple1, new Rectangle(game.screenWidth / 2 + 250, 200, 250, 100), Color.White);
-            spriteBatch.Draw(grapple2, new Rectangle(game.screenWidth / 2 + 250, 275, 250, 100), Color.White);
-            //this will be grapple 3
-            spriteBatch.Draw(grapple3, new Rectangle(game.screenWidth / 2 + 250, 350, 250, 100), Color.White);
-           
-            //spriteBatch.DrawString(font1, "P to Pause", new Vector2(game.screenWidth / 2 - 100, 800f), Color.Gold);
 
-
-            spriteBatch.Draw(pause, new Rectangle(game.screenWidth / 2 + 250, 425, 250, 100), Color.White);
+            spriteBatch.Draw(grapple1, new Rectangle(game.screenWidth / 2 + 250, (game.screenHeight / 2 + 210) - 400, 250, 100), Color.White);
+            spriteBatch.Draw(grapple2, new Rectangle(game.screenWidth / 2 + 250, (game.screenHeight / 2 + 275) - 400, 250, 100), Color.White);
+            spriteBatch.Draw(grapple3, new Rectangle(game.screenWidth / 2 + 250, (game.screenHeight / 2 + 350) - 400, 250, 100), Color.White);
+            spriteBatch.Draw(pause, new Rectangle(game.screenWidth / 2 + 250, (game.screenHeight / 2 + 425) - 400, 250, 100), Color.White);
+            spriteBatch.Draw(space, new Rectangle(game.screenWidth / 2 + 250, (game.screenHeight / 2 + 520) - 400, 250, 100), Color.White);
         }
         #endregion Methods
     }
