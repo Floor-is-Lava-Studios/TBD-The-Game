@@ -18,13 +18,16 @@ namespace FloorIsLava
      */
     public class Gold : GameObject
     {
+        #region Attributes
         //Attributes
         bool isVisible = true;
         Rectangle gem;
         Texture2D gemImage;
         public int numberOfGems;
         GameScreen gameScreen;
+        #endregion Attributes
 
+        #region Constructor
         //Constructor
         public Gold(Texture2D gemImage, int x, int y, int width, int height, GameScreen gameScreen)
         {
@@ -32,7 +35,9 @@ namespace FloorIsLava
             this.gemImage = gemImage;
             this.gameScreen = gameScreen;
         }
+        #endregion Constructor
 
+        #region CollisionCheck
         //Method that will detect collisions between the gem and the player
         public void CollisionCheck(Rectangle rectangle)
         {
@@ -42,7 +47,9 @@ namespace FloorIsLava
                 isVisible = false;
             }
         }
+        #endregion CollisionCheck
 
+        #region Draw
         //Draw method
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -51,10 +58,13 @@ namespace FloorIsLava
                 spriteBatch.Draw(gemImage, gem, Color.White);
             }
         }
+        #endregion Draw
 
+        #region MoveDown
         internal void MoveDown(int y)
         {
             gem.Y += y;
         }
+        #endregion MoveDown
     }
 }

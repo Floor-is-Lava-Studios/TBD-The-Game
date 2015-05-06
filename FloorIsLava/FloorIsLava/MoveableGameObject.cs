@@ -10,7 +10,7 @@ namespace FloorIsLava
      * inherit from. It will also inherit from the GameObject class, and also have a direction
      * attribute to designate the direction of movement/which direction the character is facing.
      */
-    class MoveableGameObject : GameObject
+    public class MoveableGameObject : GameObject
     {
     }
 }

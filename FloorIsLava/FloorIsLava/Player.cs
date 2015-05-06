@@ -62,6 +62,10 @@ namespace FloorIsLava
         int yPostion;
         private GameScreen gameScreen;
         bool isGrappled;
+
+        //Kasey added attribute
+        private Enemy enemy;
+        private Platform platform;
         #endregion Attributes
 
         #region Constructor
@@ -74,7 +78,7 @@ namespace FloorIsLava
         /// <param name="y"></param>
         /// <param name="wid"></param>
         /// <param name="hgt"></param>
-        public Player(Texture2D plrTx, int x, int y, int wid, int hgt, List<Rectangle> colls, Game1 game, GameScreen gS)
+        public Player(Texture2D plrTx, int x, int y, int wid, int hgt, List<Rectangle> colls, Game1 game, GameScreen gS, Enemy enemy, Platform platform)
         {
             oldState = Keyboard.GetState();
             playerTexture = plrTx;
@@ -92,6 +96,10 @@ namespace FloorIsLava
             gameScreen = gS;
             grappleEndpoint = new Vector2(playerRect.X, playerRect.Y);
             isGrappled = false;
+
+            //Kasey added this
+            this.enemy = enemy;
+            this.platform = platform;
         }
         #endregion Constructor
 
@@ -132,6 +140,19 @@ namespace FloorIsLava
                     velocity.X = 0;
                 }
             }
+
+            foreach (Enemy e in gameScreen.enemyList)
+            {
+                if (nextPlayerRect.Intersects(e.EnemyRect))
+                {
+                    //Stopping x velocity and position (just copied Alex's code that he had above)
+                    if (velocity.X > 0)
+                        position.X -= velocity.X / 2;
+                    else if (velocity.X < 0)
+                        position.X -= velocity.X / 2;
+                    velocity.X = 0;
+                }
+            }
             nextPlayerRect = new Rectangle((int)position.X, (int)(position.Y + velocity.Y), width, height);
             foreach (Rectangle r in collisionsToCheck)
             {
@@ -142,6 +163,22 @@ namespace FloorIsLava
                     else if (velocity.Y > 0)
                     {
                         position.Y = r.Top - height;
+                        hasJumped = false;
+                    }
+                    velocity.Y = 0;
+                }
+            }
+
+            foreach (Enemy e in gameScreen.enemyList)
+            {
+                if (nextPlayerRect.Intersects(e.EnemyRect))
+                {
+                    //Stopping y velocity and position (just copied Alex's code that he had above)
+                    if (velocity.Y < 0)
+                        position.Y = e.EnemyRect.Bottom;
+                    else if (velocity.Y > 0)
+                    {
+                        position.Y = e.EnemyRect.Top - height;
                         hasJumped = false;
                     }
                     velocity.Y = 0;

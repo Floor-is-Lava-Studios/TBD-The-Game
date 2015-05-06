@@ -17,25 +17,24 @@ namespace FloorIsLava
      * or be bound between two points, similar to the MoveablePlatform.  It will also have a 
      * bullet object that it will shoot on a timer.
      */
-    class Enemy : MoveableGameObject
+    public class Enemy : MoveableGameObject
     {
+        #region Attributes
         //Attributes
-        private Rectangle enemy;
+        private Rectangle enemyRect;
         private Texture2D enemyImage;
         private Bullet myBullet;
-        private Player player;
         private Game1 game;
-        private EnemyPathEnd enemyPath;
-        private EnemyPathEnd enemyPath2;
         private GameScreen gameScreen;
-        private int timeTillFire;
+        private EnemyPathEnd enemyPathEnd;
         private int x;
         private int y;
-        private bool top;
+        public bool top;
         private int width;
         private int height;
-        private List<Rectangle> colList;
+        #endregion Attributes
 
+        #region Properties
         //Properties
         public Bullet MyBullet
         {
@@ -50,74 +49,116 @@ namespace FloorIsLava
             }
         }
 
-        //Constructor
-        public Enemy(Texture2D image, int xpos, int ypos, int wid, int ht, Player plyr, Game1 gm, GameScreen gS, bool tp, List<Rectangle> colLi)
+        public Rectangle EnemyRect
         {
-            enemy = new Rectangle(x, y, width, height);
-            enemyImage = image;
-            player = plyr;
-            game = gm;
-            gameScreen = gS;
-            x = xpos;
-            y = xpos;
-            width = wid;
-            height = ht;
-            top = tp;
-            colList = colLi;
-            timeTillFire = 200;
-            myBullet = new Bullet(game.bulletSprite, x, y, game.bulletSprite.Width / 10, game.bulletSprite.Height / 10);
+            get
+            {
+                return enemyRect;
+            }
         }
+        #endregion Properties
 
+        #region Constructor
+        //Constructor
+        public Enemy(Texture2D enemyImage, int x, int y, int width, int height, Game1 game, GameScreen gameScreen, bool top)
+        {
+            enemyRect = new Rectangle(x, y, width, height);
+            this.enemyImage = enemyImage;
+            this.game = game;
+            this.gameScreen = gameScreen;
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.top = top;
+            myBullet = new Bullet(game.bulletSprite, x, y, game.bulletSprite.Width, game.bulletSprite.Height, this, game, gameScreen);
+            enemyPathEnd = gameScreen.epe;
+        }
+        #endregion Constructor
+
+        #region Update
         //Update method
         public void Update(GameTime gameTime)
         {
-            timeTillFire--; //decrementing timeTillFire
+            //To update the top bool value if needed
+            gameScreen.player.DetectCollisions();
 
-            //Setting timeTillFire to 200 again when it reaches 0
-            if (timeTillFire == 0)
+            //Updating bullet
+            myBullet.Update(gameTime);
+
+            //Setting timeTillFire to 300 again when it reaches 0
+            if ((myBullet.TimeTillFire == 0) && (myBullet.isVisible == false))
             {
                 myBullet.isVisible = true;
-                myBullet.bullet.X = enemy.X + enemy.Height / 3;
-                myBullet.bullet.Y = enemy.Y + enemy.Height / 3;
-                timeTillFire = 200;
+                myBullet.bullet.X = enemyRect.X + enemyRect.Height / 3;
+                myBullet.bullet.Y = enemyRect.Y + enemyRect.Height / 3;
+                myBullet.TimeTillFire = 200;
             }
 
-            //Updating the bullet and checking for collision with the bullet
-            myBullet.Update(gameTime);
-            myBullet.CollisionCheck(player.PlayerRect);
-            foreach (Rectangle r in colList)
+            //Checking for collision with the bullet
+            foreach (Platform p in gameScreen.platformList)
             {
-                myBullet.CollisionCheck(r);
+                myBullet.CollisionCheck(p.rect);
+            }
+            myBullet.CollisionCheck(gameScreen.player.PlayerRect);
+
+            foreach (EnemyPathEnd epe in gameScreen.enemyPathList)
+            {
+                if ((top == false) && (enemyRect.Intersects(epe.enemyPathRect)))
+                {
+                    top = true;
+                }
+                else if ((top == true) && (enemyRect.Intersects(epe.enemyPathRect)))
+                {
+                    top = false;
+                }
             }
 
             //Top starts as true, so it goes up first
             if (top == false)
             {
-                enemy.Y = enemy.Y + 3;
+                enemyRect.Y = enemyRect.Y + 3;  //Since screen is moving up, down value must be twice as much in order to even it out
             }
             else if (top == true)
             {
-                enemy.Y = enemy.Y - 3;
-            }
-
-            foreach (EnemyPathEnd epe in gameScreen.enemyPathList)
-            {
-                if ((top == false) && (enemy.Intersects(epe.enemyPathRect)))
-                {
-                    top = true;
-                }
-                else if ((top == true) && (enemy.Intersects(epe.enemyPathRect)))
-                {
-                    top = false;
-                }
+                enemyRect.Y = enemyRect.Y - 3;
             }
         }
+        #endregion Update
 
+        #region Draw
         //Draw method
         public void Draw(SpriteBatch spriteBatch)
         {
             myBullet.Draw(spriteBatch);
-            spriteBatch.Draw(enemyImage, enemy, Color.White);
+            foreach (Enemy e in gameScreen.enemyList)
+            {
+                if (enemyRect.X > game.GraphicsDevice.Viewport.Width / 2)
+                {
+                    spriteBatch.Draw(enemyImage, enemyRect, Color.White);
+                }
+                else if (enemyRect.X < game.GraphicsDevice.Viewport.Width / 2)    //If the enemy is on the left hand side of the screen, flip image
+                {
+                    spriteBatch.Draw(enemyImage, enemyRect, null, Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                }
+            }
         }
+        #endregion Draw
+
+        #region MoveDown
+        //Move down method
+        internal void MoveDown(int y)
+        {
+            enemyRect.Y += y;
+        }
+        #endregion MoveDown
+
+        #region MoveUp
+        //Move down method
+        internal void MoveUp(int y)
+        {
+            enemyRect.Y -= y;
+        }
+        #endregion MoveUp
     }
 }

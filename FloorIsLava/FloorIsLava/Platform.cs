@@ -15,7 +15,7 @@ namespace FloorIsLava
      * The Platform class will inherit from the GameObject class and will not have any other 
      * attributes because they will not be moving.
      */
-    class Platform : GameObject
+    public class Platform : GameObject
     {
         Texture2D blockTexture;
         int yPostion;

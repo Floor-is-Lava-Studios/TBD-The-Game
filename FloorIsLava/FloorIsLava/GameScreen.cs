@@ -20,6 +20,7 @@ namespace FloorIsLava
     {
         #region Attributes
         //attributes for gamescreen
+        public Platform block;
         private Game1 game;
         private SpriteFont font1;
         private KeyboardState lastState;
@@ -30,7 +31,9 @@ namespace FloorIsLava
         private Goal endGoal;
         private string levelName = "test2.txt";
         private List<GameObject> grappleableObjectList;
-        private List<Enemy> enemyList;
+        private Enemy enemy;
+        public EnemyPathEnd epe;
+        public List<Enemy> enemyList;
         private int timeSinceLastMove;
 
         // these are for a later update
@@ -42,6 +45,7 @@ namespace FloorIsLava
         private int gameHeight;
 
         private List<Rectangle> colList;
+        public List<Platform> platformList;
         public List<EnemyPathEnd> enemyPathList;
         private Rectangle lavaRect;
         public List<Gold> gemsList;
@@ -70,6 +74,7 @@ namespace FloorIsLava
             enemyPathList = new List<EnemyPathEnd>();
             colList = new List<Rectangle>();
             gemsList = new List<Gold>();
+            platformList = new List<Platform>();
             // reading in the file
             StreamReader input = null;
 
@@ -104,11 +109,12 @@ namespace FloorIsLava
                         Platform block = new Platform(game.wallSprite, xPos * x + x, xPos * y + y, xPos, xPos);
                         drawList.Add(block);
                         colList.Add(block.rect);
+                        platformList.Add(block);
                         grappleableObjectList.Add(block);
                     }
                     else if (piece == "c")
                     {
-                        player = new Player(game.playerSprite, xPos * x + x, xPos * y + y, game.playerSprite.Width * 4, game.playerSprite.Height * 4, colList, game, this);
+                        player = new Player(game.playerSprite, xPos * x + x, xPos * y + y, game.playerSprite.Width * 4, game.playerSprite.Height * 4, colList, game, this, enemy, block);
                     }
                     else if (piece == "f")
                     {
@@ -119,18 +125,16 @@ namespace FloorIsLava
                         gem = new Gold(game.gemSprite, xPos * x + 25, xPos * y + 35, game.gemSprite.Width, game.gemSprite.Height, this);
                         gemsList.Add(gem);
                     }
-                    //else if (piece == "e")
-                    //{
-                    //    enemyList.Add(new Enemy(game.enemySprite, xPos * x + x, xPos * y + y, xPos, xPos, player, game, this, true, colList));
-                    //}
-                    //else if (piece == "t")
-                    //{
-                    //    enemyPathList.Add(new EnemyPathEnd(xPos * x + x, xPos * y + y, xPos, 5, true, this));
-                    //}
-                    //else if (piece == "b")
-                    //{
-                    //    enemyPathList.Add(new EnemyPathEnd(xPos * x + x, xPos * y + y, xPos, 5, false, this));
-                    //}
+                    else if (piece == "e")
+                    {
+                        enemy = new Enemy(game.enemySprite, xPos * x, xPos * y + y, game.enemySprite.Width, game.enemySprite.Height, game, this, true);
+                        enemyList.Add(enemy);
+                    }
+                    else if (piece == "t")
+                    {
+                        epe = new EnemyPathEnd(xPos * x + x, xPos * y + y, game.wallSprite.Width, 1, true, game);
+                        enemyPathList.Add(epe);
+                    }
 
                     // will add code later for all the other objects that are going to be shown
 
@@ -155,6 +159,8 @@ namespace FloorIsLava
             timeSinceLastMove = 0;
             colList = new List<Rectangle>();
             gemsList = new List<Gold>();
+            enemyPathList = new List<EnemyPathEnd>();
+            platformList = new List<Platform>();
             // reading in the file
             StreamReader input = null;
 
@@ -189,11 +195,12 @@ namespace FloorIsLava
                         Platform block = new Platform(game.wallSprite, xPos * x + x, xPos * y + y, xPos + 1, xPos + 1);
                         drawList.Add(block);
                         colList.Add(block.rect);
+                        platformList.Add(block);
                         grappleableObjectList.Add(block);
                     }
                     else if (piece == "c")
                     {
-                        player = new Player(game.playerSprite, xPos * x + x, xPos * y + y, game.playerSprite.Width * 4, game.playerSprite.Height * 4, colList, game, this);
+                        player = new Player(game.playerSprite, xPos * x + x, xPos * y + y, game.playerSprite.Width * 4, game.playerSprite.Height * 4, colList, game, this, enemy, block);
                     }
                     else if (piece == "f")
                     {
@@ -203,6 +210,16 @@ namespace FloorIsLava
                     {
                         gem = new Gold(game.gemSprite, xPos * x + 25, xPos * y + 35, game.gemSprite.Width, game.gemSprite.Height, this);
                         gemsList.Add(gem);
+                    }
+                    else if (piece == "e")
+                    {
+                        enemy = new Enemy(game.enemySprite, xPos * x, xPos * y + y, game.enemySprite.Width, game.enemySprite.Height, game, this, true);
+                        enemyList.Add(enemy);
+                    }
+                    else if (piece == "t")
+                    {
+                        epe = new EnemyPathEnd(xPos * x + x, xPos * y + y, game.wallSprite.Width, 1, true, game);
+                        enemyPathList.Add(epe);
                     }
 
                     // will add code later for all the other objects that are going to be shown
@@ -240,8 +257,8 @@ namespace FloorIsLava
             player.Update(gameTime);
             foreach (Gold g in gemsList)
                 g.CollisionCheck(player.PlayerRect);
-            //foreach (Enemy e in enemyList)
-            //    e.Update(gameTime, player);
+            foreach (Enemy e in enemyList)
+                e.Update(gameTime);
             KeyboardState keyBoardState = Keyboard.GetState(); //create a keyboard state variable to hold current keyboard state
             if (keyBoardState.IsKeyDown(Keys.P) && lastState.IsKeyDown(Keys.P))
             {
@@ -314,10 +331,15 @@ namespace FloorIsLava
             {
                 g.MoveDown(y);
             }
-            //foreach (Enemy e in enemyList)
-            //{
-            //    e.MoveDown(y);
-            //}
+            enemy.MyBullet.MoveDown(y);
+            foreach (EnemyPathEnd epe in enemyPathList)
+            {
+                epe.MoveDown(y);
+            }
+            foreach (Enemy e in enemyList)
+            {
+                e.MoveDown(y);
+            }
             player.MoveDown(y);
             player.CollisionsToCheck = colList;
         }
@@ -331,6 +353,10 @@ namespace FloorIsLava
             {
                 b.PostionChange(0, y);
                 colList.Add(b.rect);
+            }
+            foreach (Enemy e in enemyList)
+            {
+                e.MoveUp(y);
             }
             player.MoveUp(y);
             player.CollisionsToCheck = colList;

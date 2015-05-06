@@ -95,7 +95,7 @@ namespace FloorIsLava
             optionsTitle = Content.Load<Texture2D>("OptionsTitle");
             levelTitle = Content.Load<Texture2D>("levelSelectTitle");
             enemySprite = Content.Load<Texture2D>("enemy");
-            bulletSprite = Content.Load<Texture2D>("tempBullet");
+            bulletSprite = Content.Load<Texture2D>("bullet");
             gemSprite = Content.Load<Texture2D>("gem");
             lavaBack = Content.Load<Texture2D>("lavaBack");
             lavaFront = Content.Load<Texture2D>("lavaFront");
