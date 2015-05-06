@@ -64,6 +64,7 @@ namespace FloorIsLava
         //Update Method
         public void Update(GameTime gameTime)
         {
+            levels = save.ReadUnlock();
             KeyboardState keyState = Keyboard.GetState();
             
             if (keyState.IsKeyDown(Keys.Back) && lastState.IsKeyDown(Keys.Back))

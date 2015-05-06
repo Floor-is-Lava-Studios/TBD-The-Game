@@ -16,7 +16,7 @@ namespace FloorIsLava
     class SaveInfo
     {
         //attributes
-        private Dictionary<string, bool> levels;
+        private static Dictionary<string, bool> levelsUnlockedDict;
         private const string UNLOCKEDLEVELFILE = "UnlockedLevels.txt";
         
         // future plans: new game, load game (multiple save files)
@@ -24,7 +24,7 @@ namespace FloorIsLava
         //constructor
         public SaveInfo()
         {
-            levels = new Dictionary<string, bool>();
+            levelsUnlockedDict = new Dictionary<string, bool>();
         }
 
         // reading the unlocked file
@@ -32,7 +32,7 @@ namespace FloorIsLava
         {
             // reading in the file
             StreamReader input = null;
-            Dictionary<string, bool> levelsUnlockedDict = new Dictionary<string, bool>();
+            levelsUnlockedDict = new Dictionary<string, bool>();
             input = new StreamReader(UNLOCKEDLEVELFILE);
             string levelLine;
             while ((levelLine = input.ReadLine()) != null)
@@ -44,7 +44,7 @@ namespace FloorIsLava
                 
                 bool isUnlocked = false;
                 
-                if (levelBool == "true")
+                if (levelBool == "True")
                 {
                     isUnlocked = true;
                 }
@@ -61,10 +61,11 @@ namespace FloorIsLava
         {
             StreamWriter output = null;
             output = new StreamWriter(UNLOCKEDLEVELFILE);
+            string[] keys = levelsUnlockedDict.Keys.ToArray();
 
-            for(int x = 0;x < levels.Count; x++)
+            for(int x = 0; x < keys.Length; x++)
             {
-                output.WriteLine(levels.Keys + ":" + levels.Values);
+                output.WriteLine(keys[x] + ":" + levelsUnlockedDict[keys[x]]);
             }
 
             output.Close();
@@ -72,7 +73,7 @@ namespace FloorIsLava
         // after sucessfully finishing a level the next level will be unlocked
         public void LevelUnlocked(string lvlName) // get it so that the name of the current level identifies the next one
         {
-            levels[lvlName] = true;
+            levelsUnlockedDict[lvlName] = true;
         }
 
         public void UnlockNextLvl(Dictionary<string, bool> levelsUnlockedDict)
