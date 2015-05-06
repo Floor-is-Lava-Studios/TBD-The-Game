@@ -49,12 +49,22 @@ namespace MapCreator
                 this.Hide();
                 Map map = new Map(x, y, fileName.Text, this);
                 map.Show();
+                fileName.Text = "";
+                XLength.Text = "";
+                YHeight.Text = "";
             }
         }
 
         private void Info_Load(object sender, EventArgs e)
         {
             this.ActiveControl = fileName;
+        }
+
+        private void Clear_Click(object sender, EventArgs e)
+        {
+            fileName.Text = "";
+            XLength.Text = "";
+            YHeight.Text = "";
         }
     }
 }

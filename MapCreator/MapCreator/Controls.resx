@@ -122,15 +122,15 @@
 
 Use the arrow keys to move your cursor
 
-Press  w  to select wall
-Press  c  to select player
-Press  f  to select the goal
-Press  g  to select a gold piece
-Press  n  to select the eraser
-Press  u  to select an enemy moving up
-Press  r  to select an enemy moving right
-Press  s  to select an enemy that is stationary
-Press  o  to select obstacle
+Press  1  to select wall
+Press  2  to select player
+Press  3  to select the goal
+Press  4  to select a gold piece
+Press  5  to select an enemy moving up
+Press  6  to select an enemy moving right
+Press  7  to select an enemy that is stationary
+Press  8  to select obstacle
+Press  0  to select the eraser
 
 Once the piece is selected, press space to 
 add the pice on to the board</value>

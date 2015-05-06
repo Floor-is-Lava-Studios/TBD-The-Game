@@ -1,0 +1,29 @@
+level4
+0
+0
+14
+24
+w w w w w w w w w w w w w w 
+w g 0 0 0 0 0 0 0 0 0 0 0 w 
+w 0 0 0 0 0 0 0 0 0 0 0 0 w 
+w 0 0 0 w w w w 0 0 0 g g w 
+w 0 f 0 w 0 0 0 0 0 0 g g w 
+w w w w w 0 0 0 0 w w w w w 
+w 0 g g w 0 0 0 0 0 0 0 0 w 
+w 0 g g w 0 0 0 0 0 0 0 0 w 
+w 0 0 0 w w w w w w 0 0 0 w 
+w 0 0 0 0 0 0 0 0 0 w 0 0 w 
+w 0 0 0 0 0 0 0 0 0 0 w 0 w 
+w 0 0 0 0 w w w w 0 0 0 0 w 
+w 0 0 0 w 0 0 0 0 w 0 0 0 w 
+w 0 0 w 0 0 0 0 0 0 w w w w 
+w 0 0 0 0 0 0 0 0 0 0 0 0 w 
+w 0 0 0 0 0 0 0 0 0 0 0 0 w 
+w w w w w w 0 0 0 0 0 0 0 w 
+w 0 0 0 0 0 0 0 0 0 0 0 0 w 
+w 0 0 0 0 0 0 0 g 0 0 0 0 w 
+w 0 0 0 0 0 w w w 0 0 0 0 w 
+w 0 0 0 0 0 0 0 0 0 0 0 0 w 
+w 0 c 0 0 0 0 0 0 0 0 0 0 w 
+w w w w 0 0 0 0 0 0 0 0 0 w 
+w 0 0 0 0 0 0 0 0 0 0 0 0 w 

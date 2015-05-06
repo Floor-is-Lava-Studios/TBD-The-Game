@@ -67,9 +67,8 @@ namespace MapCreator
             InitializeComponent();
 
             // assign the x and y components
-            // add two to compensate for the default walls around the edges
-            x = xIn + 2;
-            y = yIn + 2;
+            x = xIn;
+            y = yIn;
 
             // initialize the arrays
             values = new char[x,y];
@@ -152,6 +151,7 @@ namespace MapCreator
             // draw default positions
             Draw();
             controls.Show();
+            controls.Focus();
         }
 
         private void Map_KeyPress(object sender, KeyPressEventArgs e)
@@ -164,56 +164,44 @@ namespace MapCreator
                 // change tile character to the pressed character
                 switch (e.KeyChar)
                 {
-                    case 'g':
-                    case 'G':
+                    case '4':
                         tile = 'g';
                         cursor.Image = GoldHalf;
                         break;
-                    case 'f':
-                    case 'F':
+                    case '3':
                         tile = 'f';
                         cursor.Image = GoalHalf;
                         break;
-                    case 'c':
-                    case 'C':
+                    case '2':
                         tile = 'c';
                         cursor.Image = PlayerHalf;
                         break;
-                    case 'u':
-                    case 'U':
+                    case '5':
                         tile = 'u';
                         cursor.Image = EnemyUpHalf;
                         break;
-                    case 'r':
-                    case 'R':
+                    case '6':
                         tile = 'r';
                         cursor.Image = EnemyRightHalf;
                         break;
-                    case 's':
-                    case 'S':
+                    case '7':
                         tile = 's';
                         cursor.Image = EnemyHalf;
                         break;
-                    case 'n':
-                    case 'N':
+                    case '0':
                         tile = 'n';
                         cursor.Image = EmptyHalf;
                         break;
-                    case 'w':
-                    case 'W':
+                    case '1':
                         tile = 'w';
                         cursor.Image = WallHalf;
                         break;
-                    case 'o':
-                    case 'O':
+                    case '8':
                         tile = 'o';
                         cursor.Image = ObstacleHalf;
                         break;
                 }
             }
-
-            // draw after changes made
-            Draw();
         }
 
         // check if a player object is on the map
@@ -264,15 +252,43 @@ namespace MapCreator
             {
                 case Keys.Up:
                     posY -= 1;
+                    for (int i = 0; i < x; i++)
+                    {
+                        for (int j = 0; j < y; j++)
+                        {
+                            images[i, j].Location = new Point(images[i, j].Location.X, images[i, j].Location.Y + MapImages.ImageHeight);
+                        }
+                    }
                     break;
                 case Keys.Down:
                     posY += 1;
+                    for (int i = 0; i < x; i++)
+                    {
+                        for (int j = 0; j < y; j++)
+                        {
+                            images[i, j].Location = new Point(images[i, j].Location.X, images[i, j].Location.Y - MapImages.ImageHeight);
+                        }
+                    }
                     break;
                 case Keys.Left:
                     posX -= 1;
+                    for (int i = 0; i < x; i++)
+                    {
+                        for (int j = 0; j < y; j++)
+                        {
+                            images[i, j].Location = new Point(images[i, j].Location.X + MapImages.ImageWidth, images[i, j].Location.Y);
+                        }
+                    }
                     break;
                 case Keys.Right:
                     posX += 1;
+                    for (int i = 0; i < x; i++)
+                    {
+                        for (int j = 0; j < y; j++)
+                        {
+                            images[i, j].Location = new Point(images[i, j].Location.X - MapImages.ImageWidth, images[i, j].Location.Y);
+                        }
+                    }
                     break;
                 case Keys.Space:
 
@@ -342,7 +358,7 @@ namespace MapCreator
             }
 
             // draw new positions
-            Draw();
+            // Draw();
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -397,6 +413,13 @@ namespace MapCreator
             // display controls form
             
             controls.Show();
+        }
+
+        private void newMapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            infoForm.Show();
+            controls.Close();
+            this.Hide();
         }
     }
 }
