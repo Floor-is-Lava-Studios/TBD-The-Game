@@ -24,7 +24,7 @@ namespace FloorIsLava
         //constructor
         public SaveInfo()
         {
-            levelsUnlockedDict = new Dictionary<string, bool>();
+            levelsUnlockedDict = ReadUnlock();
         }
 
         // reading the unlocked file
@@ -76,6 +76,7 @@ namespace FloorIsLava
             levelsUnlockedDict[lvlName] = true;
         }
 
+        //Unlock Next Level Method
         public void UnlockNextLvl(Dictionary<string, bool> levelsUnlockedDict)
         {
             string[] keys = levelsUnlockedDict.Keys.ToArray();
@@ -91,7 +92,30 @@ namespace FloorIsLava
 
             }
         }
-        // current level
+
+        //Reset Level Lock Method
+        public void ResetLevelLock()
+        {
+            StreamWriter writer = new StreamWriter(UNLOCKEDLEVELFILE);
+
+            string[] keys = levelsUnlockedDict.Keys.ToArray();
+            for (int i = 0; i < keys.Length; i++)
+            {
+                if (i == 0)
+                {
+                    levelsUnlockedDict[keys[i]] = true;
+                    writer.WriteLine(keys[i] + ":True");
+                }
+                else
+                {
+                    levelsUnlockedDict[keys[i]] = false;
+                    writer.WriteLine(keys[i] + ":False");
+                }
+            }
+
+            writer.Close();
+        }
+        
 
         
     }
