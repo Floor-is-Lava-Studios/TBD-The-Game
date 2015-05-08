@@ -339,7 +339,10 @@ namespace FloorIsLava
             {
                 g.MoveDown(y);
             }
-            enemy.MyBullet.MoveDown(y);
+            if (enemy != null)
+            {
+                enemy.MyBullet.MoveDown(y);
+            }
             foreach (EnemyPathEnd epe in enemyPathList)
             {
                 epe.MoveDown(y);
