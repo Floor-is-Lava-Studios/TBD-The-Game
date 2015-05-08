@@ -43,6 +43,7 @@ namespace FloorIsLava
         {
             if ((gem.Intersects(rectangle)) && (isVisible == true))
             {
+                gameScreen.Score = 10;
                 numberOfGems++;
                 isVisible = false;
             }

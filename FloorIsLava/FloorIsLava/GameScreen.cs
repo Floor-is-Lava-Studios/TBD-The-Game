@@ -41,6 +41,8 @@ namespace FloorIsLava
         private int highScore;
         private double bestTime;
 
+        private int score;
+
         private int gameWidth;
         private int gameHeight;
 
@@ -57,6 +59,11 @@ namespace FloorIsLava
         {
             get { return grappleableObjectList; }
             set { grappleableObjectList = value; }
+        }
+
+        public int Score
+        {
+            set { score += value; }
         }
         #endregion Properties
 
@@ -255,7 +262,7 @@ namespace FloorIsLava
             endGoal.isColliding(player.PlayerRect);
             GameTime gameTime = gt; // takes gametime object and assigns it to gametime variable
             player.Update(gameTime);
-            foreach (Gold g in gemsList)
+            foreach (Gold g in gemsList) // getting the score
                 g.CollisionCheck(player.PlayerRect);
             foreach (Enemy e in enemyList)
                 e.Update(gameTime);
@@ -311,7 +318,8 @@ namespace FloorIsLava
                 e.Draw(spriteBatch);
             spriteBatch.DrawString(font1, "Level Name: " + levelName, new Vector2(100f, 70f), Color.Red);
             spriteBatch.DrawString(font1, "High Score: " + highScore, new Vector2(100f, 90f), Color.Red);
-            spriteBatch.DrawString(font1, "Best Time: " + bestTime, new Vector2(100f, 110f), Color.Red);
+            //spriteBatch.DrawString(font1, "Best Time: " + bestTime, new Vector2(100f, 110f), Color.Red);
+            spriteBatch.DrawString(font1, "Score: " + score, new Vector2(100f, 110f), Color.Red);
             spriteBatch.Draw(game.lavaFront, lavaRect, Color.White);
         }
         #endregion Draw
