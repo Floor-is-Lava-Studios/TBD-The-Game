@@ -182,6 +182,18 @@ namespace FloorIsLava
                         hasJumped = false;
                     }
                     velocity.Y = 0;
+
+                    foreach (EnemyPathEnd epe in gameScreen.enemyPathList)
+                    {
+                        if ((position.Y == epe.enemyPathRect.Y + 10) && (e.top == true))
+                        {
+                            e.top = false;
+                        }
+                        else if ((position.Y == epe.enemyPathRect.Y - 10) && (e.top == false))
+                        {
+                            e.top = true;
+                        }
+                    }
                 }
             }
         }
