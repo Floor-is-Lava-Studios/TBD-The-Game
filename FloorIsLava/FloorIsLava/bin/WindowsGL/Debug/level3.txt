@@ -4,26 +4,27 @@ level3
 14
 24
 w w w w w w w w w w w w w w 
-w 0 0 0 0 0 0 0 0 0 0 0 0 w 
+w 0 0 0 0 0 t 0 0 0 0 0 0 w 
 w g g 0 0 0 0 0 0 0 0 0 0 w 
 w g g 0 0 0 0 0 0 0 0 f 0 w 
-w w w w 0 0 0 0 0 0 w w w w 
+w w w w 0 0 e 0 0 0 w w w w 
 w g g 0 w w 0 0 w w 0 0 0 w 
 w g g 0 0 0 0 0 0 0 0 0 0 w 
-w 0 0 0 0 0 0 0 0 0 0 0 0 w 
+w 0 0 0 0 0 t 0 0 0 0 0 0 w 
 w 0 0 0 0 0 w w 0 0 0 0 0 w 
 w 0 0 0 0 0 0 0 0 0 0 0 0 w 
 w 0 0 0 0 0 0 0 0 0 0 0 0 w 
 w g g w w w 0 0 w w w g g w 
 w w w 0 0 0 0 0 0 0 0 w w w 
+w 0 0 0 0 0 0 0 0 0 0 0 t w 
 w 0 0 0 0 0 0 0 0 0 0 0 0 w 
-w 0 0 0 0 0 0 0 0 0 0 0 0 w 
-w 0 0 w w 0 g g 0 w w 0 0 w 
+w 0 0 w w 0 g g 0 w w 0 e w 
 w 0 0 0 0 0 w w 0 0 0 0 0 w 
 w 0 0 0 0 0 0 0 0 0 0 0 0 w 
-w 0 0 0 0 0 0 0 0 0 0 0 0 w 
+w 0 0 0 0 0 0 0 0 0 0 0 t w 
 w w w 0 0 0 0 0 0 0 0 w w w 
 w 0 0 0 w 0 0 0 0 w 0 0 0 w 
 w 0 0 0 0 0 c 0 0 0 0 0 0 w 
 w 0 0 0 0 0 w w 0 0 0 0 0 w 
-w 0 0 0 0 0 0 0 0 0 0 0 0 w 
+w 0 0 0 0 0 0 0 0 0 0 0 0 w
+ 
