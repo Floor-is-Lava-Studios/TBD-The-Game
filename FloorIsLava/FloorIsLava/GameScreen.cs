@@ -316,7 +316,7 @@ namespace FloorIsLava
                 b.Draw(spriteBatch);
             foreach (Enemy e in enemyList)
                 e.Draw(spriteBatch);
-            spriteBatch.DrawString(font1, "Level Name: " + levelName, new Vector2(100f, 70f), Color.Red);
+            //spriteBatch.DrawString(font1, "Level Name: " + levelName, new Vector2(100f, 70f), Color.Red);
             spriteBatch.DrawString(font1, "High Score: " + highScore, new Vector2(100f, 90f), Color.Red);
             //spriteBatch.DrawString(font1, "Best Time: " + bestTime, new Vector2(100f, 110f), Color.Red);
             spriteBatch.DrawString(font1, "Score: " + score, new Vector2(100f, 110f), Color.Red);
@@ -339,7 +339,7 @@ namespace FloorIsLava
             {
                 g.MoveDown(y);
             }
-            if (enemy != null)
+            if(enemy != null)
             {
                 enemy.MyBullet.MoveDown(y);
             }

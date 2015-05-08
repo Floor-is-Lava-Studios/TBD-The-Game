@@ -18,6 +18,9 @@ namespace FloorIsLava
         //attributes
         private static Dictionary<string, bool> levelsUnlockedDict;
         private const string UNLOCKEDLEVELFILE = "UnlockedLevels.txt";
+
+        private const string HIGHSCORE = "HighScores.txt";
+        private static Dictionary<string, int> highScoreDict;
         
         // future plans: new game, load game (multiple save files)
 
@@ -25,6 +28,7 @@ namespace FloorIsLava
         public SaveInfo()
         {
             levelsUnlockedDict = ReadUnlock();
+            highScoreDict = ReadHighScore();
         }
 
         // reading the unlocked file
@@ -116,7 +120,48 @@ namespace FloorIsLava
             writer.Close();
         }
         
+        // HighScore File reader
+        public Dictionary<string,int> ReadHighScore()
+        {
+            StreamReader input = null;
+            input = new StreamReader(HIGHSCORE);
+            highScoreDict = new Dictionary<string, int>();
+            string levelLine;
+            string scoreTemp;
+            int score;
+            while ((levelLine = input.ReadLine()) != null)
+            {
+                scoreTemp = input.ReadLine();
 
+                int.TryParse(scoreTemp, out score);
+
+                highScoreDict.Add(levelLine, score);
+            }
+            input.Close();
+            return highScoreDict;
+        }
+
+        public void UpdateHighScore()
+        {
+            StreamWriter output = null;
+            output = new StreamWriter(HIGHSCORE);
+            string[] keys = highScoreDict.Keys.ToArray();
+
+            for (int x = 0; x < keys.Length; x++)
+            {
+                output.WriteLine(keys[x]);
+                output.WriteLine(highScoreDict[keys[x]]);
+            }
+
+            output.Close();
+        }
+        public void newHighScore(string lvlName, int score) // get it so that the name of the current level identifies the next one
+        {
+            if(highScoreDict[lvlName] < score)
+            {
+                highScoreDict[lvlName] = score;
+            }
+        }
         
     }
 }
