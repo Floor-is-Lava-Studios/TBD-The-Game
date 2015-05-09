@@ -77,13 +77,15 @@ namespace FloorIsLava
 
         #region CollisionCheck
         //Method for checking collision
-        public void CollisionCheck(Rectangle rect)
+        public bool CollisionCheck(Rectangle rect)
         {
             //Checking for collision, making bullet dissapear if it intersects
             if (bullet.Intersects(rect))
             {
                 isVisible = false;
+                return true;
             }
+            return false;
         }
         #endregion CollisionCheck
 

@@ -21,7 +21,7 @@ namespace FloorIsLava
     /// <summary>
     /// The object that the player controls.
     /// </summary>
-    public class Player                    // ****NOTE: IS NOT CURRENTLY INHERITING FROM ANYTHING. RUNS INDEPENDENTLY. THIS WILL CHANGE IN A FUTURE UPDATE****
+    public class Player                    // ****NOTE: IS NOT CURRENTLY INHERITING FROM ANYTHING. RUNS INDEPENDENTLY. THIS WILL CHANGE IN A FUTURE \****
     {
         #region Constants
         // constants
@@ -62,6 +62,8 @@ namespace FloorIsLava
         int yPostion;
         private GameScreen gameScreen;
         bool isGrappled;
+        private bool isStunned;
+        private int timeSinceStun;
 
         //Kasey added attribute
         private Enemy enemy;
@@ -96,8 +98,10 @@ namespace FloorIsLava
             gameScreen = gS;
             grappleEndpoint = new Vector2(playerRect.X, playerRect.Y);
             isGrappled = false;
+            isStunned = false;
+            timeSinceStun = 0;
 
-            //Kasey added this
+            //Kasey added this // Alex added this... just the part of the comment mind you nothing else
             this.enemy = enemy;
             this.platform = platform;
         }
@@ -210,7 +214,7 @@ namespace FloorIsLava
                 jumpNumber = 1;
                 isGrappled = false;                
             }
-            if (!hasJumped && newPress)     // code that executes when a jump is performed
+            if (!hasJumped && newPress && !isStunned)     // code that executes when a jump is performed
             {                
                 jumpStartPosition = position;
                 velocity.Y = -JUMP_STRENGTH;
@@ -230,7 +234,7 @@ namespace FloorIsLava
         public void Update(GameTime gameTime)
         {
             KeyboardState newState = Keyboard.GetState();   // gets keyboard state
-            if (newState.IsKeyDown(Keys.LeftShift) && oldState.IsKeyUp(Keys.LeftShift) || newState.IsKeyDown(Keys.RightShift) && oldState.IsKeyUp(Keys.RightShift) || newState.IsKeyDown(Keys.E) && oldState.IsKeyUp(Keys.E))
+            if (!isStunned && (newState.IsKeyDown(Keys.LeftShift) && oldState.IsKeyUp(Keys.LeftShift) || newState.IsKeyDown(Keys.RightShift) && oldState.IsKeyUp(Keys.RightShift) || newState.IsKeyDown(Keys.E) && oldState.IsKeyUp(Keys.E)))
             {
                 this.FireGrapple();
             }                         
@@ -282,44 +286,56 @@ namespace FloorIsLava
 
             if(!isGrappled)
             {
-                switch (currentState)                           // master switch statement for the various states
+                if (!isStunned)
                 {
-                    case State.Still:
-                        {
-                            break;
-                        }
-                    case State.Walking:
-                        {
-                            if (direction == 1)
+                    switch (currentState)                           // master switch statement for the various states
+                    {
+                        case State.Still:
                             {
-                                if (velocity.X < MAX_SPEED)
+                                break;
+                            }
+                        case State.Walking:
+                            {
+                                if (direction == 1)
                                 {
-                                    velocity += RIGHT * ACCELERATION;
+                                    if (velocity.X < MAX_SPEED)
+                                    {
+                                        velocity += RIGHT * ACCELERATION;
+                                    }
                                 }
-                            }
-                            else if (direction == -1)
-                            {
-                                if (velocity.X > -1 * MAX_SPEED)
+                                else if (direction == -1)
                                 {
-                                    velocity += LEFT * ACCELERATION;
+                                    if (velocity.X > -1 * MAX_SPEED)
+                                    {
+                                        velocity += LEFT * ACCELERATION;
+                                    }
                                 }
+
+                                break;
                             }
-
-                            break;
-                        }
-                    case State.Stopping:
-                        {
-                            if (velocity.X > 0)
-                                velocity -= RIGHT * ACCELERATION;
-                            else if (velocity.X < 0)
-                                velocity -= LEFT * ACCELERATION;
-
-                            if (velocity.X == 0)
+                        case State.Stopping:
                             {
-                                currentState = State.Still;
+                                if (velocity.X > 0)
+                                    velocity -= RIGHT * ACCELERATION;
+                                else if (velocity.X < 0)
+                                    velocity -= LEFT * ACCELERATION;
+
+                                if (velocity.X == 0)
+                                {
+                                    currentState = State.Still;
+                                }
+                                break;
                             }
-                            break;
-                        }
+                    }
+                    
+                }
+                else if (timeSinceStun >= 1500)
+                {
+                    isStunned = false;
+                }
+                else
+                {
+                    timeSinceStun += gameTime.ElapsedGameTime.Milliseconds;
                 }
                 velocity.Y -= GRAVITY;
             }
@@ -376,6 +392,14 @@ namespace FloorIsLava
                     }
                 }
             }
+        }
+
+        public void Stun()
+        {
+            velocity.X = 0;
+            isStunned = true;
+            timeSinceStun = 0;
+            isGrappled = false;
         }
         #endregion Methods
 

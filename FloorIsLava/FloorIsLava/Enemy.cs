@@ -100,7 +100,10 @@ namespace FloorIsLava
             {
                 myBullet.CollisionCheck(p.rect);
             }
-            myBullet.CollisionCheck(gameScreen.player.PlayerRect);
+            if (myBullet.CollisionCheck(gameScreen.player.PlayerRect))
+            {
+                gameScreen.player.Stun();
+            }
 
             foreach (EnemyPathEnd epe in gameScreen.enemyPathList)
             {

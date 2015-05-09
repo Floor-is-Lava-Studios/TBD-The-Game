@@ -378,7 +378,8 @@ namespace FloorIsLava
         {
             GameTime gameTime = gt;
             timeSinceLastMove += gameTime.ElapsedGameTime.Milliseconds;
-            if(timeSinceLastMove >= 15)
+
+            if(timeSinceLastMove >= 5)
             {
                 timeSinceLastMove = 0;
                 this.MoveDown(1);
