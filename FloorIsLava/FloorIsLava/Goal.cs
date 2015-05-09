@@ -53,8 +53,8 @@ namespace FloorIsLava
         }
 
         public void isColliding(Rectangle pos)
-        {
-            if ((pos.X > xPostion && pos.X < xPostion + width) && (pos.Y > yPostion && pos.Y < yPostion + height))
+        {                                                                           //
+            if ((pos.X > xPostion && pos.X < xPostion + width/2) && (pos.Y > yPostion - height && pos.Y < yPostion + height))
             {
                 
                 save.UnlockNextLvl(save.ReadUnlock());

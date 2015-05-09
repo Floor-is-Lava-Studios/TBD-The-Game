@@ -123,6 +123,14 @@ namespace FloorIsLava
                 playerRect = value;
             }
         }
+        public int Height
+        {
+            get { return height; }
+        }
+        public int Width
+        {
+            get { return width; }
+        }
         #endregion Properties
 
         #region Methods
