@@ -50,6 +50,7 @@
     <Compile Include="LevelScreen.cs" />
     <Compile Include="MoveableGameObject.cs" />
     <Compile Include="MoveablePlatform.cs" />
+    <Compile Include="Music.cs" />
     <Compile Include="OptionScreen.cs" />
     <Compile Include="PauseScreen.cs" />
     <Compile Include="Platform.cs" />
@@ -77,9 +78,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\backgroundMusic.mp3">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\bullet.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -108,6 +106,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />
+    <Content Include="OpenAL32.dll" />
     <Content Include="SDL.dll" />
   </ItemGroup>
   <ItemGroup>
@@ -275,6 +274,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\level5.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\backgroundMusic.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

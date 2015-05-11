@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 using LineBatch;
 #endregion
 
@@ -36,7 +36,7 @@ namespace FloorIsLava
 
         private GameState gameState;
 
-        private Song backgroundMusic;
+        private SoundEffect backgroundMusic;
 
         public Game1()
             : base()
@@ -105,7 +105,11 @@ namespace FloorIsLava
             lavaBack = Content.Load<Texture2D>("lavaBack");
             lavaFront = Content.Load<Texture2D>("lavaFront");
 
-            //backgroundMusic = Content.Load<Song>("backgroundMusic");
+            Music.backgroundMusic = Content.Load<SoundEffect>("backgroundMusic");
+
+            backgroundMusic = Music.backgroundMusic;
+
+            backgroundMusic.Play();
 
             // Anna Stuff
             picHeight = 0;
