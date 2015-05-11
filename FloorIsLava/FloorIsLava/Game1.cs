@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Media;
 using LineBatch;
 #endregion
 
@@ -34,6 +35,8 @@ namespace FloorIsLava
         public int picWidth;
 
         private GameState gameState;
+
+        private Song backgroundMusic;
 
         public Game1()
             : base()
@@ -101,8 +104,8 @@ namespace FloorIsLava
             gemSprite = Content.Load<Texture2D>("gem");
             lavaBack = Content.Load<Texture2D>("lavaBack");
             lavaFront = Content.Load<Texture2D>("lavaFront");
-            
 
+            //backgroundMusic = Content.Load<Song>("backgroundMusic");
 
             // Anna Stuff
             picHeight = 0;
