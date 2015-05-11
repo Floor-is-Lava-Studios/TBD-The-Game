@@ -64,10 +64,18 @@ namespace FloorIsLava
         bool isGrappled;
         private bool isStunned;
         private int timeSinceStun;
+        private int frame;
 
         //Kasey added attributes
         private Enemy enemy;
         private Platform platform;
+
+        // images
+        Texture2D back1;
+        Texture2D back2;
+        Texture2D forward1;
+        Texture2D forward2;
+        int count;
         #endregion Attributes
 
         #region Constructor
@@ -104,6 +112,14 @@ namespace FloorIsLava
             //Kasey added this // Alex added this... just the part of the comment mind you nothing else
             this.enemy = enemy;
             this.platform = platform;
+
+            //images
+            back1 = game.Content.Load<Texture2D>("playerBack2");
+            back2 = game.Content.Load<Texture2D>("playerBack3");
+            forward1 = game.Content.Load<Texture2D>("playerForward2");
+            forward2 = game.Content.Load<Texture2D>("playerForward3");
+            frame = 0;
+            count = 0;
         }
         #endregion Constructor
 
@@ -249,11 +265,13 @@ namespace FloorIsLava
             {
                 currentState = State.Walking;
                 direction = -1;
+                frame++;
             }
             if (newState.IsKeyDown(Keys.D) && newState.IsKeyUp(Keys.A) || newState.IsKeyDown(Keys.Right) && newState.IsKeyUp(Keys.Left))
             {
                 currentState = State.Walking;
                 direction = 1;
+                frame++;
             }
             if (newState.IsKeyDown(Keys.A) && newState.IsKeyDown(Keys.D))
             {
@@ -355,13 +373,42 @@ namespace FloorIsLava
         /// <param name="spriteBatch"></param>
         public void Draw(SpriteBatch spriteBatch)
         {
+            if(frame > 3)
+            {
+                frame = 0;
+            }
             if(direction == 1)
             {
-                spriteBatch.Draw(playerTexture, playerRect, Color.White);
+                if(frame == 0 || frame == 2)
+                {
+                    spriteBatch.Draw(playerTexture, playerRect, Color.White);
+                }
+                else if(frame == 1)
+                {
+                    spriteBatch.Draw(forward1, playerRect, Color.White);
+                }
+                else if (frame == 3)
+                {
+                    spriteBatch.Draw(forward2, playerRect, Color.White);
+                    frame = 0;
+                }
+                
             }
             else
             {
-                spriteBatch.Draw(backwards, playerRect, Color.White);
+                if(frame == 0 || frame == 2)
+                {
+                    spriteBatch.Draw(backwards, playerRect, Color.White);
+                }
+                else if (frame == 1)
+                {
+                    spriteBatch.Draw(back1, playerRect, Color.White);
+                }
+                else if (frame == 3)
+                {
+                    spriteBatch.Draw(back2, playerRect, Color.White);
+                    frame = 0;
+                }
             }
             if (isGrappled)
             {
