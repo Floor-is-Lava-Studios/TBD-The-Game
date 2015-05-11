@@ -303,5 +303,9 @@ namespace FloorIsLava
             base.Draw(gameTime);
         }
 
+        public bool MusicPlaying
+        {
+            get { return playMusic; }
+        }
     }
 }

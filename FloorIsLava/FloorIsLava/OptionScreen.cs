@@ -77,6 +77,14 @@ namespace FloorIsLava
                 if (count == 0)
                 {
                     //toggle fullscreen code
+                    if (game.playMusic == true)
+                    {
+                        game.playMusic = false;
+                    }
+                    else
+                    {
+                        game.playMusic = true;
+                    }
                 }
                 if (count == 1)
                 {
@@ -101,11 +109,26 @@ namespace FloorIsLava
             spriteBatch.Draw(back, new Rectangle(50, 60, 150, 80), Color.White);
             if (count == 0)
             {
-                spriteBatch.DrawString(font1, "FullScreen: On", new Vector2(game.screenWidth / 2 - 100, 400f), Color.Crimson);
+                if (game.playMusic == true)
+                {
+                    spriteBatch.DrawString(font1, "Sound: On", new Vector2(game.screenWidth / 2 - 100, 400f), Color.Crimson);
+                }
+                if (game.playMusic == false)
+                {
+                    spriteBatch.DrawString(font1, "Sound: OFF", new Vector2(game.screenWidth / 2 - 100, 400f), Color.Crimson);
+                }
             }
             else
             {
-                spriteBatch.DrawString(font1, "FullScreen: On", new Vector2(game.screenWidth / 2 - 100, 400f), Color.White);
+                if (game.playMusic == true)
+                {
+                    spriteBatch.DrawString(font1, "Sound: On", new Vector2(game.screenWidth / 2 - 100, 400f), Color.White);
+                }
+                if (game.playMusic == false)
+                {
+                    spriteBatch.DrawString(font1, "Sound: OFF", new Vector2(game.screenWidth / 2 - 100, 400f), Color.White);
+                }
+               
             }
             if (count == 1)
             {
