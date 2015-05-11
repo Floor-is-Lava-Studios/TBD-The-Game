@@ -62,7 +62,7 @@ namespace FloorIsLava
         //Update method for the bullet
         public void Update(GameTime gameTime)
         {
-            timeTillFire--; //decrementing timeTillFire
+            timeTillFire--;
 
             if (enemy.EnemyRect.X > game.GraphicsDevice.Viewport.Width / 2)
             {
@@ -77,13 +77,15 @@ namespace FloorIsLava
 
         #region CollisionCheck
         //Method for checking collision
-        public void CollisionCheck(Rectangle rect)
+        public bool CollisionCheck(Rectangle rect)
         {
             //Checking for collision, making bullet dissapear if it intersects
             if (bullet.Intersects(rect))
             {
                 isVisible = false;
+                return true;
             }
+            return false;
         }
         #endregion CollisionCheck
 
@@ -91,16 +93,13 @@ namespace FloorIsLava
         //Draw method for the bullet
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (Enemy e in gameScreen.enemyList)
+            if ((isVisible == true) && (enemy.EnemyRect.X > game.GraphicsDevice.Viewport.Width / 2))
             {
-                if ((isVisible == true) && (enemy.EnemyRect.X > game.GraphicsDevice.Viewport.Width / 2))
-                {
-                    spriteBatch.Draw(image, bullet, Color.White);
-                }
-                else if ((isVisible == true) && (enemy.EnemyRect.X < game.GraphicsDevice.Viewport.Width / 2))   //If enemy is on left hand side of the screen, flip bullet image
-                {
-                    spriteBatch.Draw(image, bullet, null, Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
-                }
+                spriteBatch.Draw(image, bullet, Color.White);
+            }
+            else if ((isVisible == true) && (enemy.EnemyRect.X < game.GraphicsDevice.Viewport.Width / 2))   //If enemy is on left hand side of the screen, flip bullet image
+            {
+                spriteBatch.Draw(image, bullet, null, Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
             }
         }
         #endregion Draw

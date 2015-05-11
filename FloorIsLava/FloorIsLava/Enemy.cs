@@ -32,6 +32,7 @@ namespace FloorIsLava
         public bool top;
         private int width;
         private int height;
+        private List<Bullet> bulletList;
         #endregion Attributes
 
         #region Properties
@@ -60,7 +61,7 @@ namespace FloorIsLava
 
         #region Constructor
         //Constructor
-        public Enemy(Texture2D enemyImage, int x, int y, int width, int height, Game1 game, GameScreen gameScreen, bool top)
+        public Enemy(Texture2D enemyImage, int x, int y, int width, int height, Game1 game, GameScreen gameScreen, bool top, List<Bullet> bulletList)
         {
             enemyRect = new Rectangle(x, y, width, height);
             this.enemyImage = enemyImage;
@@ -71,6 +72,7 @@ namespace FloorIsLava
             this.width = width;
             this.height = height;
             this.top = top;
+            this.bulletList = bulletList;
             myBullet = new Bullet(game.bulletSprite, x, y, game.bulletSprite.Width, game.bulletSprite.Height, this, game, gameScreen);
             enemyPathEnd = gameScreen.epe;
         }
@@ -86,22 +88,29 @@ namespace FloorIsLava
             //Updating bullet
             myBullet.Update(gameTime);
 
-            //Setting timeTillFire to 300 again when it reaches 0
-            if ((myBullet.TimeTillFire == 0) && (myBullet.isVisible == false))
+            foreach (Bullet b in bulletList)
             {
-                myBullet.isVisible = true;
-                myBullet.bullet.X = enemyRect.X + enemyRect.Height / 3;
-                myBullet.bullet.Y = enemyRect.Y + enemyRect.Height / 3;
-                myBullet.TimeTillFire = 200;
+                //Setting timeTillFire to 300 again when it reaches 0
+                if ((b.TimeTillFire == 0) && (b.isVisible == false))
+                {
+                    b.isVisible = true;
+                    b.bullet.X = enemyRect.X + enemyRect.Height / 3;
+                    b.bullet.Y = enemyRect.Y + enemyRect.Height / 3;
+                    b.TimeTillFire = 200;
+                }
+
+                //Checking for collision with the bullet
+                foreach (Platform p in gameScreen.platformList)
+                {
+                    b.CollisionCheck(p.rect);
+                }
+                if (b.CollisionCheck(gameScreen.player.PlayerRect))
+                {
+                    gameScreen.player.Stun();
+                }
             }
 
-            //Checking for collision with the bullet
-            foreach (Platform p in gameScreen.platformList)
-            {
-                myBullet.CollisionCheck(p.rect);
-            }
-            myBullet.CollisionCheck(gameScreen.player.PlayerRect);
-
+            //If top is false and enemy intersects epe, make top true. If top is true and enemy intersects epe, make top false.
             foreach (EnemyPathEnd epe in gameScreen.enemyPathList)
             {
                 if ((top == false) && (enemyRect.Intersects(epe.enemyPathRect)))
@@ -130,9 +139,16 @@ namespace FloorIsLava
         //Draw method
         public void Draw(SpriteBatch spriteBatch)
         {
-            myBullet.Draw(spriteBatch);
+            //Drawing every bullet in bulletList to screen
+            foreach (Bullet b in bulletList)
+            {
+                b.Draw(spriteBatch);
+            }
+
+            //Drawing every enemy in enemyList to screen
             foreach (Enemy e in gameScreen.enemyList)
             {
+                //Checking where enemy is to be drawn and drawing the sprite accordingly
                 if (enemyRect.X > game.GraphicsDevice.Viewport.Width / 2)
                 {
                     spriteBatch.Draw(enemyImage, enemyRect, Color.White);

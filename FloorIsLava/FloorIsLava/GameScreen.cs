@@ -52,6 +52,7 @@ namespace FloorIsLava
         public List<EnemyPathEnd> enemyPathList;
         private Rectangle lavaRect;
         public List<Gold> gemsList;
+        public List<Bullet> bulletList;    //Bullet list to check each bullet that is created
         #endregion Attributes
 
         #region Properties
@@ -82,6 +83,7 @@ namespace FloorIsLava
             enemyPathList = new List<EnemyPathEnd>();
             colList = new List<Rectangle>();
             gemsList = new List<Gold>();
+            bulletList = new List<Bullet>();
             platformList = new List<Platform>();
             // reading in the file
             StreamReader input = null;
@@ -135,8 +137,9 @@ namespace FloorIsLava
                     }
                     else if (piece == "e")
                     {
-                        enemy = new Enemy(game.enemySprite, xPos * x, xPos * y + y, game.enemySprite.Width, game.enemySprite.Height, game, this, true);
+                        enemy = new Enemy(game.enemySprite, xPos * x, xPos * y + y, game.enemySprite.Width, game.enemySprite.Height, game, this, true, bulletList);
                         enemyList.Add(enemy);
+                        bulletList.Add(enemy.MyBullet);
                     }
                     else if (piece == "t")
                     {
@@ -168,6 +171,7 @@ namespace FloorIsLava
             colList = new List<Rectangle>();
             gemsList = new List<Gold>();
             enemyPathList = new List<EnemyPathEnd>();
+            bulletList = new List<Bullet>();
             platformList = new List<Platform>();
             // reading in the file
             StreamReader input = null;
@@ -221,8 +225,9 @@ namespace FloorIsLava
                     }
                     else if (piece == "e")
                     {
-                        enemy = new Enemy(game.enemySprite, xPos * x, xPos * y + y, game.enemySprite.Width, game.enemySprite.Height, game, this, true);
+                        enemy = new Enemy(game.enemySprite, xPos * x, xPos * y + y, game.enemySprite.Width, game.enemySprite.Height, game, this, true, bulletList);
                         enemyList.Add(enemy);
+                        bulletList.Add(enemy.MyBullet);
                     }
                     else if (piece == "t")
                     {
@@ -342,7 +347,10 @@ namespace FloorIsLava
             }
             if(enemy != null)
             {
-                enemy.MyBullet.MoveDown(y);
+                foreach (Bullet b in bulletList)
+                {
+                    b.MoveDown(y);
+                }
             }
             foreach (EnemyPathEnd epe in enemyPathList)
             {
