@@ -37,11 +37,12 @@ namespace FloorIsLava
 
         private GameState gameState;
 
-        private SoundEffect backgroundMusic;
+        private SoundEffectInstance backgroundMusic;
 
         public Stopwatch sw = new Stopwatch();
 
         public bool playMusic;
+        public bool startMusic;
 
         public Game1()
             : base()
@@ -70,8 +71,12 @@ namespace FloorIsLava
             screenHeight = GraphicsDevice.DisplayMode.Height;
 
             playMusic = true;
+            startMusic = false;
 
-            sw.Start();
+            if (playMusic)
+            {
+                sw.Start();
+            }
 
             base.Initialize();
         }
@@ -116,9 +121,14 @@ namespace FloorIsLava
 
             Music.backgroundMusic = Content.Load<SoundEffect>("backgroundMusic");
 
-            backgroundMusic = Music.backgroundMusic;
+            backgroundMusic = Music.backgroundMusic.CreateInstance();
 
-            backgroundMusic.Play((float)0.1,(float)0,(float)0);
+            backgroundMusic.Volume = (float).1;
+
+            if (playMusic)
+            {
+                backgroundMusic.Play();
+            }
 
             // Anna Stuff
             picHeight = 0;
@@ -148,15 +158,22 @@ namespace FloorIsLava
                 Exit();
 
 
-            if(!playMusic)
+            if (!playMusic)
             {
+                backgroundMusic.Stop();
+            }
+
+            if (sw.Elapsed > Music.backgroundMusic.Duration && playMusic)
+            {
+                backgroundMusic.Play();
+                sw.Restart();
                 backgroundMusic.Dispose();
             }
 
-            if(sw.Elapsed > backgroundMusic.Duration && playMusic)
+            if (startMusic)
             {
-                backgroundMusic.Play((float)0.1, (float)0, (float)0);
-                sw.Restart();
+                backgroundMusic.Play();
+                startMusic = false;
             }
 
 
