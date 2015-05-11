@@ -1,6 +1,7 @@
 ﻿#region Using Statements
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -38,6 +39,8 @@ namespace FloorIsLava
 
         private SoundEffect backgroundMusic;
 
+        public Stopwatch sw = new Stopwatch();
+
         public Game1()
             : base()
         {
@@ -63,6 +66,8 @@ namespace FloorIsLava
 
             screenWidth = GraphicsDevice.DisplayMode.Width;
             screenHeight = GraphicsDevice.DisplayMode.Height;
+
+            sw.Start();
 
             base.Initialize();
         }
@@ -109,7 +114,7 @@ namespace FloorIsLava
 
             backgroundMusic = Music.backgroundMusic;
 
-            backgroundMusic.Play();
+            backgroundMusic.Play((float)0.1,(float)0,(float)0);
 
             // Anna Stuff
             picHeight = 0;
@@ -137,6 +142,13 @@ namespace FloorIsLava
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+
+            if(sw.Elapsed > backgroundMusic.Duration)
+            {
+                backgroundMusic.Play((float)0.1, (float)0, (float)0);
+                sw.Restart();
+            }
 
             // TODO: Add your update logic here
             switch (gameState.CurrentScreen)
