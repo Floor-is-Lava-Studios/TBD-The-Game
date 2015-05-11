@@ -162,6 +162,22 @@ namespace FloorIsLava
                 highScoreDict[lvlName] = score;
             }
         }
-        
+        public void ResetHighScore()
+        {
+            StreamWriter output = new StreamWriter(HIGHSCORE);
+            string[] key = highScoreDict.Keys.ToArray();
+            for (int x = 0; x < key.Length; x++)
+            {
+                output.WriteLine(key[x]);
+                output.WriteLine("0");
+            }
+
+            output.Close();
+        }
+
+        public int GetScore(string level)
+        {
+            return highScoreDict[level];
+        }
     }
 }

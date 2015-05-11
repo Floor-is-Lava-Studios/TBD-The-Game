@@ -30,12 +30,14 @@ namespace FloorIsLava
         public Gold gem;
         private List<GameObject> drawList;
         private Goal endGoal;
-        private string levelName = "test2.txt";
+        private string levelName = "level1.txt";
         private List<GameObject> grappleableObjectList;
         private Enemy enemy;
         public EnemyPathEnd epe;
         public List<Enemy> enemyList;
         private int timeSinceLastMove;
+
+        private SaveInfo save;
 
         // these are for a later update
         private string level;
@@ -76,6 +78,7 @@ namespace FloorIsLava
         public GameScreen(Game1 game)
         {
             this.game = game;
+            save = new SaveInfo();
             gameState = new GameState(game); //creates new gameState object and assigns it to game screen
             font1 = game.Content.Load<SpriteFont>("Font1"); //loads Font1
 
@@ -168,6 +171,7 @@ namespace FloorIsLava
         public GameScreen(Game1 game, string lvlfile)
         {
             this.game = game;
+            save = new SaveInfo();
             gameState = new GameState(game); //creates new gameState object and assigns it to game screen
             font1 = game.Content.Load<SpriteFont>("Font1"); //loads Font1
             levelName = lvlfile;
@@ -329,7 +333,7 @@ namespace FloorIsLava
             foreach (Enemy e in enemyList)
                 e.Draw(spriteBatch);
             //spriteBatch.DrawString(font1, "Level Name: " + levelName, new Vector2(100f, 70f), Color.Red);
-            spriteBatch.DrawString(font1, "High Score: " + highScore, new Vector2(100f, 90f), Color.Red);
+            spriteBatch.DrawString(font1, "High Score: " + save.GetScore(levelName), new Vector2(100f, 90f), Color.Red);
             //spriteBatch.DrawString(font1, "Best Time: " + bestTime, new Vector2(100f, 110f), Color.Red);
             spriteBatch.DrawString(font1, "Score: " + score, new Vector2(100f, 110f), Color.Red);
             spriteBatch.Draw(game.lavaFront, lavaRect, Color.White);
