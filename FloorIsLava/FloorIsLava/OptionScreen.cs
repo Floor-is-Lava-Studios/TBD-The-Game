@@ -90,6 +90,7 @@ namespace FloorIsLava
                 if (count == 1)
                 {
                     //reset highscore code 
+                    info.ResetHighScore();
                 }
                 if (count == 2)
                 {

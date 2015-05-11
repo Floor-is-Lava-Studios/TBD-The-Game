@@ -127,15 +127,16 @@ namespace FloorIsLava
             input = new StreamReader(HIGHSCORE);
             highScoreDict = new Dictionary<string, int>();
             string levelLine;
-            string scoreTemp;
+            string level;
             int score;
             while ((levelLine = input.ReadLine()) != null)
             {
-                scoreTemp = input.ReadLine();
+                string[] LevelLineArray = levelLine.Split(':');
+                level = LevelLineArray[0];
 
-                int.TryParse(scoreTemp, out score);
+                int.TryParse(LevelLineArray[1], out score);
 
-                highScoreDict.Add(levelLine, score);
+                highScoreDict.Add(level, score);
             }
             input.Close();
             return highScoreDict;
@@ -149,8 +150,7 @@ namespace FloorIsLava
 
             for (int x = 0; x < keys.Length; x++)
             {
-                output.WriteLine(keys[x]);
-                output.WriteLine(highScoreDict[keys[x]]);
+                output.WriteLine(keys[x] + ":" +highScoreDict[keys[x]]);
             }
 
             output.Close();
@@ -161,6 +161,19 @@ namespace FloorIsLava
             {
                 highScoreDict[lvlName] = score;
             }
+        }
+
+        public void ResetHighScore()
+        {
+            StreamWriter writer = new StreamWriter(HIGHSCORE);
+
+            string[] keys = highScoreDict.Keys.ToArray();
+
+            for (int i = 0; i < keys.Length; i++)
+            {
+                writer.WriteLine(keys[i] + ":" + 0);
+            }
+            writer.Close();
         }
         
     }

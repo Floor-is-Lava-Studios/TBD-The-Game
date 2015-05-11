@@ -26,7 +26,8 @@ namespace FloorIsLava
         int height;
         Game1 theGame;
         LevelScreen ls;
-        public Goal(Texture2D texture, int x, int y, int width, int height, Game1 game)
+        private GameScreen gameScreen;
+        public Goal(Texture2D texture, int x, int y, int width, int height, Game1 game, GameScreen gs)
         {
             ls = new LevelScreen(game);
             theGame = game;
@@ -38,6 +39,7 @@ namespace FloorIsLava
             this.width = width;
             this.height = height;
             goalTexture = texture;
+            gameScreen = gs;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -59,6 +61,8 @@ namespace FloorIsLava
                 
                 save.UnlockNextLvl(save.ReadUnlock());
                 save.UpdateFile();
+                save.newHighScore(gameScreen.LevelName, gameScreen.Score);
+                save.UpdateHighScore();
                 state.EndGame(ls.CurrentLevel);
                 // have the next level unlocked
             }

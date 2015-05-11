@@ -30,7 +30,8 @@ namespace FloorIsLava
         public Gold gem;
         private List<GameObject> drawList;
         private Goal endGoal;
-        private string levelName = "test2.txt";
+        private string levelFile = "level1.txt";
+        private string levelName = "level1";
         private List<GameObject> grappleableObjectList;
         private Enemy enemy;
         public EnemyPathEnd epe;
@@ -65,8 +66,21 @@ namespace FloorIsLava
             set { grappleableObjectList = value; }
         }
 
+        public string LevelName
+        {
+            get
+            {
+                return levelName;
+            }
+            set
+            {
+                levelName = value;
+            }
+
+        }
         public int Score
         {
+            get { return score; }
             set { score += value; }
         }
         #endregion Properties
@@ -87,14 +101,18 @@ namespace FloorIsLava
             gemsList = new List<Gold>();
             bulletList = new List<Bullet>();
             platformList = new List<Platform>();
+
+            SaveInfo info = new SaveInfo();
+            Dictionary<string, int> highscoreDict = info.ReadHighScore();
+            highScore = highscoreDict[levelName];
             // reading in the file
             StreamReader input = null;
 
-            input = new StreamReader(levelName); // this will load in whatever level the player picks
+            input = new StreamReader(levelFile); // this will load in whatever level the player picks
             string text = "";
             level = input.ReadLine(); // brings in the level name
             text = input.ReadLine(); // brings in the high score as a string
-            int.TryParse(text, out highScore); // now its an int
+            //int.TryParse(text, out highScore); // now its an int
             text = input.ReadLine(); // brings in the best time as a string
             double.TryParse(text, out bestTime); // now its a double
 
@@ -134,7 +152,7 @@ namespace FloorIsLava
                     }
                     else if (piece == "f")
                     {
-                        endGoal = new Goal(game.goalSprite, xPos * x + x, xPos * y + y, xPos, xPos, game);
+                        endGoal = new Goal(game.goalSprite, xPos * x + x, xPos * y + y, xPos, xPos, game, this);
                     }
                     else if (piece == "g")
                     {
@@ -165,12 +183,12 @@ namespace FloorIsLava
             lavaRect = new Rectangle(0, game.screenHeight - game.lavaBack.Height, game.screenWidth, game.lavaBack.Height);
         } // is not updated to current
         //gamescreen constructor that takes specific level
-        public GameScreen(Game1 game, string lvlfile)
+        public GameScreen(Game1 game, string lvlfile, string lvlName)
         {
             this.game = game;
             gameState = new GameState(game); //creates new gameState object and assigns it to game screen
             font1 = game.Content.Load<SpriteFont>("Font1"); //loads Font1
-            levelName = lvlfile;
+            levelFile = lvlfile;
             enemyList = new List<Enemy>();
             drawList = new List<GameObject>();
             timeSinceLastMove = 0;
@@ -179,14 +197,19 @@ namespace FloorIsLava
             enemyPathList = new List<EnemyPathEnd>();
             bulletList = new List<Bullet>();
             platformList = new List<Platform>();
+            levelName = lvlName;
+
+            SaveInfo info = new SaveInfo();
+            Dictionary<string, int> highscoreDict = info.ReadHighScore();
+            highScore = highscoreDict[levelName];
             // reading in the file
             StreamReader input = null;
 
-            input = new StreamReader(levelName); // this will load in whatever level the player picks
+            input = new StreamReader(levelFile); // this will load in whatever level the player picks
             string text = "";
             level = input.ReadLine(); // brings in the level name
             text = input.ReadLine(); // brings in the high score as a string
-            int.TryParse(text, out highScore); // now its an int
+            //int.TryParse(text, out highScore); // now its an int
             text = input.ReadLine(); // brings in the best time as a string
             double.TryParse(text, out bestTime); // now its a double
 
@@ -222,7 +245,7 @@ namespace FloorIsLava
                     }
                     else if (piece == "f")
                     {
-                        endGoal = new Goal(game.goalSprite, xPos * x + x, xPos * y + y, xPos, xPos, game);
+                        endGoal = new Goal(game.goalSprite, xPos * x + x, xPos * y + y, xPos, xPos, game, this);
                     }
                     else if (piece == "g")
                     {
@@ -253,21 +276,6 @@ namespace FloorIsLava
 
         #endregion Constructor  
 
-        #region Properties
-        // this will make the correct level load in
-        public string LevelName
-        {
-            set
-            {
-                levelName = value;
-            }
-            get
-            {
-                return levelName;
-            }
-        }
-        #endregion properties
-
         #region Update
         public void Update(GameTime gt)
         {
@@ -285,7 +293,7 @@ namespace FloorIsLava
             }
             if (keyBoardState.IsKeyDown(Keys.G) && lastState.IsKeyDown(Keys.G))
             {
-                gameState.EndGame(levelName);
+                gameState.EndGame(levelFile);
             }
             /*if (keyBoardState.IsKeyDown(Keys.K) && lastState.IsKeyUp(Keys.K))
             {
@@ -304,7 +312,7 @@ namespace FloorIsLava
 
             if (player.PlayerRect.Y >= (game.screenHeight ))
             {
-                gameState.EndGame(levelName);
+                gameState.EndGame(levelFile);
             }
             
             lastState = keyBoardState; // assigns current keyboard state to the last keyboard state

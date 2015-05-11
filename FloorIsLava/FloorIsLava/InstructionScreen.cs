@@ -94,7 +94,7 @@ namespace FloorIsLava
                 }
                 if (keyState.IsKeyDown(Keys.G) && lastState.IsKeyDown(Keys.G))
                 {
-                    gameState.StartGame("test.txt");
+                    gameState.StartGame("test.txt", "level2");
                 }
                 if (keyState.IsKeyDown(Keys.O) && lastState.IsKeyDown(Keys.O))
                 {

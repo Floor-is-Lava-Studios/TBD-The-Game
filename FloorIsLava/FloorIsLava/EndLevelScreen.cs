@@ -21,6 +21,7 @@ namespace FloorIsLava
         private GameState gameState; //hold the gameState class
         private int count;
         private string previousLevel;
+        private string levelName;
 
         // all the images
         private Texture2D continue1;
@@ -33,13 +34,14 @@ namespace FloorIsLava
         #endregion Attributes
 
         #region Constructors
-        public EndLevelScreen(Game1 game1, string level)
+        public EndLevelScreen(Game1 game1, string level, string lvlName)
         {
             game = game1; //assigns the game1 object
             previousLevel = level;
             gameState = new GameState(game); //creates a new gamestate class object and assigns it to gamestate
             font1 = game.Content.Load<SpriteFont>("Font1"); // loads Font1 spriteFont
             count = 0;
+            levelName = lvlName;
 
             // loading images
             continue1 = game.Content.Load<Texture2D>("continue1");
@@ -84,7 +86,7 @@ namespace FloorIsLava
                 {
                     case 0: gameState.SwitchLevel(game); // this will go to the next level
                         break;
-                    case 1: gameState.StartGame(previousLevel); //this will start the level over
+                    case 1: gameState.StartGame(previousLevel, levelName); //this will start the level over
                         break;
                     case 2: gameState.CurrentScreen = Screen.StartScreen;
                         break;

@@ -148,13 +148,13 @@ namespace FloorIsLava
         public void StartGame() //starts a new game and switch screen to game screen
         {
             string lvlName = "level1.txt";
-            gameScreen = new GameScreen(game, lvlName); // makes new gamescreen
+            gameScreen = new GameScreen(game, lvlName, "level1"); // makes new gamescreen
             currentScreen = Screen.GameScreen; // sets current screen to game screen
         }
 
-        public void StartGame(string lvlName) //starts a new game using specific lvl and switch screen to game screen
+        public void StartGame(string lvlFile, string lvlName) //starts a new game using specific lvl and switch screen to game screen
         {
-            gameScreen = new GameScreen(game, lvlName); // makes new gamescreen
+            gameScreen = new GameScreen(game, lvlFile, lvlName); // makes new gamescreen
             currentScreen = Screen.GameScreen; // sets current screen to game screen
         }
 
@@ -201,9 +201,10 @@ namespace FloorIsLava
         }
 
         public void EndGame(string level)
-        {            
+        {
+            string levelName = gameScreen.LevelName;
             gameScreen = null;
-            endLevelScreen = new EndLevelScreen(game,  level);
+            endLevelScreen = new EndLevelScreen(game,  level, levelName);
             currentScreen = Screen.EndLevelScreen;
         }
         #endregion Methods

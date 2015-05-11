@@ -92,28 +92,28 @@ namespace FloorIsLava
             {
                 if (count == 0)
                 {
-                    gameState.StartGame("level1.txt");
+                    gameState.StartGame("level1.txt", "level1");
                     currentLvl = "level1.txt";
                     nextLvl = "level2.txt";
                 }
                 else if (count == 1 && levels["level2"] == true)
                 {
-                    gameState.StartGame("test.txt");
+                    gameState.StartGame("test.txt", "level2");
                     currentLvl = "test.txt";
                 }
                 else if (count == 2 && levels["level3"] == true)
                 {
-                    gameState.StartGame("level3.txt");
+                    gameState.StartGame("level3.txt", "level3");
                     currentLvl = "level3.txt";
                 }
                 else if (count == 3 && levels["level4"] == true)
                 {
-                    gameState.StartGame("level4.txt");
+                    gameState.StartGame("level4.txt", "level4");
                     currentLvl = "level4.txt";
                 }
                 else if (count == 4 && levels["level5"] == true)
                 {
-                    gameState.StartGame("level5.txt");
+                    gameState.StartGame("level5.txt", "level5");
                     currentLvl = "level5.txt";
                 }
             }
