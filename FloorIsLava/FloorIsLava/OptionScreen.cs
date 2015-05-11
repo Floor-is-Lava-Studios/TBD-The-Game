@@ -84,7 +84,6 @@ namespace FloorIsLava
                     else
                     {
                         game.playMusic = true;
-                        game.startMusic = true;
                     }
                 }
                 if (count == 1)

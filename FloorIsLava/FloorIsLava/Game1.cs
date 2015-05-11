@@ -37,12 +37,11 @@ namespace FloorIsLava
 
         private GameState gameState;
 
-        public SoundEffectInstance backgroundMusic;
+        private SoundEffect backgroundMusic;
 
         public Stopwatch sw = new Stopwatch();
 
         public bool playMusic;
-        public bool startMusic;
 
         public Game1()
             : base()
@@ -71,13 +70,8 @@ namespace FloorIsLava
             screenHeight = GraphicsDevice.DisplayMode.Height;
 
             playMusic = true;
-            startMusic = false;
 
-            if(playMusic)
-            {
-                sw.Start();
-            }
-            
+            sw.Start();
 
             base.Initialize();
         }
@@ -122,14 +116,9 @@ namespace FloorIsLava
 
             Music.backgroundMusic = Content.Load<SoundEffect>("backgroundMusic");
 
-            backgroundMusic = Music.backgroundMusic.CreateInstance();
+            backgroundMusic = Music.backgroundMusic;
 
-            backgroundMusic.Volume = (float).1;
-
-            if (playMusic)
-            {
-                backgroundMusic.Play();
-            }
+            backgroundMusic.Play((float)0.1,(float)0,(float)0);
 
             // Anna Stuff
             picHeight = 0;
@@ -158,23 +147,19 @@ namespace FloorIsLava
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+
             if(!playMusic)
             {
-                backgroundMusic.Stop();
-            }
-
-            if (sw.Elapsed > Music.backgroundMusic.Duration && playMusic)
-            {
-                backgroundMusic.Play();
-                sw.Restart();
                 backgroundMusic.Dispose();
             }
-            
-            if(startMusic)
+
+            if(sw.Elapsed > backgroundMusic.Duration && playMusic)
             {
-                backgroundMusic.Play();
-                startMusic = false;
+                backgroundMusic.Play((float)0.1, (float)0, (float)0);
+                sw.Restart();
             }
+
+
 
             // TODO: Add your update logic here
             switch (gameState.CurrentScreen)

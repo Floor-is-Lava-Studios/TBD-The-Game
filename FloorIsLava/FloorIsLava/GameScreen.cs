@@ -54,6 +54,7 @@ namespace FloorIsLava
         public List<Gold> gemsList;
         public List<Bullet> bulletList;    //Bullet list to check each bullet that is created
 
+        private SoundEffect backgroundMusic;
         #endregion Attributes
 
         #region Properties
@@ -96,6 +97,10 @@ namespace FloorIsLava
             int.TryParse(text, out highScore); // now its an int
             text = input.ReadLine(); // brings in the best time as a string
             double.TryParse(text, out bestTime); // now its a double
+
+            backgroundMusic = Music.backgroundMusic;
+
+            backgroundMusic.Play();
 
             text = input.ReadLine(); // read in width
             int.TryParse(text, out gameWidth);
