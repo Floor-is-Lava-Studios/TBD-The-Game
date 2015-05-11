@@ -41,6 +41,8 @@ namespace FloorIsLava
 
         public Stopwatch sw = new Stopwatch();
 
+        public bool playMusic;
+
         public Game1()
             : base()
         {
@@ -66,6 +68,8 @@ namespace FloorIsLava
 
             screenWidth = GraphicsDevice.DisplayMode.Width;
             screenHeight = GraphicsDevice.DisplayMode.Height;
+
+            playMusic = true;
 
             sw.Start();
 
@@ -144,11 +148,18 @@ namespace FloorIsLava
                 Exit();
 
 
-            if(sw.Elapsed > backgroundMusic.Duration)
+            if(!playMusic)
+            {
+                backgroundMusic.Dispose();
+            }
+
+            if(sw.Elapsed > backgroundMusic.Duration && playMusic)
             {
                 backgroundMusic.Play((float)0.1, (float)0, (float)0);
                 sw.Restart();
             }
+
+
 
             // TODO: Add your update logic here
             switch (gameState.CurrentScreen)
