@@ -64,11 +64,11 @@ namespace FloorIsLava
         {
             timeTillFire--;
 
-            if (enemy.EnemyRect.X > game.GraphicsDevice.Viewport.Width / 2)
+            if (enemy.EnemyRect.X > game.GraphicsDevice.Viewport.Width / 2 && isVisible)
             {
                 bullet.X = bullet.X - 5;
             }
-            else if (enemy.EnemyRect.X < game.GraphicsDevice.Viewport.Width / 2)
+            else if (enemy.EnemyRect.X < game.GraphicsDevice.Viewport.Width / 2 && isVisible)
             {
                 bullet.X = bullet.X + 5;
             }
