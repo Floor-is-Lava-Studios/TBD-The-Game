@@ -39,8 +39,6 @@ namespace FloorIsLava
 
         private SoundEffectInstance backgroundMusic;
 
-        public Stopwatch sw = new Stopwatch();
-
         public bool playMusic;
         public bool startMusic;
 
@@ -72,11 +70,6 @@ namespace FloorIsLava
 
             playMusic = true;
             startMusic = false;
-
-            if (playMusic)
-            {
-                sw.Start();
-            }
 
             base.Initialize();
         }
@@ -125,6 +118,8 @@ namespace FloorIsLava
 
             backgroundMusic.Volume = (float).1;
 
+            backgroundMusic.IsLooped = true;
+
             if (playMusic)
             {
                 backgroundMusic.Play();
@@ -161,13 +156,6 @@ namespace FloorIsLava
             if (!playMusic)
             {
                 backgroundMusic.Stop();
-            }
-
-            if (sw.Elapsed > Music.backgroundMusic.Duration && playMusic)
-            {
-                backgroundMusic.Play();
-                sw.Restart();
-                backgroundMusic.Dispose();
             }
 
             if (startMusic)
