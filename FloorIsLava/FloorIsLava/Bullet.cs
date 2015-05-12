@@ -83,6 +83,8 @@ namespace FloorIsLava
             if (bullet.Intersects(rect))
             {
                 isVisible = false;
+                bullet.X = -100;
+                bullet.Y = -100;
                 return true;
             }
             return false;
