@@ -83,8 +83,11 @@ namespace FloorIsLava
                     }
                     else
                     {
-                        game.playMusic = true;
-                        game.startMusic = true;
+                        if(Music.canPlay)
+                        {
+                            game.playMusic = true;
+                            game.startMusic = true;
+                        }
                     }
                 }
                 if (count == 1)

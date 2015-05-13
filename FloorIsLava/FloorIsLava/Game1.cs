@@ -114,16 +114,28 @@ namespace FloorIsLava
 
             Music.backgroundMusic = Content.Load<SoundEffect>("backgroundMusic");
 
-            backgroundMusic = Music.backgroundMusic.CreateInstance();
-
-            backgroundMusic.Volume = (float).1;
-
-            backgroundMusic.IsLooped = true;
-
-            if (playMusic)
+            try
             {
-                backgroundMusic.Play();
+                backgroundMusic = Music.backgroundMusic.CreateInstance();
             }
+            catch
+            {
+                Music.canPlay = false;
+                playMusic = false;
+            }
+
+            if(Music.canPlay)
+            {
+                backgroundMusic.Volume = (float).1;
+
+                backgroundMusic.IsLooped = true;
+
+                if (playMusic)
+                {
+                    backgroundMusic.Play();
+                }
+            }
+            
 
             // Anna Stuff
             picHeight = 0;
@@ -153,17 +165,19 @@ namespace FloorIsLava
                 Exit();
 
 
-            if (!playMusic)
+            if(Music.canPlay)
             {
-                backgroundMusic.Stop();
-            }
+                if (!playMusic)
+                {
+                    backgroundMusic.Stop();
+                }
 
-            if (startMusic)
-            {
-                backgroundMusic.Play();
-                startMusic = false;
+                if (startMusic)
+                {
+                    backgroundMusic.Play();
+                    startMusic = false;
+                }
             }
-
 
 
             // TODO: Add your update logic here
