@@ -86,13 +86,9 @@ namespace FloorIsLava
             {
                 switch (count)
                 {
-                    case 0: gameState.StartGame(previousLevel, levelName); // this will go to the next level
+                    case 0: gameState.StartGame(currentLevel, levelName); // this will go to the next level
                         break;
-<<<<<<< HEAD
-                    case 1: gameState.SwitchLevel(game);//this will start the level over
-=======
-                    case 1: gameState.StartGame(currentLevel, levelName); //this will start the level over
->>>>>>> origin/master
+                    case 1: gameState.SwitchLevel(game);
                         break;
                     case 2: gameState.CurrentScreen = Screen.StartScreen;
                         break;
