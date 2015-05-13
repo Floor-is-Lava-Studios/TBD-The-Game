@@ -1,5 +1,5 @@
 level1:80
 level2:70
-level3:80
+level3:130
 level4:50
 level5:40

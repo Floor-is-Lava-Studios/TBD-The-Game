@@ -44,20 +44,16 @@ namespace MapCreator
         private Bitmap Goal = new Bitmap(MapImages.GoalImage);
         private Bitmap Gold = new Bitmap(MapImages.GoldImage);
         private Bitmap Enemy = new Bitmap(MapImages.EnemyImage);
-        private Bitmap EnemyUp = new Bitmap(MapImages.EnemyUpImage);
-        private Bitmap EnemyRight = new Bitmap(MapImages.EnemyRightImage);
         private Bitmap Empty = new Bitmap(MapImages.EmptyImage);
-        private Bitmap Obstacle = new Bitmap(MapImages.ObstacleImage);
+        private Bitmap EnemyPath = new Bitmap(MapImages.EnemyPathImage);
 
         private Bitmap WallHalf = new Bitmap(MapImages.WallHalfImage);
         private Bitmap PlayerHalf = new Bitmap(MapImages.PlayerHalfImage);
         private Bitmap GoalHalf = new Bitmap(MapImages.GoalHalfImage);
         private Bitmap GoldHalf = new Bitmap(MapImages.GoldHalfImage);
         private Bitmap EnemyHalf = new Bitmap(MapImages.EnemyHalfImage);
-        private Bitmap EnemyUpHalf = new Bitmap(MapImages.EnemyUpHalfImage);
-        private Bitmap EnemyRightHalf = new Bitmap(MapImages.EnemyRightHalfImage);
         private Bitmap EmptyHalf = new Bitmap(MapImages.EmptyHalfImage);
-        private Bitmap ObstacleHalf = new Bitmap(MapImages.ObstacleHalfImage);
+        private Bitmap EnemyPathHalf = new Bitmap(MapImages.EnemyPathHalfImage);
 
         // create control form
         Controls controls = new Controls();
@@ -164,9 +160,9 @@ namespace MapCreator
                 // change tile character to the pressed character
                 switch (e.KeyChar)
                 {
-                    case '4':
-                        tile = 'g';
-                        cursor.Image = GoldHalf;
+                    case '1':
+                        tile = 'w';
+                        cursor.Image = WallHalf;
                         break;
                     case '3':
                         tile = 'f';
@@ -176,30 +172,23 @@ namespace MapCreator
                         tile = 'c';
                         cursor.Image = PlayerHalf;
                         break;
+                    case '4':
+                        tile = 'g';
+                        cursor.Image = GoldHalf;
+                        break;
                     case '5':
-                        tile = 'u';
-                        cursor.Image = EnemyUpHalf;
+                        tile = 'e';
+                        cursor.Image = EnemyHalf;
                         break;
                     case '6':
-                        tile = 'r';
-                        cursor.Image = EnemyRightHalf;
-                        break;
-                    case '7':
-                        tile = 's';
-                        cursor.Image = EnemyHalf;
+                        tile = 't';
+                        cursor.Image = EnemyPathHalf;
                         break;
                     case '0':
                         tile = 'n';
                         cursor.Image = EmptyHalf;
                         break;
-                    case '1':
-                        tile = 'w';
-                        cursor.Image = WallHalf;
-                        break;
-                    case '8':
-                        tile = 'o';
-                        cursor.Image = ObstacleHalf;
-                        break;
+                    
                 }
             }
         }
@@ -327,17 +316,9 @@ namespace MapCreator
                                     MessageBox.Show("There is already a player");
                                 }
                                 break;
-                            case 'u':
-                                images[posX, posY].Image = EnemyUp;
-                                values[posX, posY] = 'u';
-                                break;
-                            case 'r':
-                                images[posX, posY].Image = EnemyRight;
-                                values[posX, posY] = 'd';
-                                break;
-                            case 's':
+                            case 'e':
                                 images[posX, posY].Image = Enemy;
-                                values[posX, posY] = 's';
+                                values[posX, posY] = 'e';
                                 break;
                             case 'n':
                                 images[posX, posY].Image = Empty;
@@ -347,9 +328,9 @@ namespace MapCreator
                                 images[posX, posY].Image = Wall;
                                 values[posX, posY] = 'w';
                                 break;
-                            case 'o':
-                                images[posX, posY].Image = Obstacle;
-                                values[posX, posY] = 'o';
+                            case 't':
+                                images[posX, posY].Image = EnemyPath;
+                                values[posX, posY] = 't';
                                 break;
                         }
                     }
