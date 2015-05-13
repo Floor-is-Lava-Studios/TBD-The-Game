@@ -73,6 +73,7 @@ namespace FloorIsLava
             }
             if (keyState.IsKeyDown(Keys.A) && lastState.IsKeyUp(Keys.A) || keyState.IsKeyDown(Keys.Left) && lastState.IsKeyUp(Keys.Left))
             {
+                game.grappleS.Play();
                 count--;
                 if (count < 0)
                 {
@@ -82,6 +83,7 @@ namespace FloorIsLava
             }
             if (keyState.IsKeyDown(Keys.D) && lastState.IsKeyUp(Keys.D) || keyState.IsKeyDown(Keys.Right) && lastState.IsKeyUp(Keys.Right))
             {
+                game.grappleS.Play();
                 count++;
                 if (count > 4)
                 {
@@ -90,6 +92,7 @@ namespace FloorIsLava
             }
             if (keyState.IsKeyDown(Keys.Enter) && lastState.IsKeyUp(Keys.Enter) || keyState.IsKeyDown(Keys.Space) && lastState.IsKeyUp(Keys.Space))
             {
+                game.grappleS.Play();
                 if (count == 0)
                 {
                     gameState.StartGame("level1.txt", "level1");

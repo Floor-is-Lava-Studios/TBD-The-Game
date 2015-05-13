@@ -157,7 +157,7 @@ namespace FloorIsLava
                     }
                     else if (piece == "g")
                     {
-                        gem = new Gold(game.gemSprite, xPos * x + 25, xPos * y + 35, game.gemSprite.Width, game.gemSprite.Height, this);
+                        gem = new Gold(game.gemSprite, xPos * x + 25, xPos * y + 35, game.gemSprite.Width, game.gemSprite.Height, this, game.coinS);
                         gemsList.Add(gem);
                     }
                     else if (piece == "e")
@@ -251,7 +251,7 @@ namespace FloorIsLava
                     }
                     else if (piece == "g")
                     {
-                        gem = new Gold(game.gemSprite, xPos * x + 25, xPos * y + 35, game.gemSprite.Width, game.gemSprite.Height, this);
+                        gem = new Gold(game.gemSprite, xPos * x + 25, xPos * y + 35, game.gemSprite.Width, game.gemSprite.Height, this, game.coinS);
                         gemsList.Add(gem);
                     }
                     else if (piece == "e")

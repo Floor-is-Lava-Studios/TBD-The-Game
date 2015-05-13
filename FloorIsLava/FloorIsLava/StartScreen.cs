@@ -44,6 +44,7 @@ namespace FloorIsLava
             if ((keyboardState.IsKeyDown(Keys.S) && lastState.IsKeyUp(Keys.S)) || (keyboardState.IsKeyDown(Keys.Down) && lastState.IsKeyUp(Keys.Down)))
             {
                 count++;
+                game.grappleS.Play();
                 if(count > 4)
                 {
                     count = 0;
@@ -52,6 +53,7 @@ namespace FloorIsLava
             if (keyboardState.IsKeyDown(Keys.W) && lastState.IsKeyUp(Keys.W) || (keyboardState.IsKeyDown(Keys.Up) && lastState.IsKeyUp(Keys.Up)))
             {
                 count--;
+                game.grappleS.Play();
                 if (count < 0)
                 {
                     count = 4;
@@ -79,6 +81,7 @@ namespace FloorIsLava
                 {
                     gameState.SwitchCredit(game);
                 }
+                game.grappleS.Play();
             }
             font1 = game.Content.Load<SpriteFont>("Font1"); // Loads Font1
             lastState = keyboardState; //assigns current keyboard state to lastState

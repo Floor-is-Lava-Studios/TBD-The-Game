@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
 using System.IO;
+using Microsoft.Xna.Framework.Audio;
 
 namespace FloorIsLava
 {
@@ -25,12 +26,15 @@ namespace FloorIsLava
         Texture2D gemImage;
         public int numberOfGems;
         GameScreen gameScreen;
+        SoundEffect coinSound;
         #endregion Attributes
+
 
         #region Constructor
         //Constructor
-        public Gold(Texture2D gemImage, int x, int y, int width, int height, GameScreen gameScreen)
+        public Gold(Texture2D gemImage, int x, int y, int width, int height, GameScreen gameScreen, SoundEffect snd)
         {
+            coinSound = snd;
             gem = new Rectangle(x, y, width, height);
             this.gemImage = gemImage;
             this.gameScreen = gameScreen;
@@ -45,6 +49,7 @@ namespace FloorIsLava
             {
                 gameScreen.Score = 10;
                 numberOfGems++;
+                coinSound.Play();
                 isVisible = false;
             }
         }

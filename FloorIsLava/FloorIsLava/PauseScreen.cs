@@ -79,6 +79,7 @@ namespace FloorIsLava
             // using either the "W" or "S" key or the up and down arrow picking what to do next
             if ((keyState.IsKeyDown(Keys.W) && lastState.IsKeyUp(Keys.W)) || (keyState.IsKeyDown(Keys.Up) && lastState.IsKeyUp(Keys.Up)))
             {
+                game.grappleS.Play();
                 button--;
                 if(button < 0)
                 {
@@ -88,6 +89,7 @@ namespace FloorIsLava
             if ((keyState.IsKeyDown(Keys.S) && lastState.IsKeyUp(Keys.S)) || (keyState.IsKeyDown(Keys.Down) && lastState.IsKeyUp(Keys.Down)))
             {
                 button++;
+                game.grappleS.Play();
                 if (button > 2)
                 {
                     button = 0;
@@ -95,6 +97,7 @@ namespace FloorIsLava
             }
             if ((keyState.IsKeyDown(Keys.Enter) && lastState.IsKeyUp(Keys.Enter)) || (keyState.IsKeyDown(Keys.Space) && lastState.IsKeyUp(Keys.Space)))
             {
+                game.grappleS.Play();
                 switch(button)
                 {
                     case 0:

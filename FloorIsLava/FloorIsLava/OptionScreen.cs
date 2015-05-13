@@ -8,6 +8,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace FloorIsLava
 {
@@ -22,6 +24,7 @@ namespace FloorIsLava
         private int count;
         private SaveInfo info;
         private Texture2D back;
+        private bool showdown;
 
         //sound button images
         private Texture2D soundOn1;
@@ -80,6 +83,7 @@ namespace FloorIsLava
             }
             if((keyState.IsKeyDown(Keys.W) && lastState.IsKeyUp(Keys.W)) || (keyState.IsKeyDown(Keys.Up) && lastState.IsKeyUp(Keys.Up)))
             {
+                game.grappleS.Play();
                 count = count - 1;
                 if (count < 0)
                 {
@@ -88,6 +92,7 @@ namespace FloorIsLava
             }
             if ((keyState.IsKeyDown(Keys.S) && lastState.IsKeyUp(Keys.S)) || (keyState.IsKeyDown(Keys.Down) && lastState.IsKeyUp(Keys.Down)))
             {
+                game.grappleS.Play();
                 count = count + 1;
                 if (count > 2)
                 {
@@ -98,7 +103,6 @@ namespace FloorIsLava
             {
                 if (count == 0)
                 {
-                    //toggle fullscreen code
                     if (game.playMusic == true)
                     {
                         game.playMusic = false;
@@ -122,6 +126,7 @@ namespace FloorIsLava
                     //reset level lock code goes here
                     info.ResetLevelLock();
                 }
+                game.grappleS.Play();
             }
             lastState = keyState; //assigns current keyboard state to lastState
         }

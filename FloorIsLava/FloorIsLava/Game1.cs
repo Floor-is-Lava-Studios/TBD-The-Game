@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Audio;
 using LineBatch;
+using Microsoft.Xna.Framework.Media;
 #endregion
 
 namespace FloorIsLava
@@ -26,7 +27,8 @@ namespace FloorIsLava
         public Texture2D playerSprite, playerSprite_Forward, playerSprite_Backwards, backgroundSprite, titleSprite, wallSprite, goalSprite,
             creditButton1, creditButton2, levelButton1, levelButton2, startButton1, startButton2, options1, options2, instructions1, instructions2,
             levelTitle, optionsTitle, enemySprite, bulletSprite, gemSprite, lavaFront, lavaBack;
-        public SoundEffect jumpS, grappleS;
+        public SoundEffect jumpS, grappleS, goalS, menuMoveS, defaultMusS, showdownS, coinS;
+        public Song showdown;
 
         public int screenWidth;
         public int screenHeight;
@@ -115,11 +117,25 @@ namespace FloorIsLava
             lavaFront = Content.Load<Texture2D>("lavaFront");
             jumpS = Content.Load<SoundEffect>("audio_jump.wav");
             grappleS = Content.Load<SoundEffect>("audio_grapple.wav");
+            goalS = Content.Load<SoundEffect>("audio_goalReached");
+            menuMoveS = Content.Load<SoundEffect>("audio_menuMove.wav");
+            showdownS = Content.Load<SoundEffect>("audio_showdown");
+            defaultMusS = Content.Load<SoundEffect>("backgroundMusic");
+            coinS = Content.Load<SoundEffect>("audio_coin");
 
-            //Song testSong = Content.Load<Song>("audio_showdown.wav");
-            //MediaPlayer.Play(testSong);
-            Music.backgroundMusic = Content.Load<SoundEffect>("backgroundMusic");
-
+            Random rand = new Random();
+            double volume;
+            if (rand.Next(2) == 0)
+            {
+                Music.backgroundMusic = defaultMusS;
+                volume = .1;
+            }
+            else
+            {
+                Music.backgroundMusic = showdownS;
+                volume = .5;
+            }
+                
             try
             {
                 backgroundMusic = Music.backgroundMusic.CreateInstance();
@@ -132,7 +148,7 @@ namespace FloorIsLava
 
             if(Music.canPlay)
             {
-                backgroundMusic.Volume = (float).1;
+                backgroundMusic.Volume = (float)volume;
 
                 backgroundMusic.IsLooped = true;
 
