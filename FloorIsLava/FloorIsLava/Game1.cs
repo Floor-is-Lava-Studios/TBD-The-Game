@@ -67,6 +67,8 @@ namespace FloorIsLava
 
             screenWidth = GraphicsDevice.DisplayMode.Width;
             screenHeight = GraphicsDevice.DisplayMode.Height;
+            MonitorSize.height = screenHeight;
+            MonitorSize.width = screenWidth;
 
             playMusic = true;
             startMusic = false;
