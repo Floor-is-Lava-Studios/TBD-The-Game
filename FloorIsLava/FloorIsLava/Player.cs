@@ -26,10 +26,8 @@ namespace FloorIsLava
         #region Constants
         // constants
         const string ASSET_NAME = "Player";
-        const int MAX_SPEED = 10;
         const int ACCELERATION = 1;
         const int GRAVITY = -1;
-        const int JUMP_STRENGTH = 20;
         const int MAX_JUMPS = 2;
         const int GRAPPLE_DISTANCE = 450;
         Vector2 RIGHT = new Vector2(1, 0);
@@ -65,6 +63,7 @@ namespace FloorIsLava
         private bool isStunned;
         private int timeSinceStun;
         private int frame;
+        private Game1 game;
 
         //Kasey added attributes
         private Enemy enemy;
@@ -76,6 +75,10 @@ namespace FloorIsLava
         Texture2D forward1;
         Texture2D forward2;
         int count;
+
+        int JUMP_STRENGTH = 21;
+        int MAX_SPEED = 10;
+
         #endregion Attributes
 
         #region Constructor
@@ -88,8 +91,9 @@ namespace FloorIsLava
         /// <param name="y"></param>
         /// <param name="wid"></param>
         /// <param name="hgt"></param>
-        public Player(Texture2D plrTx, int x, int y, int wid, int hgt, List<Rectangle> colls, Game1 game, GameScreen gS, Enemy enemy, Platform platform)
+        public Player(Texture2D plrTx, int x, int y, int wid, int hgt, List<Rectangle> colls, Game1 game1, GameScreen gS, Enemy enemy, Platform platform)
         {
+            game = game1;
             oldState = Keyboard.GetState();
             playerTexture = plrTx;
             width = wid;
@@ -108,6 +112,7 @@ namespace FloorIsLava
             isGrappled = false;
             isStunned = false;
             timeSinceStun = 0;
+            
 
             //Kasey added this // Alex added this... just the part of the comment mind you nothing else
             this.enemy = enemy;
@@ -120,6 +125,21 @@ namespace FloorIsLava
             forward2 = game.Content.Load<Texture2D>("playerForward3");
             frame = 0;
             count = 0;
+
+            if (MonitorSize.height > 1080)
+            {
+                JUMP_STRENGTH = 24;
+                MAX_SPEED = 12;
+                height += 32;
+                width += 18;
+            }
+            else if (MonitorSize.height < 1080)
+            {
+                JUMP_STRENGTH = 18;
+                MAX_SPEED = 9;
+                height -= 32;
+                width -= 18;
+            }
         }
         #endregion Constructor
 
@@ -235,6 +255,7 @@ namespace FloorIsLava
                 jumpStartPosition = position;
                 velocity.Y = -JUMP_STRENGTH;
                 jumpNumber++;
+                game.jumpS.Play();
                 if (jumpNumber >= MAX_JUMPS)    // stops it from executing when the maximum amount of midair jumps are performed
                 {
                     jumpNumber = 0;
@@ -435,6 +456,7 @@ namespace FloorIsLava
                         grappleEndpoint = new Vector2(grappleRect.X + (playerRect.Width / 2), grappleRect.Y);
                         velocity = new Vector2(0, 0);
                         isGrappled = true;
+                        game.grappleS.Play();
                         break;
                     }
                 }

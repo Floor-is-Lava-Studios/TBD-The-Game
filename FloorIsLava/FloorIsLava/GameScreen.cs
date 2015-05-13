@@ -66,6 +66,11 @@ namespace FloorIsLava
             set { grappleableObjectList = value; }
         }
 
+        public string LevelFile
+        {
+            get { return levelFile; }
+            set { levelFile = value; }
+        }
         public string LevelName
         {
             get

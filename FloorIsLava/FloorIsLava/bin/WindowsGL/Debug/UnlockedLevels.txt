@@ -1,5 +1,12 @@
 level1:True
+<<<<<<< HEAD
 level2:False
 level3:False
 level4:False
 level5:False
+=======
+level2:True
+level3:True
+level4:True
+level5:True
+>>>>>>> origin/master

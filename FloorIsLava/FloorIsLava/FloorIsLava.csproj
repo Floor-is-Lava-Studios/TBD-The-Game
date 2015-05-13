@@ -48,6 +48,7 @@
     <Compile Include="Gold.cs" />
     <Compile Include="InstructionScreen.cs" />
     <Compile Include="LevelScreen.cs" />
+    <Compile Include="MonitorSize.cs" />
     <Compile Include="MoveableGameObject.cs" />
     <Compile Include="MoveablePlatform.cs" />
     <Compile Include="Music.cs" />
@@ -78,6 +79,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\audio_grapple.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\audio_jump.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\audio_showdown.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\bullet.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

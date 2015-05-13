@@ -26,7 +26,7 @@ namespace FloorIsLava
         public Texture2D playerSprite, playerSprite_Forward, playerSprite_Backwards, backgroundSprite, titleSprite, wallSprite, goalSprite,
             creditButton1, creditButton2, levelButton1, levelButton2, startButton1, startButton2, options1, options2, instructions1, instructions2,
             levelTitle, optionsTitle, enemySprite, bulletSprite, gemSprite, lavaFront, lavaBack;
-
+        public SoundEffect jumpS, grappleS;
 
         public int screenWidth;
         public int screenHeight;
@@ -67,6 +67,8 @@ namespace FloorIsLava
 
             screenWidth = GraphicsDevice.DisplayMode.Width;
             screenHeight = GraphicsDevice.DisplayMode.Height;
+            MonitorSize.height = screenHeight;
+            MonitorSize.width = screenWidth;
 
             playMusic = true;
             startMusic = false;
@@ -111,19 +113,35 @@ namespace FloorIsLava
             gemSprite = Content.Load<Texture2D>("gem");
             lavaBack = Content.Load<Texture2D>("lavaback");
             lavaFront = Content.Load<Texture2D>("lavaFront");
+            jumpS = Content.Load<SoundEffect>("audio_jump.wav");
+            grappleS = Content.Load<SoundEffect>("audio_grapple.wav");
 
+            //Song testSong = Content.Load<Song>("audio_showdown.wav");
+            //MediaPlayer.Play(testSong);
             Music.backgroundMusic = Content.Load<SoundEffect>("backgroundMusic");
 
-            backgroundMusic = Music.backgroundMusic.CreateInstance();
-
-            backgroundMusic.Volume = (float).1;
-
-            backgroundMusic.IsLooped = true;
-
-            if (playMusic)
+            try
             {
-                backgroundMusic.Play();
+                backgroundMusic = Music.backgroundMusic.CreateInstance();
             }
+            catch
+            {
+                Music.canPlay = false;
+                playMusic = false;
+            }
+
+            if(Music.canPlay)
+            {
+                backgroundMusic.Volume = (float).1;
+
+                backgroundMusic.IsLooped = true;
+
+                if (playMusic)
+                {
+                    backgroundMusic.Play();
+                }
+            }
+            
 
             // Anna Stuff
             picHeight = 0;
@@ -153,17 +171,19 @@ namespace FloorIsLava
                 Exit();
 
 
-            if (!playMusic)
+            if(Music.canPlay)
             {
-                backgroundMusic.Stop();
-            }
+                if (!playMusic)
+                {
+                    backgroundMusic.Stop();
+                }
 
-            if (startMusic)
-            {
-                backgroundMusic.Play();
-                startMusic = false;
+                if (startMusic)
+                {
+                    backgroundMusic.Play();
+                    startMusic = false;
+                }
             }
-
 
 
             // TODO: Add your update logic here

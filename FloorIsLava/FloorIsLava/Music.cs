@@ -9,5 +9,6 @@ namespace FloorIsLava
     public static class Music
     {
         public static SoundEffect backgroundMusic;
+        public static bool canPlay = true;
     }
 }
