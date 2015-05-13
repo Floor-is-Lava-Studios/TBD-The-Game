@@ -202,9 +202,10 @@ namespace FloorIsLava
 
         public void EndGame(string level)
         {
+            string currentLvl = gameScreen.LevelFile;
             string levelName = gameScreen.LevelName;
             gameScreen = null;
-            endLevelScreen = new EndLevelScreen(game,  level, levelName);
+            endLevelScreen = new EndLevelScreen(game,  level, currentLvl, levelName);
             currentScreen = Screen.EndLevelScreen;
         }
         #endregion Methods
