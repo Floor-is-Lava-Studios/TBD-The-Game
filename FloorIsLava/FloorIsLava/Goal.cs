@@ -58,7 +58,6 @@ namespace FloorIsLava
         {                                                                           //
             if ((pos.X > xPostion && pos.X < xPostion + width/2) && (pos.Y > yPostion - height && pos.Y < yPostion + height))
             {
-                
                 save.UnlockNextLvl(save.ReadUnlock());
                 save.UpdateFile();
                 save.newHighScore(gameScreen.LevelName, gameScreen.Score);

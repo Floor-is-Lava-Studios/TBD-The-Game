@@ -56,7 +56,7 @@ namespace FloorIsLava
             lvl5 = game.Content.Load<Texture2D>("level5");
 
             currentLvl = "level1.txt";
-            nextLvl = "test.txt";
+            nextLvl = "level2.txt";
         }
         #endregion Constructor
 
@@ -98,8 +98,9 @@ namespace FloorIsLava
                 }
                 else if (count == 1 && levels["level2"] == true)
                 {
-                    gameState.StartGame("test.txt", "level2");
-                    currentLvl = "test.txt";
+                    gameState.StartGame("level2.txt", "level2");
+                    currentLvl = "level2.txt";
+                    
                 }
                 else if (count == 2 && levels["level3"] == true)
                 {

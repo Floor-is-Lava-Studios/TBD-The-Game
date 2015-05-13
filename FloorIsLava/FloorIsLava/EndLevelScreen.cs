@@ -34,14 +34,14 @@ namespace FloorIsLava
         #endregion Attributes
 
         #region Constructors
-        public EndLevelScreen(Game1 game1, string level, string lvlName)
+        public EndLevelScreen(Game1 game1, string previousLevelIn, string currentLevelIn)
         {
             game = game1; //assigns the game1 object
-            previousLevel = level;
+            previousLevel = previousLevelIn;
             gameState = new GameState(game); //creates a new gamestate class object and assigns it to gamestate
             font1 = game.Content.Load<SpriteFont>("Font1"); // loads Font1 spriteFont
             count = 0;
-            levelName = lvlName;
+            levelName = currentLevelIn;
 
             // loading images
             continue1 = game.Content.Load<Texture2D>("continue1");
