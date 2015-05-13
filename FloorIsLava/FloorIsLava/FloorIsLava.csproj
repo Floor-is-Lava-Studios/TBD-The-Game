@@ -48,6 +48,7 @@
     <Compile Include="Gold.cs" />
     <Compile Include="InstructionScreen.cs" />
     <Compile Include="LevelScreen.cs" />
+    <Compile Include="MonitorSize.cs" />
     <Compile Include="MoveableGameObject.cs" />
     <Compile Include="MoveablePlatform.cs" />
     <Compile Include="Music.cs" />

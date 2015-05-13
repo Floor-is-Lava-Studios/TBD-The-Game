@@ -29,7 +29,6 @@ namespace FloorIsLava
         const int MAX_SPEED = 10;
         const int ACCELERATION = 1;
         const int GRAVITY = -1;
-        const int JUMP_STRENGTH = 20;
         const int MAX_JUMPS = 2;
         const int GRAPPLE_DISTANCE = 450;
         Vector2 RIGHT = new Vector2(1, 0);
@@ -76,6 +75,9 @@ namespace FloorIsLava
         Texture2D forward1;
         Texture2D forward2;
         int count;
+
+        int JUMP_STRENGTH = MonitorSize.height / 50;
+
         #endregion Attributes
 
         #region Constructor
