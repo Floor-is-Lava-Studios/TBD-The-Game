@@ -55,6 +55,7 @@ namespace FloorIsLava
         public List<Gold> gemsList;
         public List<Bullet> bulletList;    //Bullet list to check each bullet that is created
 
+
         #endregion Attributes
 
         #region Properties
@@ -193,6 +194,7 @@ namespace FloorIsLava
             bulletList = new List<Bullet>();
             platformList = new List<Platform>();
             levelName = lvlName;
+
 
             SaveInfo info = new SaveInfo();
             Dictionary<string, int> highscoreDict = info.ReadHighScore();

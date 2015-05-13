@@ -109,7 +109,7 @@ namespace FloorIsLava
             enemySprite = Content.Load<Texture2D>("enemy");
             bulletSprite = Content.Load<Texture2D>("bullet");
             gemSprite = Content.Load<Texture2D>("gem");
-            lavaBack = Content.Load<Texture2D>("lavaBack");
+            lavaBack = Content.Load<Texture2D>("lavaback");
             lavaFront = Content.Load<Texture2D>("lavaFront");
 
             Music.backgroundMusic = Content.Load<SoundEffect>("backgroundMusic");

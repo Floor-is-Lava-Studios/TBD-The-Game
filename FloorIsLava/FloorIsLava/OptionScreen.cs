@@ -22,6 +22,20 @@ namespace FloorIsLava
         private int count;
         private SaveInfo info;
         private Texture2D back;
+
+        //sound button images
+        private Texture2D soundOn1;
+        private Texture2D soundOn2;
+        private Texture2D soundOff1;
+        private Texture2D soundOff2;
+
+        //unlock reset images
+        private Texture2D levelUnlock1;
+        private Texture2D levelUnlock2;
+
+        // high score reset images
+        private Texture2D resetHS1;
+        private Texture2D resetHS2;
         #endregion Attributes
 
         #region Constructor
@@ -32,6 +46,14 @@ namespace FloorIsLava
             gameState = new GameState(game); // creates new gamestate object and assigns it to gameState
             font1 = game.Content.Load<SpriteFont>("Font1"); //loads Font1
             back = game.Content.Load<Texture2D>("back");
+            soundOn1 = game.Content.Load<Texture2D>("soundOn1");
+            soundOn2 = game.Content.Load<Texture2D>("soundOn2");
+            soundOff1 = game.Content.Load<Texture2D>("soundOff1");
+            soundOff2 = game.Content.Load<Texture2D>("soundOff2");
+            levelUnlock1 = game.Content.Load<Texture2D>("levelUnlock1");
+            levelUnlock2 = game.Content.Load<Texture2D>("levelUnlock2");
+            resetHS1 = game.Content.Load<Texture2D>("resetHS1");
+            resetHS2 = game.Content.Load<Texture2D>("resetHS2");
             info = new SaveInfo();
             count = 0;
         }
@@ -113,40 +135,48 @@ namespace FloorIsLava
             {
                 if (game.playMusic == true)
                 {
-                    spriteBatch.DrawString(font1, "Sound: On", new Vector2(game.screenWidth / 2 - 100, 400f), Color.Crimson);
+                    //spriteBatch.DrawString(font1, "Sound: On", new Vector2(game.screenWidth / 2 - 100, 400f), Color.Crimson);
+                    spriteBatch.Draw(soundOn2, new Vector2(game.screenWidth / 2 - 130, game.screenHeight / 2), Color.White);
                 }
                 if (game.playMusic == false)
                 {
-                    spriteBatch.DrawString(font1, "Sound: OFF", new Vector2(game.screenWidth / 2 - 100, 400f), Color.Crimson);
+                    //spriteBatch.DrawString(font1, "Sound: OFF", new Vector2(game.screenWidth / 2 - 100, 400f), Color.Crimson);
+                    spriteBatch.Draw(soundOff2, new Vector2(game.screenWidth / 2 - 130, game.screenHeight / 2), Color.White);
                 }
             }
             else
             {
                 if (game.playMusic == true)
                 {
-                    spriteBatch.DrawString(font1, "Sound: On", new Vector2(game.screenWidth / 2 - 100, 400f), Color.White);
+                    //spriteBatch.DrawString(font1, "Sound: On", new Vector2(game.screenWidth / 2 - 100, 400f), Color.White);
+                    spriteBatch.Draw(soundOn1, new Vector2(game.screenWidth / 2 - 130, game.screenHeight / 2), Color.White);
                 }
                 if (game.playMusic == false)
                 {
-                    spriteBatch.DrawString(font1, "Sound: OFF", new Vector2(game.screenWidth / 2 - 100, 400f), Color.White);
+                    //spriteBatch.DrawString(font1, "Sound: OFF", new Vector2(game.screenWidth / 2 - 100, 400f), Color.White);
+                    spriteBatch.Draw(soundOff1, new Vector2(game.screenWidth / 2 - 130, game.screenHeight / 2), Color.White);
                 }
                
             }
             if (count == 1)
             {
-                spriteBatch.DrawString(font1, "Reset Level HighScores", new Vector2(game.screenWidth / 2 - 100, 500f), Color.Crimson);
+                //spriteBatch.DrawString(font1, "Reset Level HighScores", new Vector2(game.screenWidth / 2 - 100, 500f), Color.Crimson);
+                spriteBatch.Draw(resetHS2, new Vector2(game.screenWidth / 2 - 130, game.screenHeight / 2 + 100), Color.White);
             }
             else
             {
-                spriteBatch.DrawString(font1, "Reset Level HighScores", new Vector2(game.screenWidth / 2 - 100, 500f), Color.White);
+                //spriteBatch.DrawString(font1, "Reset Level HighScores", new Vector2(game.screenWidth / 2 - 100, 500f), Color.White);
+                spriteBatch.Draw(resetHS1, new Vector2(game.screenWidth / 2 - 130, game.screenHeight / 2 + 100), Color.White);
             }
             if (count == 2)
             {
-                spriteBatch.DrawString(font1, "Reset Level Lock Status", new Vector2(game.screenWidth / 2 - 100, 600f), Color.Crimson);
+                //spriteBatch.DrawString(font1, "Reset Level Lock Status", new Vector2(game.screenWidth / 2 - 100, 600f), Color.Crimson);
+                spriteBatch.Draw(levelUnlock2, new Vector2(game.screenWidth / 2 - 130, game.screenHeight / 2 + 200), Color.White);
             }
             else
             {
-                spriteBatch.DrawString(font1, "Reset Level Lock Status", new Vector2(game.screenWidth / 2 - 100, 600f), Color.White);
+                //spriteBatch.DrawString(font1, "Reset Level Lock Status", new Vector2(game.screenWidth / 2 - 100, 600f), Color.White);
+                spriteBatch.Draw(levelUnlock1, new Vector2(game.screenWidth / 2 - 130, game.screenHeight / 2 + 200), Color.White);
             }
         }
         #endregion Methods

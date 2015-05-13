@@ -84,9 +84,9 @@ namespace FloorIsLava
             {
                 switch (count)
                 {
-                    case 0: gameState.SwitchLevel(game); // this will go to the next level
+                    case 0: gameState.StartGame(previousLevel, levelName); // this will go to the next level
                         break;
-                    case 1: gameState.StartGame(previousLevel, levelName); //this will start the level over
+                    case 1: gameState.SwitchLevel(game);//this will start the level over
                         break;
                     case 2: gameState.CurrentScreen = Screen.StartScreen;
                         break;
@@ -105,22 +105,22 @@ namespace FloorIsLava
 
             if(count == 0)
             {
-                spriteBatch.Draw(continue1, new Rectangle(game.screenWidth / 2 - 220, 200, 500, 250), Color.White);
+                spriteBatch.Draw(tryAgain1, new Rectangle(game.screenWidth / 2 - 220, 200, 500, 250), Color.White);
                 //spriteBatch.DrawString(font1, "Contine", new Vector2(700f, 400f), Color.Gold);
             }
             else
             {
-                spriteBatch.Draw(continue2, new Rectangle(game.screenWidth / 2 - 220, 200, 500, 250), Color.Gray);
+                spriteBatch.Draw(tryAgain2, new Rectangle(game.screenWidth / 2 - 220, 200, 500, 250), Color.Gray);
                 //spriteBatch.DrawString(font1, "Contine", new Vector2(700f, 400f), Color.Black);
             }
             if(count == 1)
             {
-                spriteBatch.Draw(tryAgain1, new Rectangle(game.screenWidth / 2 - 220, 275, 500, 250), Color.White);
-                //spriteBatch.DrawString(font1, "Try Again", new Vector2(700f, 500f), Color.Gold);
+                spriteBatch.Draw(continue1, new Rectangle(game.screenWidth / 2 - 220, 275, 500, 250), Color.White);
+                
             }
             else
             {
-                spriteBatch.Draw(tryAgain2, new Rectangle(game.screenWidth / 2 - 220, 275, 500, 250), Color.Gray);
+                spriteBatch.Draw(continue2, new Rectangle(game.screenWidth / 2 - 220, 275, 500, 250), Color.Gray);
                 //spriteBatch.DrawString(font1, "Try Again", new Vector2(700f, 500f), Color.Black);
             }
             if(count == 2)
