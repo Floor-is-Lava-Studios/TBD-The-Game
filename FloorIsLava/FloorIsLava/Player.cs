@@ -255,7 +255,10 @@ namespace FloorIsLava
                 jumpStartPosition = position;
                 velocity.Y = -JUMP_STRENGTH;
                 jumpNumber++;
-                game.jumpS.Play();
+                if(Music.canPlay)
+                {
+                    game.jumpS.Play();
+                }
                 if (jumpNumber >= MAX_JUMPS)    // stops it from executing when the maximum amount of midair jumps are performed
                 {
                     jumpNumber = 0;
@@ -456,7 +459,10 @@ namespace FloorIsLava
                         grappleEndpoint = new Vector2(grappleRect.X + (playerRect.Width / 2), grappleRect.Y);
                         velocity = new Vector2(0, 0);
                         isGrappled = true;
-                        game.grappleS.Play();
+                        if(Music.canPlay)
+                        {
+                            game.grappleS.Play();
+                        }
                         break;
                     }
                 }
