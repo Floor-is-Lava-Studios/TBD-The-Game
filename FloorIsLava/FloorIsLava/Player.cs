@@ -26,7 +26,6 @@ namespace FloorIsLava
         #region Constants
         // constants
         const string ASSET_NAME = "Player";
-        const int MAX_SPEED = 10;
         const int ACCELERATION = 1;
         const int GRAVITY = -1;
         const int MAX_JUMPS = 2;
@@ -76,7 +75,8 @@ namespace FloorIsLava
         Texture2D forward2;
         int count;
 
-        int JUMP_STRENGTH = MonitorSize.height / 50;
+        int JUMP_STRENGTH = 21;
+        int MAX_SPEED = 10;
 
         #endregion Attributes
 
@@ -122,6 +122,21 @@ namespace FloorIsLava
             forward2 = game.Content.Load<Texture2D>("playerForward3");
             frame = 0;
             count = 0;
+
+            if (MonitorSize.height > 1080)
+            {
+                JUMP_STRENGTH = 24;
+                MAX_SPEED = 12;
+                height += 32;
+                width += 18;
+            }
+            else if (MonitorSize.height < 1080)
+            {
+                JUMP_STRENGTH = 18;
+                MAX_SPEED = 9;
+                height -= 32;
+                width -= 18;
+            }
         }
         #endregion Constructor
 
