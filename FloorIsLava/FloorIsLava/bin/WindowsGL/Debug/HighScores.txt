@@ -1,5 +1,5 @@
 level1:50
 level2:40
-level3:20
+level3:140
 level4:0
 level5:0

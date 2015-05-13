@@ -26,7 +26,7 @@ namespace FloorIsLava
         public Texture2D playerSprite, playerSprite_Forward, playerSprite_Backwards, backgroundSprite, titleSprite, wallSprite, goalSprite,
             creditButton1, creditButton2, levelButton1, levelButton2, startButton1, startButton2, options1, options2, instructions1, instructions2,
             levelTitle, optionsTitle, enemySprite, bulletSprite, gemSprite, lavaFront, lavaBack;
-
+        public SoundEffect jumpS, grappleS;
 
         public int screenWidth;
         public int screenHeight;
@@ -113,7 +113,11 @@ namespace FloorIsLava
             gemSprite = Content.Load<Texture2D>("gem");
             lavaBack = Content.Load<Texture2D>("lavaBack");
             lavaFront = Content.Load<Texture2D>("lavaFront");
+            jumpS = Content.Load<SoundEffect>("audio_jump.wav");
+            grappleS = Content.Load<SoundEffect>("audio_grapple.wav");
 
+            //Song testSong = Content.Load<Song>("audio_showdown.wav");
+            //MediaPlayer.Play(testSong);
             Music.backgroundMusic = Content.Load<SoundEffect>("backgroundMusic");
 
             try
