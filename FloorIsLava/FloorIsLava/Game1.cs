@@ -113,7 +113,7 @@ namespace FloorIsLava
             enemySprite = Content.Load<Texture2D>("enemy");
             bulletSprite = Content.Load<Texture2D>("bullet");
             gemSprite = Content.Load<Texture2D>("gem");
-            lavaBack = Content.Load<Texture2D>("lavaback");
+            lavaBack = Content.Load<Texture2D>("lavaBack"); /////////////////////////////////////////
             lavaFront = Content.Load<Texture2D>("lavaFront");
             jumpS = Content.Load<SoundEffect>("audio_jump.wav");
             grappleS = Content.Load<SoundEffect>("audio_grapple.wav");

@@ -25,6 +25,11 @@ namespace FloorIsLava
 
         private Texture2D back;
         private Texture2D title;
+
+        private Texture2D logo;
+        private Texture2D names;
+        private Texture2D bg;
+
         #endregion Attributes
 
         #region Constructor 
@@ -36,6 +41,9 @@ namespace FloorIsLava
             font1 = game.Content.Load<SpriteFont>("Font1"); // loads Font1 spriteFont
             back = game.Content.Load<Texture2D>("back");
             title = game.Content.Load<Texture2D>("creditsTitle");
+            logo = game.Content.Load<Texture2D>("LavaLogo");
+            names = game.Content.Load<Texture2D>("Names");
+            bg = game.Content.Load<Texture2D>("pause");
         }
         #endregion Constructor
 
@@ -81,10 +89,11 @@ namespace FloorIsLava
             //spriteBatch.DrawString(font1, "Press \"Back\" to go back", new Vector2(100f, 70f), Color.Blue);
             spriteBatch.Draw(title, new Rectangle(game.screenWidth / 2 - 500, 100, 1000, 512), Color.White);
             spriteBatch.Draw(back, new Rectangle(50, 60, 150, 80), Color.White);
-            spriteBatch.DrawString(font1, "             The Floor is Lava Studio", new Vector2(game.screenWidth / 2 - 50, 300f), Color.Gold);
-            spriteBatch.DrawString(font1, "Alexander Bellavia               Kasey Hilton", new Vector2(game.screenWidth / 2 - 50, 350f), Color.Gold);
-            spriteBatch.DrawString(font1, "Josh Malmquist                   Jacob Roos", new Vector2(game.screenWidth / 2 - 50, 400f), Color.Gold);
-            spriteBatch.DrawString(font1, "                 Anna Karwacki", new Vector2(game.screenWidth / 2 - 50, 450f), Color.Gold);
+            spriteBatch.Draw(bg, new Rectangle(game.screenWidth / 2 - 175, 475, 350, 206), Color.White);
+            spriteBatch.Draw(logo, new Rectangle(game.screenWidth / 2 - 250, 300, 500, 156), Color.White);
+
+            spriteBatch.Draw(names, new Rectangle(game.screenWidth / 2 - 150, 500, 300, 156),Color.Blue);
+           
         }
         #endregion Methods
     }

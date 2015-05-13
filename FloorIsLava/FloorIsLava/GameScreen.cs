@@ -55,7 +55,6 @@ namespace FloorIsLava
         public List<Gold> gemsList;
         public List<Bullet> bulletList;    //Bullet list to check each bullet that is created
 
-
         #endregion Attributes
 
         #region Properties

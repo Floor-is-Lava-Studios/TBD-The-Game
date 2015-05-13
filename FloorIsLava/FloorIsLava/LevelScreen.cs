@@ -35,6 +35,7 @@ namespace FloorIsLava
         private Texture2D lvl3;
         private Texture2D lvl4;
         private Texture2D lvl5;
+        private Texture2D lvl6;
         #endregion Attributes
 
         #region Constructor
@@ -54,6 +55,7 @@ namespace FloorIsLava
             lvl3 = game.Content.Load<Texture2D>("level3");
             lvl4 = game.Content.Load<Texture2D>("level4");
             lvl5 = game.Content.Load<Texture2D>("level5");
+            lvl6 = game.Content.Load<Texture2D>("level6");
 
             currentLvl = "level1.txt";
             nextLvl = "level2.txt";
@@ -77,7 +79,7 @@ namespace FloorIsLava
                 count--;
                 if (count < 0)
                 {
-                    count = 4;
+                    count = 5;
                 }
                 
             }
@@ -85,7 +87,7 @@ namespace FloorIsLava
             {
                 game.grappleS.Play();
                 count++;
-                if (count > 4)
+                if (count > 5)
                 {
                     count = 0;
                 }
@@ -119,6 +121,11 @@ namespace FloorIsLava
                 {
                     gameState.StartGame("level5.txt", "level5");
                     currentLvl = "level5.txt";
+                }
+                else if (count == 5 && levels["level6"] == true)
+                {
+                    gameState.StartGame("level6.txt", "level6");
+                    currentLvl = "level6.txt";
                 }
             }
 
@@ -196,6 +203,19 @@ namespace FloorIsLava
             else
             {
                 spriteBatch.Draw(lvl5, new Rectangle(1000, 400, 100, 100), Color.Gold);
+            }
+            // level 6
+            if (count == 5 && levels["level6"] == true)
+            {
+                spriteBatch.Draw(lvl6, new Rectangle(1200, 400, 100, 100), Color.White);
+            }
+            else if (count == 5 && levels["level6"] == false)
+            {
+                spriteBatch.Draw(lvl6, new Rectangle(1200, 400, 100, 100), Color.Gray);
+            }
+            else
+            {
+                spriteBatch.Draw(lvl6, new Rectangle(1200, 400, 100, 100), Color.Gold);
             }
         }
 

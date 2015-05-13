@@ -157,12 +157,12 @@ namespace FloorIsLava
                 if (game.playMusic == true)
                 {
                     //spriteBatch.DrawString(font1, "Sound: On", new Vector2(game.screenWidth / 2 - 100, 400f), Color.White);
-                    spriteBatch.Draw(soundOn1, new Vector2(game.screenWidth / 2 - 130, game.screenHeight / 2), Color.White);
+                    spriteBatch.Draw(soundOn1, new Vector2(game.screenWidth / 2 - 130, game.screenHeight / 2), Color.Gray);
                 }
                 if (game.playMusic == false)
                 {
                     //spriteBatch.DrawString(font1, "Sound: OFF", new Vector2(game.screenWidth / 2 - 100, 400f), Color.White);
-                    spriteBatch.Draw(soundOff1, new Vector2(game.screenWidth / 2 - 130, game.screenHeight / 2), Color.White);
+                    spriteBatch.Draw(soundOff1, new Vector2(game.screenWidth / 2 - 130, game.screenHeight / 2), Color.Gray);
                 }
                
             }
@@ -174,7 +174,7 @@ namespace FloorIsLava
             else
             {
                 //spriteBatch.DrawString(font1, "Reset Level HighScores", new Vector2(game.screenWidth / 2 - 100, 500f), Color.White);
-                spriteBatch.Draw(resetHS1, new Vector2(game.screenWidth / 2 - 130, game.screenHeight / 2 + 100), Color.White);
+                spriteBatch.Draw(resetHS1, new Vector2(game.screenWidth / 2 - 130, game.screenHeight / 2 + 100), Color.Gray);
             }
             if (count == 2)
             {
@@ -184,7 +184,7 @@ namespace FloorIsLava
             else
             {
                 //spriteBatch.DrawString(font1, "Reset Level Lock Status", new Vector2(game.screenWidth / 2 - 100, 600f), Color.White);
-                spriteBatch.Draw(levelUnlock1, new Vector2(game.screenWidth / 2 - 130, game.screenHeight / 2 + 200), Color.White);
+                spriteBatch.Draw(levelUnlock1, new Vector2(game.screenWidth / 2 - 130, game.screenHeight / 2 + 200), Color.Gray);
             }
         }
         #endregion Methods

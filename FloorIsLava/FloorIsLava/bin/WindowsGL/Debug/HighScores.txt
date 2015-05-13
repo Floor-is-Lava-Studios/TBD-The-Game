@@ -3,3 +3,4 @@ level2:40
 level3:80
 level4:0
 level5:0
+level6:0
