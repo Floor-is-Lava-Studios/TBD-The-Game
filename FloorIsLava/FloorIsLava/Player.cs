@@ -204,6 +204,7 @@ namespace FloorIsLava
                     {
                         position.Y = r.Top - height;
                         hasJumped = false;
+                        jumpNumber = 0;
                     }
                     velocity.Y = 0;
                 }
