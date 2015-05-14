@@ -29,6 +29,7 @@ namespace FloorIsLava
         private Texture2D logo;
         private Texture2D names;
         private Texture2D bg;
+        private Texture2D music;
 
         #endregion Attributes
 
@@ -44,6 +45,7 @@ namespace FloorIsLava
             logo = game.Content.Load<Texture2D>("LavaLogo");
             names = game.Content.Load<Texture2D>("Names");
             bg = game.Content.Load<Texture2D>("pause");
+            music = game.Content.Load<Texture2D>("musicCredits");
         }
         #endregion Constructor
 
@@ -89,10 +91,11 @@ namespace FloorIsLava
             //spriteBatch.DrawString(font1, "Press \"Back\" to go back", new Vector2(100f, 70f), Color.Blue);
             spriteBatch.Draw(title, new Rectangle(game.screenWidth / 2 - 500, 100, 1000, 512), Color.White);
             spriteBatch.Draw(back, new Rectangle(50, 60, 150, 80), Color.White);
-            spriteBatch.Draw(bg, new Rectangle(game.screenWidth / 2 - 175, 475, 350, 206), Color.White);
+            spriteBatch.Draw(bg, new Rectangle(game.screenWidth / 2 + 75, 475, 350, 206), Color.White);
             spriteBatch.Draw(logo, new Rectangle(game.screenWidth / 2 - 250, 300, 500, 156), Color.White);
 
-            spriteBatch.Draw(names, new Rectangle(game.screenWidth / 2 - 150, 500, 300, 156),Color.Blue);
+            spriteBatch.Draw(names, new Rectangle(game.screenWidth / 2 + 100, 500, 300, 156),Color.Blue);
+            spriteBatch.Draw(music, new Rectangle(game.screenWidth / 2 - 450, 500, 300, 156), Color.White);
            
         }
         #endregion Methods
