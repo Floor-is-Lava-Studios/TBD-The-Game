@@ -83,7 +83,10 @@ namespace FloorIsLava
             }
             if((keyState.IsKeyDown(Keys.W) && lastState.IsKeyUp(Keys.W)) || (keyState.IsKeyDown(Keys.Up) && lastState.IsKeyUp(Keys.Up)))
             {
-                game.grappleS.Play();
+                if(Music.canPlay)
+                {
+                    game.grappleS.Play();
+                }
                 count = count - 1;
                 if (count < 0)
                 {
@@ -92,7 +95,10 @@ namespace FloorIsLava
             }
             if ((keyState.IsKeyDown(Keys.S) && lastState.IsKeyUp(Keys.S)) || (keyState.IsKeyDown(Keys.Down) && lastState.IsKeyUp(Keys.Down)))
             {
-                game.grappleS.Play();
+                if (Music.canPlay)
+                {
+                    game.grappleS.Play();
+                }
                 count = count + 1;
                 if (count > 2)
                 {
@@ -126,7 +132,10 @@ namespace FloorIsLava
                     //reset level lock code goes here
                     info.ResetLevelLock();
                 }
-                game.grappleS.Play();
+                if (Music.canPlay)
+                {
+                    game.grappleS.Play();
+                }
             }
             lastState = keyState; //assigns current keyboard state to lastState
         }

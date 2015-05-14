@@ -49,7 +49,10 @@ namespace FloorIsLava
             {
                 gameScreen.Score = 10;
                 numberOfGems++;
-                coinSound.Play();
+                if(Music.canPlay)
+                {
+                    coinSound.Play();
+                }
                 isVisible = false;
             }
         }
