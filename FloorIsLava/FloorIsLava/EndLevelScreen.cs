@@ -69,6 +69,10 @@ namespace FloorIsLava
             if ((keyState.IsKeyDown(Keys.W) && lastState.IsKeyUp(Keys.W)) || (keyState.IsKeyDown(Keys.Up) && lastState.IsKeyUp(Keys.Up)))
             {               
                 count--;
+                if (Music.canPlay)
+                {
+                    game.grappleS.Play();
+                }
                 if (count < 0)
                 {
                     count = 2;
@@ -77,6 +81,10 @@ namespace FloorIsLava
             if (keyState.IsKeyDown(Keys.S) && lastState.IsKeyUp(Keys.S) || (keyState.IsKeyDown(Keys.Down) && lastState.IsKeyUp(Keys.Down)))
             {
                 count++;
+                if (Music.canPlay)
+                {
+                    game.grappleS.Play();
+                }
                 if (count > 2)
                 {
                     count = 0;

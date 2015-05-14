@@ -136,6 +136,9 @@
     <Content Include="Content\levelUnlock2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\musicCredits.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Names.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
