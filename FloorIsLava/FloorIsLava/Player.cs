@@ -311,12 +311,18 @@ namespace FloorIsLava
                 if (newState.IsKeyDown(Keys.W) && Math.Abs((grappleEndpoint.Y - playerRect.Y)) > 30 || newState.IsKeyDown(Keys.Up) && Math.Abs((grappleEndpoint.Y - playerRect.Y)) > 30)
                 {
                     position.Y -= 10;
-                    game.grappleS.Play(.5f, 0f, 0f);
+                    if(Music.canPlay)
+                    {
+                        game.grappleS.Play(.5f, 0f, 0f);
+                    }
                 }
                 if (newState.IsKeyDown(Keys.S) && Math.Abs((grappleEndpoint.Y - playerRect.Y)) < GRAPPLE_DISTANCE || newState.IsKeyDown(Keys.Down) && Math.Abs((grappleEndpoint.Y - playerRect.Y)) < GRAPPLE_DISTANCE)
                 {
                     position.Y += 10;
-                    game.grappleS.Play(.5f, 0f, 0f);
+                    if(Music.canPlay)
+                    {
+                        game.grappleS.Play(.5f, 0f, 0f);
+                    }
                 }
 
             }
