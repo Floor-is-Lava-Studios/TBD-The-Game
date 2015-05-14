@@ -327,7 +327,7 @@ namespace FloorIsLava
         {
             SpriteBatch spriteBatch = sprBatch;
             spriteBatch.Draw(background, new Rectangle(0, 0, game.screenWidth, game.screenHeight), Color.SlateGray);
-            spriteBatch.Draw(game.lavaBack, lavaRect, Color.White);
+            spriteBatch.Draw(game.lavaBack, new Rectangle(0, game.screenHeight - game.lavaBack.Height - 50, game.screenWidth, game.lavaBack.Height + 50), Color.White);
             //spriteBatch.DrawString(font1, "This is the Game Screen", new Vector2(50f, 50f), Color.Red);
             endGoal.Draw(spriteBatch);
             player.Draw(spriteBatch);
@@ -342,6 +342,7 @@ namespace FloorIsLava
             //spriteBatch.DrawString(font1, "Best Time: " + bestTime, new Vector2(100f, 110f), Color.Red);
             spriteBatch.DrawString(font1, "Score: " + score, new Vector2(100f, 110f), Color.Red);
             spriteBatch.Draw(game.lavaFront, lavaRect, Color.White);
+
         }
         #endregion Draw
 

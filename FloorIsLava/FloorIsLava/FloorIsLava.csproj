@@ -118,6 +118,12 @@
     <EmbeddedResource Include="Content\instructionTitle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Content Include="Content\lavaBackground.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\lavaForeground.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\LavaLogo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
